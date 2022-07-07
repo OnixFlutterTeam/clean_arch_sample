@@ -14,3 +14,15 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+Use the [`watch`] flag to watch the files' system for edits and rebuild as necessary.
+
+`flutter packages pub run build_runner watch`
+
+If you want the generator to run one time and exits use.
+
+`flutter packages pub run build_runner build`
+If conflicting outputs were detected and the build is unable to prompt for permission to remove them.
+
+`flutter pub run build_runner build --delete-conflicting-outputs`
