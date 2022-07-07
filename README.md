@@ -1,28 +1,27 @@
-# clean_arch_sample
-
-Clean Arch Sample.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 
 
-Use the [`watch`] flag to watch the files' system for edits and rebuild as necessary.
+Clean Architecture Project Sample (Project template).
 
-`flutter packages pub run build_runner watch`
+## Technologies used in Example
 
-If you want the generator to run one time and exits use.
+* [GetIt](https://pub.dev/packages/get_it) - service locator (DI)
+* [Screen Util](https://pub.dev/packages/flutter_screenutil) - adaptive UI tools
+* [Go Router](https://pub.dev/packages/go_router) - navigation
+* [Json Annotation](https://pub.dev/packages/json_annotation) - code generation based for JSON parsing
+* [Freezed](https://pub.dev/packages/freezed_annotation) - code genearion of data classes
+* [Hive](https://pub.dev/packages/hive) - database
+* [Dio](https://pub.dev/packages/dio) - Http client
+* [Bloc](https://pub.dev/packages/flutter_bloc) - state management
+* [Shared Preferences](https://pub.dev/packages/shared_preferences) - key-value storage
+
+
+
+##Build Runner
+
+To generate classes:
 
 `flutter packages pub run build_runner build`
-If conflicting outputs were detected and the build is unable to prompt for permission to remove them.
+
+If you have conflicts use command:
 
 `flutter pub run build_runner build --delete-conflicting-outputs`
