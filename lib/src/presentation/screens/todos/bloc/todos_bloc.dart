@@ -1,56 +1,48 @@
-import 'package:clean_arch_sample/src/domain/entity/result_error_type.dart';
+import 'package:clean_arch_sample/src/core/arch/bloc/base_bloc.dart';
+import 'package:clean_arch_sample/src/domain/entity/todo_entity.dart';
+import 'package:clean_arch_sample/src/domain/usecase/get_todos_use_case.dart';
+import 'package:clean_arch_sample/src/domain/usecase/todo_use_case_params.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 
-import '../../../../domain/entity/result.dart';
-import '../../../../domain/entity/todo_entity.dart';
-import '../../../../domain/usecase/get_todos_use_case.dart';
 import 'todos_models.dart';
 
-class TodosBloc extends Bloc<TodosScreenEvent, TodosScreenState> {
-  final _synchronizeTodosUseCase = GetIt.instance<GetTodosUseCase>();
+class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
+  final GetTodosUseCase _synchronizeTodosUseCase;
+  final _allTodosList = List<TodoEntity>.empty(growable: true);
 
-  final List<TodoEntity> _allTodosList = List.empty(growable: true);
-
-  TodosBloc() : super(TodosScreenState.idle()) {
+  TodosBloc(this._synchronizeTodosUseCase)
+      : super(const TodosScreenState.empty()) {
     on<GetTodosEvent>((event, emit) => _getTodos(event, emit));
     on<SearchEvent>((event, emit) => _onSearch(event, emit));
-
     add(TodosScreenEvent.getTodos());
   }
 
   void _getTodos(GetTodosEvent event, Emitter<TodosScreenState> emit) async {
-    emit(TodosScreenState.loading());
-    Result<List<TodoEntity>> result = await _synchronizeTodosUseCase(
-      forceUpdate: event.forceUpdate,
+    emit(const TodosScreenState.loading());
+    final result = await _synchronizeTodosUseCase(
+      param: GetTodoUseCaseParams(forceUpdate: event.forceUpdate),
     );
     result.when(
-      success: (data) {
-        _allTodosList.clear();
-        _allTodosList.addAll(data);
-        emit(
-          TodosScreenState.success(todos: _allTodosList),
-        );
+      left: (left) {
+        onFailure(left);
+        emit(const TodosScreenState.empty());
       },
-      error: (type, message) {
-        emit(
-          TodosScreenState.error(errorType: type, errorMessage: message),
-        );
+      right: (right) {
+        _allTodosList.clear();
+        _allTodosList.addAll(right);
+        emit(TodosScreenState.data(todos: _allTodosList));
       },
     );
   }
 
   void _onSearch(SearchEvent event, Emitter<TodosScreenState> emit) {
-    emit(
-      TodosScreenState.success(
+    emit(state.data.copyWith(
         todos: _allTodosList
             .where(
               (e) => e.title.toLowerCase().contains(
                     event.query.toLowerCase(),
                   ),
             )
-            .toList(),
-      ),
-    );
+            .toList()));
   }
 }

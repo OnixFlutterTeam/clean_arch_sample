@@ -203,7 +203,7 @@ class _$GetTodosEvent implements GetTodosEvent {
 abstract class GetTodosEvent implements TodosScreenEvent {
   factory GetTodosEvent({final bool forceUpdate}) = _$GetTodosEvent;
 
-  bool get forceUpdate => throw _privateConstructorUsedError;
+  bool get forceUpdate;
   @JsonKey(ignore: true)
   _$$GetTodosEventCopyWith<_$GetTodosEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -337,7 +337,7 @@ class _$SearchEvent implements SearchEvent {
 abstract class SearchEvent implements TodosScreenEvent {
   factory SearchEvent({required final String query}) = _$SearchEvent;
 
-  String get query => throw _privateConstructorUsedError;
+  String get query;
   @JsonKey(ignore: true)
   _$$SearchEventCopyWith<_$SearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -347,52 +347,45 @@ abstract class SearchEvent implements TodosScreenEvent {
 mixin _$TodosScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(ResultErrorType errorType, String errorMessage)
-        error,
-    required TResult Function(List<TodoEntity> todos) success,
+    required TResult Function() empty,
+    required TResult Function(List<TodoEntity> todos) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TodosScreenStateIdle value) idle,
     required TResult Function(TodosScreenStateLoading value) loading,
-    required TResult Function(TodosScreenStateError value) error,
-    required TResult Function(TodosScreenStateSuccess value) success,
+    required TResult Function(TodosScreenStateEmpty value) empty,
+    required TResult Function(TodosScreenStateData value) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -413,125 +406,6 @@ class _$TodosScreenStateCopyWithImpl<$Res>
   final TodosScreenState _value;
   // ignore: unused_field
   final $Res Function(TodosScreenState) _then;
-}
-
-/// @nodoc
-abstract class _$$TodosScreenStateIdleCopyWith<$Res> {
-  factory _$$TodosScreenStateIdleCopyWith(_$TodosScreenStateIdle value,
-          $Res Function(_$TodosScreenStateIdle) then) =
-      __$$TodosScreenStateIdleCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TodosScreenStateIdleCopyWithImpl<$Res>
-    extends _$TodosScreenStateCopyWithImpl<$Res>
-    implements _$$TodosScreenStateIdleCopyWith<$Res> {
-  __$$TodosScreenStateIdleCopyWithImpl(_$TodosScreenStateIdle _value,
-      $Res Function(_$TodosScreenStateIdle) _then)
-      : super(_value, (v) => _then(v as _$TodosScreenStateIdle));
-
-  @override
-  _$TodosScreenStateIdle get _value => super._value as _$TodosScreenStateIdle;
-}
-
-/// @nodoc
-
-class _$TodosScreenStateIdle extends TodosScreenStateIdle {
-  _$TodosScreenStateIdle() : super._();
-
-  @override
-  String toString() {
-    return 'TodosScreenState.idle()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TodosScreenStateIdle);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() loading,
-    required TResult Function(ResultErrorType errorType, String errorMessage)
-        error,
-    required TResult Function(List<TodoEntity> todos) success,
-  }) {
-    return idle();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
-  }) {
-    return idle?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
-    required TResult orElse(),
-  }) {
-    if (idle != null) {
-      return idle();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TodosScreenStateIdle value) idle,
-    required TResult Function(TodosScreenStateLoading value) loading,
-    required TResult Function(TodosScreenStateError value) error,
-    required TResult Function(TodosScreenStateSuccess value) success,
-  }) {
-    return idle(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
-    TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
-  }) {
-    return idle?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
-    TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
-    required TResult orElse(),
-  }) {
-    if (idle != null) {
-      return idle(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TodosScreenStateIdle extends TodosScreenState {
-  factory TodosScreenStateIdle() = _$TodosScreenStateIdle;
-  TodosScreenStateIdle._() : super._();
 }
 
 /// @nodoc
@@ -557,7 +431,7 @@ class __$$TodosScreenStateLoadingCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TodosScreenStateLoading extends TodosScreenStateLoading {
-  _$TodosScreenStateLoading() : super._();
+  const _$TodosScreenStateLoading() : super._();
 
   @override
   String toString() {
@@ -577,11 +451,9 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(ResultErrorType errorType, String errorMessage)
-        error,
-    required TResult Function(List<TodoEntity> todos) success,
+    required TResult Function() empty,
+    required TResult Function(List<TodoEntity> todos) data,
   }) {
     return loading();
   }
@@ -589,10 +461,9 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
   }) {
     return loading?.call();
   }
@@ -600,10 +471,9 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -615,10 +485,9 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TodosScreenStateIdle value) idle,
     required TResult Function(TodosScreenStateLoading value) loading,
-    required TResult Function(TodosScreenStateError value) error,
-    required TResult Function(TodosScreenStateSuccess value) success,
+    required TResult Function(TodosScreenStateEmpty value) empty,
+    required TResult Function(TodosScreenStateData value) data,
   }) {
     return loading(this);
   }
@@ -626,10 +495,9 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
   }) {
     return loading?.call(this);
   }
@@ -637,10 +505,9 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -651,122 +518,78 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
 }
 
 abstract class TodosScreenStateLoading extends TodosScreenState {
-  factory TodosScreenStateLoading() = _$TodosScreenStateLoading;
-  TodosScreenStateLoading._() : super._();
+  const factory TodosScreenStateLoading() = _$TodosScreenStateLoading;
+  const TodosScreenStateLoading._() : super._();
 }
 
 /// @nodoc
-abstract class _$$TodosScreenStateErrorCopyWith<$Res> {
-  factory _$$TodosScreenStateErrorCopyWith(_$TodosScreenStateError value,
-          $Res Function(_$TodosScreenStateError) then) =
-      __$$TodosScreenStateErrorCopyWithImpl<$Res>;
-  $Res call({ResultErrorType errorType, String errorMessage});
+abstract class _$$TodosScreenStateEmptyCopyWith<$Res> {
+  factory _$$TodosScreenStateEmptyCopyWith(_$TodosScreenStateEmpty value,
+          $Res Function(_$TodosScreenStateEmpty) then) =
+      __$$TodosScreenStateEmptyCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$TodosScreenStateErrorCopyWithImpl<$Res>
+class __$$TodosScreenStateEmptyCopyWithImpl<$Res>
     extends _$TodosScreenStateCopyWithImpl<$Res>
-    implements _$$TodosScreenStateErrorCopyWith<$Res> {
-  __$$TodosScreenStateErrorCopyWithImpl(_$TodosScreenStateError _value,
-      $Res Function(_$TodosScreenStateError) _then)
-      : super(_value, (v) => _then(v as _$TodosScreenStateError));
+    implements _$$TodosScreenStateEmptyCopyWith<$Res> {
+  __$$TodosScreenStateEmptyCopyWithImpl(_$TodosScreenStateEmpty _value,
+      $Res Function(_$TodosScreenStateEmpty) _then)
+      : super(_value, (v) => _then(v as _$TodosScreenStateEmpty));
 
   @override
-  _$TodosScreenStateError get _value => super._value as _$TodosScreenStateError;
-
-  @override
-  $Res call({
-    Object? errorType = freezed,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_$TodosScreenStateError(
-      errorType: errorType == freezed
-          ? _value.errorType
-          : errorType // ignore: cast_nullable_to_non_nullable
-              as ResultErrorType,
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  _$TodosScreenStateEmpty get _value => super._value as _$TodosScreenStateEmpty;
 }
 
 /// @nodoc
 
-class _$TodosScreenStateError extends TodosScreenStateError {
-  _$TodosScreenStateError(
-      {this.errorType = ResultErrorType.none, this.errorMessage = ''})
-      : super._();
-
-  @override
-  @JsonKey()
-  final ResultErrorType errorType;
-  @override
-  @JsonKey()
-  final String errorMessage;
+class _$TodosScreenStateEmpty extends TodosScreenStateEmpty {
+  const _$TodosScreenStateEmpty() : super._();
 
   @override
   String toString() {
-    return 'TodosScreenState.error(errorType: $errorType, errorMessage: $errorMessage)';
+    return 'TodosScreenState.empty()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TodosScreenStateError &&
-            const DeepCollectionEquality().equals(other.errorType, errorType) &&
-            const DeepCollectionEquality()
-                .equals(other.errorMessage, errorMessage));
+        (other.runtimeType == runtimeType && other is _$TodosScreenStateEmpty);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(errorType),
-      const DeepCollectionEquality().hash(errorMessage));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$TodosScreenStateErrorCopyWith<_$TodosScreenStateError> get copyWith =>
-      __$$TodosScreenStateErrorCopyWithImpl<_$TodosScreenStateError>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(ResultErrorType errorType, String errorMessage)
-        error,
-    required TResult Function(List<TodoEntity> todos) success,
+    required TResult Function() empty,
+    required TResult Function(List<TodoEntity> todos) data,
   }) {
-    return error(errorType, errorMessage);
+    return empty();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
   }) {
-    return error?.call(errorType, errorMessage);
+    return empty?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(errorType, errorMessage);
+    if (empty != null) {
+      return empty();
     }
     return orElse();
   }
@@ -774,79 +597,67 @@ class _$TodosScreenStateError extends TodosScreenStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TodosScreenStateIdle value) idle,
     required TResult Function(TodosScreenStateLoading value) loading,
-    required TResult Function(TodosScreenStateError value) error,
-    required TResult Function(TodosScreenStateSuccess value) success,
+    required TResult Function(TodosScreenStateEmpty value) empty,
+    required TResult Function(TodosScreenStateData value) data,
   }) {
-    return error(this);
+    return empty(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
   }) {
-    return error?.call(this);
+    return empty?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (empty != null) {
+      return empty(this);
     }
     return orElse();
   }
 }
 
-abstract class TodosScreenStateError extends TodosScreenState {
-  factory TodosScreenStateError(
-      {final ResultErrorType errorType,
-      final String errorMessage}) = _$TodosScreenStateError;
-  TodosScreenStateError._() : super._();
-
-  ResultErrorType get errorType => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$TodosScreenStateErrorCopyWith<_$TodosScreenStateError> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class TodosScreenStateEmpty extends TodosScreenState {
+  const factory TodosScreenStateEmpty() = _$TodosScreenStateEmpty;
+  const TodosScreenStateEmpty._() : super._();
 }
 
 /// @nodoc
-abstract class _$$TodosScreenStateSuccessCopyWith<$Res> {
-  factory _$$TodosScreenStateSuccessCopyWith(_$TodosScreenStateSuccess value,
-          $Res Function(_$TodosScreenStateSuccess) then) =
-      __$$TodosScreenStateSuccessCopyWithImpl<$Res>;
+abstract class _$$TodosScreenStateDataCopyWith<$Res> {
+  factory _$$TodosScreenStateDataCopyWith(_$TodosScreenStateData value,
+          $Res Function(_$TodosScreenStateData) then) =
+      __$$TodosScreenStateDataCopyWithImpl<$Res>;
   $Res call({List<TodoEntity> todos});
 }
 
 /// @nodoc
-class __$$TodosScreenStateSuccessCopyWithImpl<$Res>
+class __$$TodosScreenStateDataCopyWithImpl<$Res>
     extends _$TodosScreenStateCopyWithImpl<$Res>
-    implements _$$TodosScreenStateSuccessCopyWith<$Res> {
-  __$$TodosScreenStateSuccessCopyWithImpl(_$TodosScreenStateSuccess _value,
-      $Res Function(_$TodosScreenStateSuccess) _then)
-      : super(_value, (v) => _then(v as _$TodosScreenStateSuccess));
+    implements _$$TodosScreenStateDataCopyWith<$Res> {
+  __$$TodosScreenStateDataCopyWithImpl(_$TodosScreenStateData _value,
+      $Res Function(_$TodosScreenStateData) _then)
+      : super(_value, (v) => _then(v as _$TodosScreenStateData));
 
   @override
-  _$TodosScreenStateSuccess get _value =>
-      super._value as _$TodosScreenStateSuccess;
+  _$TodosScreenStateData get _value => super._value as _$TodosScreenStateData;
 
   @override
   $Res call({
     Object? todos = freezed,
   }) {
-    return _then(_$TodosScreenStateSuccess(
+    return _then(_$TodosScreenStateData(
       todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
@@ -857,8 +668,8 @@ class __$$TodosScreenStateSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TodosScreenStateSuccess extends TodosScreenStateSuccess {
-  _$TodosScreenStateSuccess({final List<TodoEntity> todos = const []})
+class _$TodosScreenStateData extends TodosScreenStateData {
+  const _$TodosScreenStateData({final List<TodoEntity> todos = const []})
       : _todos = todos,
         super._();
 
@@ -872,14 +683,14 @@ class _$TodosScreenStateSuccess extends TodosScreenStateSuccess {
 
   @override
   String toString() {
-    return 'TodosScreenState.success(todos: $todos)';
+    return 'TodosScreenState.data(todos: $todos)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TodosScreenStateSuccess &&
+            other is _$TodosScreenStateData &&
             const DeepCollectionEquality().equals(other._todos, _todos));
   }
 
@@ -889,44 +700,40 @@ class _$TodosScreenStateSuccess extends TodosScreenStateSuccess {
 
   @JsonKey(ignore: true)
   @override
-  _$$TodosScreenStateSuccessCopyWith<_$TodosScreenStateSuccess> get copyWith =>
-      __$$TodosScreenStateSuccessCopyWithImpl<_$TodosScreenStateSuccess>(
+  _$$TodosScreenStateDataCopyWith<_$TodosScreenStateData> get copyWith =>
+      __$$TodosScreenStateDataCopyWithImpl<_$TodosScreenStateData>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(ResultErrorType errorType, String errorMessage)
-        error,
-    required TResult Function(List<TodoEntity> todos) success,
+    required TResult Function() empty,
+    required TResult Function(List<TodoEntity> todos) data,
   }) {
-    return success(todos);
+    return data(todos);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
   }) {
-    return success?.call(todos);
+    return data?.call(todos);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(ResultErrorType errorType, String errorMessage)? error,
-    TResult Function(List<TodoEntity> todos)? success,
+    TResult Function()? empty,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(todos);
+    if (data != null) {
+      return data(todos);
     }
     return orElse();
   }
@@ -934,48 +741,45 @@ class _$TodosScreenStateSuccess extends TodosScreenStateSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TodosScreenStateIdle value) idle,
     required TResult Function(TodosScreenStateLoading value) loading,
-    required TResult Function(TodosScreenStateError value) error,
-    required TResult Function(TodosScreenStateSuccess value) success,
+    required TResult Function(TodosScreenStateEmpty value) empty,
+    required TResult Function(TodosScreenStateData value) data,
   }) {
-    return success(this);
+    return data(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
   }) {
-    return success?.call(this);
+    return data?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TodosScreenStateIdle value)? idle,
     TResult Function(TodosScreenStateLoading value)? loading,
-    TResult Function(TodosScreenStateError value)? error,
-    TResult Function(TodosScreenStateSuccess value)? success,
+    TResult Function(TodosScreenStateEmpty value)? empty,
+    TResult Function(TodosScreenStateData value)? data,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (data != null) {
+      return data(this);
     }
     return orElse();
   }
 }
 
-abstract class TodosScreenStateSuccess extends TodosScreenState {
-  factory TodosScreenStateSuccess({final List<TodoEntity> todos}) =
-      _$TodosScreenStateSuccess;
-  TodosScreenStateSuccess._() : super._();
+abstract class TodosScreenStateData extends TodosScreenState {
+  const factory TodosScreenStateData({final List<TodoEntity> todos}) =
+      _$TodosScreenStateData;
+  const TodosScreenStateData._() : super._();
 
-  List<TodoEntity> get todos => throw _privateConstructorUsedError;
+  List<TodoEntity> get todos;
   @JsonKey(ignore: true)
-  _$$TodosScreenStateSuccessCopyWith<_$TodosScreenStateSuccess> get copyWith =>
+  _$$TodosScreenStateDataCopyWith<_$TodosScreenStateData> get copyWith =>
       throw _privateConstructorUsedError;
 }

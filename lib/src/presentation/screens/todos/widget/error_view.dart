@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ErrorView extends StatelessWidget {
-  final String errorText;
+  final String? errorText;
   final VoidCallback onRetryPressed;
 
-  const ErrorView(
-      {super.key, required this.errorText, required this.onRetryPressed});
+  const ErrorView({
+    super.key,
+    this.errorText,
+    required this.onRetryPressed,
+  });
 
   @override
   Widget build(BuildContext context) => Center(

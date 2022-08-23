@@ -177,7 +177,9 @@ class _$_TodoResponse implements _TodoResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TodoResponseToJson(this);
+    return _$$_TodoResponseToJson(
+      this,
+    );
   }
 }
 
@@ -192,13 +194,13 @@ abstract class _TodoResponse implements TodoResponse {
       _$_TodoResponse.fromJson;
 
   @override
-  int? get userId => throw _privateConstructorUsedError;
+  int? get userId;
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
-  bool? get completed => throw _privateConstructorUsedError;
+  bool? get completed;
   @override
   @JsonKey(ignore: true)
   _$$_TodoResponseCopyWith<_$_TodoResponse> get copyWith =>

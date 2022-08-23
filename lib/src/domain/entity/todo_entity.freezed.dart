@@ -174,13 +174,13 @@ abstract class _TodoEntity implements TodoEntity {
       required final bool completed}) = _$_TodoEntity;
 
   @override
-  int get userId => throw _privateConstructorUsedError;
+  int get userId;
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  bool get completed => throw _privateConstructorUsedError;
+  bool get completed;
   @override
   @JsonKey(ignore: true)
   _$$_TodoEntityCopyWith<_$_TodoEntity> get copyWith =>

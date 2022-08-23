@@ -1,4 +1,3 @@
-import 'package:clean_arch_sample/src/domain/entity/result_error_type.dart';
 import 'package:clean_arch_sample/src/domain/entity/todo_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,20 +14,17 @@ class TodosScreenEvent with _$TodosScreenEvent {
 
 @freezed
 class TodosScreenState with _$TodosScreenState {
+  TodosScreenStateData get data => this as TodosScreenStateData;
+
   const TodosScreenState._();
 
-  factory TodosScreenState.idle() = TodosScreenStateIdle;
+  const factory TodosScreenState.loading() = TodosScreenStateLoading;
 
-  factory TodosScreenState.loading() = TodosScreenStateLoading;
+  const factory TodosScreenState.empty() = TodosScreenStateEmpty;
 
-  factory TodosScreenState.error({
-    @Default(ResultErrorType.none) ResultErrorType errorType,
-    @Default('') String errorMessage,
-  }) = TodosScreenStateError;
-
-  factory TodosScreenState.success({
+  const factory TodosScreenState.data({
     @Default([]) List<TodoEntity> todos,
-  }) = TodosScreenStateSuccess;
-
-  bool get success => this is TodosScreenStateSuccess;
+  }) = TodosScreenStateData;
 }
+
+class TodosSR {}

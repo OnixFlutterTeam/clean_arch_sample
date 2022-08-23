@@ -1,11 +1,15 @@
+import 'package:clean_arch_sample/src/core/arch/component/remote/base/map_common_server_error.dart';
+import 'package:clean_arch_sample/src/core/arch/domain/entities/common/either.dart';
+import 'package:clean_arch_sample/src/core/arch/domain/entities/failure/api_failure.dart';
+import 'package:clean_arch_sample/src/core/arch/domain/entities/failure/failure.dart';
+import 'package:clean_arch_sample/src/core/arch/logger.dart';
 import 'package:clean_arch_sample/src/data/mapper/todo_list_mapper.dart';
+import 'package:clean_arch_sample/src/data/models/remote/todo_response.dart';
 import 'package:clean_arch_sample/src/data/source/local/database/todo_database.dart';
+import 'package:clean_arch_sample/src/data/source/local/preferences_source/preferences_source.dart';
 import 'package:clean_arch_sample/src/data/source/remote/todo_source.dart';
-import 'package:clean_arch_sample/src/domain/entity/result.dart';
 import 'package:clean_arch_sample/src/domain/entity/todo_entity.dart';
-
-import '../../domain/repository/todo_repository.dart';
-import '../source/local/preferences_source.dart';
+import 'package:clean_arch_sample/src/domain/repository/todo_repository.dart';
 
 class TodoRepositoryImpl extends TodoRepository {
   final TodoSource _todoSource;
@@ -22,29 +26,43 @@ class TodoRepositoryImpl extends TodoRepository {
   );
 
   @override
-  Future<Result<List<TodoEntity>>> getTodos({bool forceUpdate = false}) async {
+  Future<Either<Failure, List<TodoEntity>>> getTodos(
+      {bool forceUpdate = false}) async {
     if (!forceUpdate) {
       final cacheTimestamp = await _preferencesSource.getCacheTimestamp();
       final currentTimestamp = DateTime.now().millisecondsSinceEpoch;
       if ((currentTimestamp - cacheTimestamp) <= _cacheLiveTime) {
         final localTodos = await _todoDatabase.getTodos();
         final entities = _todoMappers.mapLocalTodoList(localTodos);
-        return Result.success(entities);
+        return Either.right(entities);
       }
     }
-
-    final response = await _todoSource.getTodos();
-    if (response.isSuccess()) {
-      final entities = _todoMappers.mapRemoteTodoList(response.data);
-      final models = _todoMappers.mapRemoteToDbTodoList(response.data);
-      await _todoDatabase.clear();
-      await _todoDatabase.save(models);
-      await _preferencesSource
-          .saveCacheTimestamp(DateTime.now().millisecondsSinceEpoch);
-      return Result.success(entities);
-    } else {
-      await _preferencesSource.saveCacheTimestamp(-1);
-      return mapError(response);
+    try {
+      final response = await _todoSource.getTodos();
+      return response.when(
+        left: (left) {
+          final failure = MapCommonServerError.getServerFailureDetails(left);
+          return Either.left(failure);
+        },
+        right: (right) async {
+          final entities = _todoMappers.mapRemoteTodoList(right);
+          await _saveTodoToDb(right);
+          return Either.right(entities);
+        },
+      );
+    } catch (e) {
+      Logger.printException(e);
+      return Either.left(
+        ApiFailure(ServerFailure.exception, message: e.toString()),
+      );
     }
+  }
+
+  _saveTodoToDb(List<TodoResponse> right) async {
+    final models = _todoMappers.mapRemoteToDbTodoList(right);
+    await _todoDatabase.clear();
+    await _todoDatabase.save(models);
+    await _preferencesSource
+        .saveCacheTimestamp(DateTime.now().millisecondsSinceEpoch);
   }
 }
