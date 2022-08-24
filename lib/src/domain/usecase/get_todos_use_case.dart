@@ -3,7 +3,7 @@ import 'package:clean_arch_sample/src/core/arch/domain/entities/failure/failure.
 import 'package:clean_arch_sample/src/core/arch/domain/usecase/async_use_case.dart';
 import 'package:clean_arch_sample/src/core/arch/domain/usecase/use_case.dart';
 import 'package:clean_arch_sample/src/core/arch/logger.dart';
-import 'package:clean_arch_sample/src/domain/entity/todo_entity.dart';
+import 'package:clean_arch_sample/src/domain/entity/todo/todo_entity.dart';
 import 'package:clean_arch_sample/src/domain/repository/todo_repository.dart';
 
 import 'todo_use_case_params.dart';
@@ -26,6 +26,6 @@ class GetTodosUseCase extends AsyncUseCase<List<TodoEntity>> {
     } catch (e) {
       Logger.printException(e);
     }
-    return _todoRepository.getTodos(forceUpdate: forceUpdate);
+    return await _todoRepository.getTodos(forceUpdate: forceUpdate);
   }
 }

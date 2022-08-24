@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/src/domain/entity/todo_entity.dart';
+import 'package:clean_arch_sample/src/domain/entity/todo/todo_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'todos_models.freezed.dart';
@@ -10,6 +10,8 @@ class TodosScreenEvent with _$TodosScreenEvent {
   }) = GetTodosEvent;
 
   factory TodosScreenEvent.onSearch({required String query}) = SearchEvent;
+
+  factory TodosScreenEvent.getTime() = GetTimeEvent;
 }
 
 @freezed
@@ -27,4 +29,7 @@ class TodosScreenState with _$TodosScreenState {
   }) = TodosScreenStateData;
 }
 
-class TodosSR {}
+@freezed
+class TodosSR with _$TodosSR {
+  factory TodosSR.getTime(String time) = _GetTimeSR;
+}

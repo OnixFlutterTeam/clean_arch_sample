@@ -20,18 +20,21 @@ mixin _$TodosScreenEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool forceUpdate) getTodos,
     required TResult Function(String query) onSearch,
+    required TResult Function() getTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool forceUpdate)? getTodos,
     TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool forceUpdate)? getTodos,
     TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$TodosScreenEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetTodosEvent value) getTodos,
     required TResult Function(SearchEvent value) onSearch,
+    required TResult Function(GetTimeEvent value) getTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetTodosEvent value)? getTodos,
     TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetTodosEvent value)? getTodos,
     TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -142,6 +148,7 @@ class _$GetTodosEvent implements GetTodosEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool forceUpdate) getTodos,
     required TResult Function(String query) onSearch,
+    required TResult Function() getTime,
   }) {
     return getTodos(forceUpdate);
   }
@@ -151,6 +158,7 @@ class _$GetTodosEvent implements GetTodosEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool forceUpdate)? getTodos,
     TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
   }) {
     return getTodos?.call(forceUpdate);
   }
@@ -160,6 +168,7 @@ class _$GetTodosEvent implements GetTodosEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool forceUpdate)? getTodos,
     TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
     required TResult orElse(),
   }) {
     if (getTodos != null) {
@@ -173,6 +182,7 @@ class _$GetTodosEvent implements GetTodosEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetTodosEvent value) getTodos,
     required TResult Function(SearchEvent value) onSearch,
+    required TResult Function(GetTimeEvent value) getTime,
   }) {
     return getTodos(this);
   }
@@ -182,6 +192,7 @@ class _$GetTodosEvent implements GetTodosEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetTodosEvent value)? getTodos,
     TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
   }) {
     return getTodos?.call(this);
   }
@@ -191,6 +202,7 @@ class _$GetTodosEvent implements GetTodosEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetTodosEvent value)? getTodos,
     TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
     required TResult orElse(),
   }) {
     if (getTodos != null) {
@@ -276,6 +288,7 @@ class _$SearchEvent implements SearchEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool forceUpdate) getTodos,
     required TResult Function(String query) onSearch,
+    required TResult Function() getTime,
   }) {
     return onSearch(query);
   }
@@ -285,6 +298,7 @@ class _$SearchEvent implements SearchEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool forceUpdate)? getTodos,
     TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
   }) {
     return onSearch?.call(query);
   }
@@ -294,6 +308,7 @@ class _$SearchEvent implements SearchEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool forceUpdate)? getTodos,
     TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
     required TResult orElse(),
   }) {
     if (onSearch != null) {
@@ -307,6 +322,7 @@ class _$SearchEvent implements SearchEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetTodosEvent value) getTodos,
     required TResult Function(SearchEvent value) onSearch,
+    required TResult Function(GetTimeEvent value) getTime,
   }) {
     return onSearch(this);
   }
@@ -316,6 +332,7 @@ class _$SearchEvent implements SearchEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetTodosEvent value)? getTodos,
     TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
   }) {
     return onSearch?.call(this);
   }
@@ -325,6 +342,7 @@ class _$SearchEvent implements SearchEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetTodosEvent value)? getTodos,
     TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
     required TResult orElse(),
   }) {
     if (onSearch != null) {
@@ -344,26 +362,137 @@ abstract class SearchEvent implements TodosScreenEvent {
 }
 
 /// @nodoc
+abstract class _$$GetTimeEventCopyWith<$Res> {
+  factory _$$GetTimeEventCopyWith(
+          _$GetTimeEvent value, $Res Function(_$GetTimeEvent) then) =
+      __$$GetTimeEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetTimeEventCopyWithImpl<$Res>
+    extends _$TodosScreenEventCopyWithImpl<$Res>
+    implements _$$GetTimeEventCopyWith<$Res> {
+  __$$GetTimeEventCopyWithImpl(
+      _$GetTimeEvent _value, $Res Function(_$GetTimeEvent) _then)
+      : super(_value, (v) => _then(v as _$GetTimeEvent));
+
+  @override
+  _$GetTimeEvent get _value => super._value as _$GetTimeEvent;
+}
+
+/// @nodoc
+
+class _$GetTimeEvent implements GetTimeEvent {
+  _$GetTimeEvent();
+
+  @override
+  String toString() {
+    return 'TodosScreenEvent.getTime()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetTimeEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool forceUpdate) getTodos,
+    required TResult Function(String query) onSearch,
+    required TResult Function() getTime,
+  }) {
+    return getTime();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(bool forceUpdate)? getTodos,
+    TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
+  }) {
+    return getTime?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool forceUpdate)? getTodos,
+    TResult Function(String query)? onSearch,
+    TResult Function()? getTime,
+    required TResult orElse(),
+  }) {
+    if (getTime != null) {
+      return getTime();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetTodosEvent value) getTodos,
+    required TResult Function(SearchEvent value) onSearch,
+    required TResult Function(GetTimeEvent value) getTime,
+  }) {
+    return getTime(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetTodosEvent value)? getTodos,
+    TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
+  }) {
+    return getTime?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetTodosEvent value)? getTodos,
+    TResult Function(SearchEvent value)? onSearch,
+    TResult Function(GetTimeEvent value)? getTime,
+    required TResult orElse(),
+  }) {
+    if (getTime != null) {
+      return getTime(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetTimeEvent implements TodosScreenEvent {
+  factory GetTimeEvent() = _$GetTimeEvent;
+}
+
+/// @nodoc
 mixin _$TodosScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos) data,
+    required TResult Function(List<TodoEntity> todos, String time) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -453,7 +582,7 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos) data,
+    required TResult Function(List<TodoEntity> todos, String time) data,
   }) {
     return loading();
   }
@@ -463,7 +592,7 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
   }) {
     return loading?.call();
   }
@@ -473,7 +602,7 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -565,7 +694,7 @@ class _$TodosScreenStateEmpty extends TodosScreenStateEmpty {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos) data,
+    required TResult Function(List<TodoEntity> todos, String time) data,
   }) {
     return empty();
   }
@@ -575,7 +704,7 @@ class _$TodosScreenStateEmpty extends TodosScreenStateEmpty {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
   }) {
     return empty?.call();
   }
@@ -585,7 +714,7 @@ class _$TodosScreenStateEmpty extends TodosScreenStateEmpty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -639,7 +768,7 @@ abstract class _$$TodosScreenStateDataCopyWith<$Res> {
   factory _$$TodosScreenStateDataCopyWith(_$TodosScreenStateData value,
           $Res Function(_$TodosScreenStateData) then) =
       __$$TodosScreenStateDataCopyWithImpl<$Res>;
-  $Res call({List<TodoEntity> todos});
+  $Res call({List<TodoEntity> todos, String time});
 }
 
 /// @nodoc
@@ -656,12 +785,17 @@ class __$$TodosScreenStateDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? todos = freezed,
+    Object? time = freezed,
   }) {
     return _then(_$TodosScreenStateData(
       todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<TodoEntity>,
+      time: time == freezed
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -669,7 +803,8 @@ class __$$TodosScreenStateDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TodosScreenStateData extends TodosScreenStateData {
-  const _$TodosScreenStateData({final List<TodoEntity> todos = const []})
+  const _$TodosScreenStateData(
+      {final List<TodoEntity> todos = const [], this.time = ''})
       : _todos = todos,
         super._();
 
@@ -682,8 +817,12 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   }
 
   @override
+  @JsonKey()
+  final String time;
+
+  @override
   String toString() {
-    return 'TodosScreenState.data(todos: $todos)';
+    return 'TodosScreenState.data(todos: $todos, time: $time)';
   }
 
   @override
@@ -691,12 +830,15 @@ class _$TodosScreenStateData extends TodosScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TodosScreenStateData &&
-            const DeepCollectionEquality().equals(other._todos, _todos));
+            const DeepCollectionEquality().equals(other._todos, _todos) &&
+            const DeepCollectionEquality().equals(other.time, time));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_todos));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_todos),
+      const DeepCollectionEquality().hash(time));
 
   @JsonKey(ignore: true)
   @override
@@ -709,9 +851,9 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos) data,
+    required TResult Function(List<TodoEntity> todos, String time) data,
   }) {
-    return data(todos);
+    return data(todos, time);
   }
 
   @override
@@ -719,9 +861,9 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
   }) {
-    return data?.call(todos);
+    return data?.call(todos, time);
   }
 
   @override
@@ -729,11 +871,11 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos)? data,
+    TResult Function(List<TodoEntity> todos, String time)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(todos);
+      return data(todos, time);
     }
     return orElse();
   }
@@ -774,12 +916,212 @@ class _$TodosScreenStateData extends TodosScreenStateData {
 }
 
 abstract class TodosScreenStateData extends TodosScreenState {
-  const factory TodosScreenStateData({final List<TodoEntity> todos}) =
-      _$TodosScreenStateData;
+  const factory TodosScreenStateData(
+      {final List<TodoEntity> todos,
+      final String time}) = _$TodosScreenStateData;
   const TodosScreenStateData._() : super._();
 
   List<TodoEntity> get todos;
+  String get time;
   @JsonKey(ignore: true)
   _$$TodosScreenStateDataCopyWith<_$TodosScreenStateData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$TodosSR {
+  String get time => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String time) getTime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String time)? getTime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String time)? getTime,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetTimeSR value) getTime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetTimeSR value)? getTime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetTimeSR value)? getTime,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TodosSRCopyWith<TodosSR> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TodosSRCopyWith<$Res> {
+  factory $TodosSRCopyWith(TodosSR value, $Res Function(TodosSR) then) =
+      _$TodosSRCopyWithImpl<$Res>;
+  $Res call({String time});
+}
+
+/// @nodoc
+class _$TodosSRCopyWithImpl<$Res> implements $TodosSRCopyWith<$Res> {
+  _$TodosSRCopyWithImpl(this._value, this._then);
+
+  final TodosSR _value;
+  // ignore: unused_field
+  final $Res Function(TodosSR) _then;
+
+  @override
+  $Res call({
+    Object? time = freezed,
+  }) {
+    return _then(_value.copyWith(
+      time: time == freezed
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_GetTimeSRCopyWith<$Res> implements $TodosSRCopyWith<$Res> {
+  factory _$$_GetTimeSRCopyWith(
+          _$_GetTimeSR value, $Res Function(_$_GetTimeSR) then) =
+      __$$_GetTimeSRCopyWithImpl<$Res>;
+  @override
+  $Res call({String time});
+}
+
+/// @nodoc
+class __$$_GetTimeSRCopyWithImpl<$Res> extends _$TodosSRCopyWithImpl<$Res>
+    implements _$$_GetTimeSRCopyWith<$Res> {
+  __$$_GetTimeSRCopyWithImpl(
+      _$_GetTimeSR _value, $Res Function(_$_GetTimeSR) _then)
+      : super(_value, (v) => _then(v as _$_GetTimeSR));
+
+  @override
+  _$_GetTimeSR get _value => super._value as _$_GetTimeSR;
+
+  @override
+  $Res call({
+    Object? time = freezed,
+  }) {
+    return _then(_$_GetTimeSR(
+      time == freezed
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetTimeSR implements _GetTimeSR {
+  _$_GetTimeSR(this.time);
+
+  @override
+  final String time;
+
+  @override
+  String toString() {
+    return 'TodosSR.getTime(time: $time)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GetTimeSR &&
+            const DeepCollectionEquality().equals(other.time, time));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(time));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_GetTimeSRCopyWith<_$_GetTimeSR> get copyWith =>
+      __$$_GetTimeSRCopyWithImpl<_$_GetTimeSR>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String time) getTime,
+  }) {
+    return getTime(time);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String time)? getTime,
+  }) {
+    return getTime?.call(time);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String time)? getTime,
+    required TResult orElse(),
+  }) {
+    if (getTime != null) {
+      return getTime(time);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetTimeSR value) getTime,
+  }) {
+    return getTime(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetTimeSR value)? getTime,
+  }) {
+    return getTime?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetTimeSR value)? getTime,
+    required TResult orElse(),
+  }) {
+    if (getTime != null) {
+      return getTime(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetTimeSR implements TodosSR {
+  factory _GetTimeSR(final String time) = _$_GetTimeSR;
+
+  @override
+  String get time;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GetTimeSRCopyWith<_$_GetTimeSR> get copyWith =>
       throw _privateConstructorUsedError;
 }

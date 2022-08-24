@@ -1,6 +1,6 @@
-import 'package:clean_arch_sample/internal/localization/common_app_localization.dart';
-import 'package:clean_arch_sample/src/core/arch/widget/common/flavor_banner.dart';
-import 'package:clean_arch_sample/src/core/di/app.dart';
+import 'package:clean_arch_sample/core/arch/widget/common/flavor_banner.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/internal/localization/common_app_localization/core/di/app.dart';
 import 'package:clean_arch_sample/src/presentation/style/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

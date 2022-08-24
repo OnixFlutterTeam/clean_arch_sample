@@ -2,15 +2,17 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:clean_arch_sample/src/core/arch/bloc/base_block_state.dart';
 import 'package:clean_arch_sample/src/core/arch/component/remote/base/map_common_server_error.dart';
 import 'package:clean_arch_sample/src/core/arch/domain/entities/failure/api_failure.dart';
+import 'package:clean_arch_sample/src/core/arch/logger.dart';
 import 'package:clean_arch_sample/src/core/arch/widget/common/misk.dart';
+import 'package:clean_arch_sample/src/core/arch/widget/common/toast.dart';
 import 'package:clean_arch_sample/src/presentation/screens/todos/bloc/todos_models.dart';
-import 'package:clean_arch_sample/src/presentation/screens/todos/widget/error_view.dart';
 import 'package:clean_arch_sample/src/presentation/style/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bloc/todos_bloc.dart';
+import 'widget/empty_state.dart';
+import 'widget/loading_state.dart';
 import 'widget/no_todos_view.dart';
 import 'widget/search_view.dart';
 import 'widget/todo_view.dart';
@@ -45,15 +47,25 @@ class _TodosScreenState
         body: stateObserver(
           context,
           (state) => _buildMainState(context, state),
+          onSR: _onSr,
         ),
       ),
     );
   }
 
+  void _onSr(BuildContext context, TodosSR singleResult) {
+    singleResult.when(
+      getTime: (time) {
+        Logger.log('time: $time');
+        CustomToast.showToast(time);
+      },
+    );
+  }
+
   Widget _buildMainState(BuildContext context, TodosScreenState state) {
     return state.map(
-      loading: (state) => const _LoadingState(),
-      empty: (state) => const _EmptyState(),
+      loading: (state) => const LoadingState(),
+      empty: (state) => const EmptyState(),
       data: (state) => _buildMainContent(context, state),
     );
   }
@@ -62,13 +74,7 @@ class _TodosScreenState
     return Column(
       children: [
         Delimiter.height(10.h),
-        SearchView(
-          onSearchChanged: (query) {
-            context
-                .read<TodosBloc>()
-                .add(TodosScreenEvent.onSearch(query: query));
-          },
-        ),
+        _buildTopContent(context),
         Expanded(
           child: state.todos.isEmpty
               ? const NoTodosView()
@@ -82,36 +88,28 @@ class _TodosScreenState
       ],
     );
   }
-}
 
-class _LoadingState extends StatelessWidget {
-  const _LoadingState({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator.adaptive(),
-    );
-  }
-}
-
-class _EmptyState extends StatelessWidget {
-  const _EmptyState({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ErrorView(
-      onRetryPressed: () {
-        context.read<TodosBloc>().add(
-              TodosScreenEvent.getTodos(
-                forceUpdate: true,
-              ),
-            );
-      },
+  Widget _buildTopContent(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          child: SearchView(
+            onSearchChanged: (query) {
+              blocOf(context).add(TodosScreenEvent.onSearch(query: query));
+            },
+          ),
+        ),
+        ClickableWidget(
+          onTap: () {
+            blocOf(context).add(TodosScreenEvent.getTime());
+          },
+          child: Padding(
+            padding: EdgeInsets.all(8.0.w),
+            child: const Icon(Icons.access_time_outlined),
+          ),
+        ),
+        Delimiter.width(10.w),
+      ],
     );
   }
 }

@@ -13,11 +13,10 @@ import 'base/flutter_transformer.dart';
 import 'cache_interceptor.dart';
 
 class ApiClient implements BaseApiClient {
-  ApiClient() {
-    var options = BaseOptions(
-      baseUrl: BaseApiClient.kBaseUrl,
-      connectTimeout: BaseApiClient.kConnectTimeout,
-    );
+  static const defaultConnectTimeout = 30000;
+  static const defaultReceiveTimeout = 30000;
+
+  ApiClient({required BaseOptions options}) {
     client = Dio(options);
     customInterceptor = AppAuthInterceptor(client);
     cacheInterceptor = CacheInterceptor(client);

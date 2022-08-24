@@ -70,8 +70,8 @@ class CipherService {
   Future<Key> _generateNewKey() async {
     final secretKey = Key.fromSecureRandom(16);
     final bytes = secretKey.bytes.toList();
-    final _secretKeyHEX = _toHex(bytes);
-    await _storage.write(SecureStorageKeys.kSecretKeyCipher, _secretKeyHEX);
+    final secretKeyHEX = _toHex(bytes);
+    await _storage.write(SecureStorageKeys.kSecretKeyCipher, secretKeyHEX);
     return Key(Uint8List.fromList(bytes));
   }
 

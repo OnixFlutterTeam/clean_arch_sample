@@ -1,7 +1,7 @@
 import 'package:clean_arch_sample/src/core/arch/domain/common/converter/mapper.dart';
 import 'package:clean_arch_sample/src/data/models/local/todo_model.dart';
-import 'package:clean_arch_sample/src/data/models/remote/todo_response.dart';
-import 'package:clean_arch_sample/src/domain/entity/todo_entity.dart';
+import 'package:clean_arch_sample/src/data/models/remote/todo/todo_response.dart';
+import 'package:clean_arch_sample/src/domain/entity/todo/todo_entity.dart';
 
 class _TodoRemoteListMapper
     implements Mapper<List<TodoResponse>, List<TodoEntity>> {

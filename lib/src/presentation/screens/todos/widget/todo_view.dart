@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entity/todo_entity.dart';
+import '../../../../domain/entity/todo/todo_entity.dart';
 
 class TodoView extends StatelessWidget {
   final TodoEntity item;

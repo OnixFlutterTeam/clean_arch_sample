@@ -4,11 +4,11 @@ import 'package:clean_arch_sample/src/core/arch/domain/entities/failure/api_fail
 import 'package:clean_arch_sample/src/core/arch/domain/entities/failure/failure.dart';
 import 'package:clean_arch_sample/src/core/arch/logger.dart';
 import 'package:clean_arch_sample/src/data/mapper/todo_list_mapper.dart';
-import 'package:clean_arch_sample/src/data/models/remote/todo_response.dart';
+import 'package:clean_arch_sample/src/data/models/remote/todo/todo_response.dart';
 import 'package:clean_arch_sample/src/data/source/local/database/todo_database.dart';
 import 'package:clean_arch_sample/src/data/source/local/preferences_source/preferences_source.dart';
-import 'package:clean_arch_sample/src/data/source/remote/todo_source.dart';
-import 'package:clean_arch_sample/src/domain/entity/todo_entity.dart';
+import 'package:clean_arch_sample/src/data/source/remote/todo/todo_source.dart';
+import 'package:clean_arch_sample/src/domain/entity/todo/todo_entity.dart';
 import 'package:clean_arch_sample/src/domain/repository/todo_repository.dart';
 
 class TodoRepositoryImpl extends TodoRepository {
@@ -52,6 +52,7 @@ class TodoRepositoryImpl extends TodoRepository {
       );
     } catch (e) {
       Logger.printException(e);
+      //TODO make repository failure
       return Either.left(
         ApiFailure(ServerFailure.exception, message: e.toString()),
       );

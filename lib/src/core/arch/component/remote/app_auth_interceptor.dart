@@ -20,7 +20,7 @@ class AppAuthInterceptor extends InterceptorsWrapper {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     Logger.log('AppInterceptor onRequest');
-    //TODO add
+    //TODO add accessToken
     // var accessToken = 'some token';
     // options.headers[kAuthHeader] = '$kAuthPrefix$accessToken';
     // options.headers[kAcceptHeader] = kJsonPrefix;
