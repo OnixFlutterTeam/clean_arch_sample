@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:clean_arch_sample/src/core/arch/bloc/app_bloc_observer.dart';
-import 'package:clean_arch_sample/src/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/arch/bloc/app_bloc_observer.dart';
+import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
