@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:clean_arch_sample/core/arch/domain/entities/common/either.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/dio_error_handler/dio_error_models.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
+import 'package:clean_arch_sample/core/arch/domain/entities/common/data_response.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
@@ -11,27 +10,24 @@ import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:retry/retry.dart';
 
-typedef ParseJsonApiError<DE> = Future<DE?> Function(Map<String, dynamic>?);
-typedef MakeRequest<T> = Future<T> Function();
+///Custom function to provide request Future
+typedef OnRequest<T> = Future<T> Function();
 
-/// Protocol for processing [MakeRequest] requests from [Dio] returns [Either] as a result
-/// The left side is responsible for errors like [CommonResponseError]
-/// The right side returns the query result Dio [Response]
-abstract class DioErrorHandler<DE> {
-  Future<Either<CommonResponseError<DE>, T>> processRequest<T>(
-    MakeRequest<T> makeRequest, {
+///Custom Function to provide response converter (Map to Object)
+typedef OnResponse<T> = T Function(Response<dynamic> resposne);
+
+abstract class DioErrorHandler {
+  ///Pass 2 required functions:
+  ///onRequest - your request Future
+  ///onResponse - your response converter, basically call fromJson inside
+  Future<DataResponse<R>> processRequest<T, R>({
+    required OnRequest<T> onRequest,
+    required OnResponse<R> onResponse,
     bool checkNetworkConnection = true,
   });
 }
 
-/// Basic implementation of [DioErrorHandler]
-///
-/// In case of an error corresponding to [retryStatusCodes], 3 attempts are made to retry the data.
-/// If there is no internet or connection problems, returns an error on the left side Either [CommonResponseError.noNetwork]
-/// If the server rejected the request with the code [HttpStatus.unauthorized] returns Either [CommonResponseError.unAuthorized] on the left side
-/// If the server has thrown an error corresponding to the contract [DefaultApiError] returns [CommonResponseError.customError]
-/// If [DioError] does not match any of the criteria, [CommonResponseError.undefinedError] is returned
-class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
+class DioErrorHandlerImpl implements DioErrorHandler {
   /// Number of attempts to re-execute the request
   static const defaultMaxAttemptsCount = 2;
 
@@ -68,14 +64,11 @@ class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
   final List<int> undefinedErrorCodes;
   final int maxAttemptsCount;
   @protected
-  ParseJsonApiError<DE> parseJsonApiError;
-  @protected
   final bool useRetry;
 
   DioErrorHandlerImpl({
     required this.connectivity,
     required this.internetConnectionChecker,
-    required this.parseJsonApiError,
     this.useRetry = false,
     this.maxAttemptsCount = defaultMaxAttemptsCount,
     this.retryStatusCodes = defaultRetryStatusCodes,
@@ -83,8 +76,9 @@ class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
   });
 
   @override
-  Future<Either<CommonResponseError<DE>, T>> processRequest<T>(
-    MakeRequest<T> makeRequest, {
+  Future<DataResponse<R>> processRequest<T, R>({
+    required OnRequest<T> onRequest,
+    required OnResponse<R> onResponse,
     bool checkNetworkConnection = true,
   }) async {
     final resultConnectivity = await connectivity.checkConnectivity();
@@ -92,33 +86,20 @@ class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
 
     if (checkNetworkConnection &&
         (resultConnectivity == ConnectivityResult.none || !hasConnection)) {
-      return const Either.left(CommonResponseError.noNetwork());
+      return const DataResponse.notConnected();
     }
-
+    final response = await _call(onRequest);
     try {
-      T response;
-      if (useRetry) {
-        response = await retry(
-          makeRequest,
-          maxAttempts: maxAttemptsCount,
-          retryIf: (exception) => _retryPolicy(
-            exception: exception,
-            retryStatusCodes: retryStatusCodes,
-          ),
-        );
-      } else {
-        response = await makeRequest();
-      }
       if (_isResponseSuccess(response as Response<dynamic>)) {
-        return Either.right(response);
+        return DataResponse.success(onResponse(response));
       }
-      return Either.right(response);
+      return DataResponse.success(onResponse(response));
     } on DioError catch (e) {
       Logger.printException(e);
-      return Either.left(await _processDioError(e));
-    } on Exception catch (e) {
-      Logger.printException(e);
-      return Either.left(CommonResponseError.undefinedError(e));
+      return _processDioError(e);
+    } on Exception catch (e,trace) {
+      Logger.printException(trace);
+      return DataResponse.undefinedError(e);
     }
   }
 
@@ -129,6 +110,21 @@ class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
       return true;
     }
     return false;
+  }
+
+  Future<T> _call<T>(OnRequest<T> request) async {
+    if (useRetry) {
+      return retry(
+        request,
+        maxAttempts: maxAttemptsCount,
+        retryIf: (exception) => _retryPolicy(
+          exception: exception,
+          retryStatusCodes: retryStatusCodes,
+        ),
+      );
+    } else {
+      return request();
+    }
   }
 
   FutureOr<bool> _retryPolicy({
@@ -147,50 +143,38 @@ class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
     return retryStatusCodes.contains(response.statusCode);
   }
 
-  Future<CommonResponseError<DE>> _processDioError(DioError e) async {
+  Future<DataResponse<T>> _processDioError<T>(DioError e) async {
     final responseData = e.response?.data;
     final statusCode = e.response?.statusCode;
     if (e.type == DioErrorType.connectTimeout ||
         e.type == DioErrorType.sendTimeout ||
         statusCode == HttpStatus.networkConnectTimeoutError) {
-      return const CommonResponseError.noNetwork();
+      return const DataResponse.notConnected();
     }
     if (statusCode == HttpStatus.unauthorized) {
-      return const CommonResponseError.unAuthorized();
+      return const DataResponse.unauthorized();
     }
     if (statusCode == HttpStatus.tooManyRequests) {
-      return const CommonResponseError.tooManyRequests();
+      return const DataResponse.tooManyRequests();
     }
     if (undefinedErrorCodes.contains(statusCode)) {
-      return CommonResponseError.undefinedError(e);
+      return DataResponse.undefinedError(e);
     }
+    final apiError = _asDefaultApiError(responseData);
+    if (apiError != null) {
+      return DataResponse.apiError(apiError);
+    }
+    //TODO process other error types and provide results
+    //TODO also add new error types to DataResponse if needed
 
-    Object? errorJson;
-    if (responseData is String) {
-      try {
-        errorJson = jsonDecode(responseData);
-      } on FormatException catch (e) {
-        Logger.log(
-            'Received response: \n "$responseData" \n which is not JSON');
-        Logger.printException(e);
-      }
-    } else if (responseData is Map<String, dynamic>) {
-      errorJson = responseData;
-    }
+    return DataResponse.undefinedError(e);
+  }
 
-    if (errorJson is Map<String, dynamic>) {
-      try {
-        final apiError = await parseJsonApiError(errorJson);
-        if (apiError != null) {
-          return CommonResponseError.customError(apiError, statusCode);
-        }
-      } on TypeError catch (e) {
-        Logger.log(
-            'Error response from server \n $responseData \n does not match ApiError, error:\n$e');
-        Logger.printException(e);
-      }
+  DefaultApiError? _asDefaultApiError(dynamic response) {
+    if (response != null) {
+      return DefaultApiError.fromJson(response);
     }
-    return CommonResponseError.undefinedError(e);
+    return null;
   }
 }
 

@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:clean_arch_sample/core/arch/component/remote/base/map_common_server_error.dart';
-import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/dio_error_handler/dio_error_models.dart';
+import 'package:clean_arch_sample/core/arch/domain/entities/common/data_response.dart';
 import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +44,7 @@ abstract class BaseBloc<Event, State, SR> extends Bloc<Event, State>
     }
   }
 
-  void parseServerFailure(CommonResponseError<DefaultApiError> failure) {
+  void parseServerFailure(DataResponse failure) {
     final apiFailure = MapCommonServerError.getServerFailureDetails(failure);
     onFailure(apiFailure);
   }

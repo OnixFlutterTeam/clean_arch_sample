@@ -15,12 +15,8 @@ abstract class DioClientModule {
         ),
       );
 
-  DioErrorHandler<DefaultApiError> makeDioErrorHandler() =>
-      DioErrorHandlerImpl<DefaultApiError>(
+  DioErrorHandler makeDioErrorHandler() => DioErrorHandlerImpl(
         connectivity: Connectivity(),
         internetConnectionChecker: InternetConnectionChecker(),
-        parseJsonApiError: (json) async {
-          return (json != null) ? DefaultApiError.fromJson(json) : null;
-        },
       );
 }

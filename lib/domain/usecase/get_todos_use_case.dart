@@ -1,5 +1,4 @@
-import 'package:clean_arch_sample/core/arch/domain/entities/common/either.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
+import 'package:clean_arch_sample/core/arch/domain/entities/common/result.dart';
 import 'package:clean_arch_sample/domain/entity/todo/todo_entity.dart';
 import 'package:clean_arch_sample/domain/repository/todo_repository.dart';
 
@@ -8,7 +7,7 @@ class GetTodosUseCase {
 
   GetTodosUseCase(this._todoRepository);
 
-  Future<Either<Failure, List<TodoEntity>>> call({
+  Future<Result<List<TodoEntity>>> call({
     bool forceUpdate = false,
   }) async =>
       await _todoRepository.getTodos(forceUpdate: forceUpdate);

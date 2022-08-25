@@ -1,7 +1,6 @@
 import 'package:clean_arch_sample/core/arch/component/remote/base/map_common_server_error.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/common/either.dart';
+import 'package:clean_arch_sample/core/arch/domain/entities/common/result.dart';
 import 'package:clean_arch_sample/core/arch/domain/entities/failure/api_failure.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:clean_arch_sample/data/mapper/time_mapper.dart';
 import 'package:clean_arch_sample/data/source/remote/time/time_source.dart';
@@ -18,24 +17,24 @@ class TimeRepositoryImpl extends TimeRepository {
   );
 
   @override
-  Future<Either<Failure, TimeEntity>> getTime() async {
+  Future<Result<TimeEntity>> getTime() async {
     try {
       final response = await _timeSource.getTime();
-      return response.when(
-        left: (left) {
-          final failure = MapCommonServerError.getServerFailureDetails(left);
-          return Either.left(failure);
-        },
-        right: (right) async {
-          final entities = _timeMappers.mapRemoteTimeList(right);
-          return Either.right(entities);
-        },
-      );
+      if (response.isSuccess()) {
+        final entities = _timeMappers.mapRemoteTimeList(response.data);
+        return Result.success(entities);
+      } else {
+        final failure = MapCommonServerError.getServerFailureDetails(response);
+        return Result.error(failure: failure);
+      }
     } catch (e) {
       Logger.printException(e);
       //TODO make repository failure
-      return Either.left(
-        ApiFailure(ServerFailure.exception, message: e.toString()),
+      return Result.error(
+        failure: ApiFailure(
+          ServerFailure.exception,
+          message: e.toString(),
+        ),
       );
     }
   }

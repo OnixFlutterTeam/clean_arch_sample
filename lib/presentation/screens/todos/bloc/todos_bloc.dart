@@ -26,14 +26,14 @@ class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
     final result =
         await _synchronizeTodosUseCase(forceUpdate: event.forceUpdate);
     result.when(
-      left: (left) {
-        onFailure(left);
-        emit(const TodosScreenState.empty());
-      },
-      right: (right) {
+      success: (data) {
         _allTodosList.clear();
-        _allTodosList.addAll(right);
+        _allTodosList.addAll(data);
         emit(TodosScreenState.data(todos: _allTodosList));
+      },
+      error: (error) {
+        onFailure(error);
+        emit(const TodosScreenState.empty());
       },
     );
   }
@@ -56,14 +56,12 @@ class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
     showProgress();
     final result = await _getTimeUseCase();
     await hideProgress();
-    result.when(
-      left: (left) {
-        onFailure(left);
-      },
-      right: (right) {
-        addSr(TodosSR.getTime(
-            'Time in UTC: ${right.currentDateTime.toIso8601String()}'));
-      },
-    );
+
+    result.when(success: (data) {
+      addSr(TodosSR.getTime(
+          'Time in UTC: ${data.currentDateTime.toIso8601String()}'));
+    }, error: (error) {
+      onFailure(error);
+    });
   }
 }

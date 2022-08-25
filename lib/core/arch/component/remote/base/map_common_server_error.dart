@@ -1,6 +1,7 @@
 import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/dio_error_handler/dio_error_models.dart';
+import 'package:clean_arch_sample/core/arch/domain/entities/common/data_response.dart';
 import 'package:clean_arch_sample/core/arch/domain/entities/failure/api_failure.dart';
+import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:clean_arch_sample/internal/localization/common_app_localization.dart';
 import 'package:flutter/material.dart';
@@ -23,16 +24,17 @@ class MapCommonServerError {
     }
   }
 
-  static ApiFailure getServerFailureDetails(
-    CommonResponseError<DefaultApiError> failure,
+  static Failure getServerFailureDetails<T>(
+    DataResponse<T> failure,
   ) {
     try {
       return failure.when(
-        noNetwork: () => ApiFailure(ServerFailure.noNetwork),
-        unAuthorized: () => ApiFailure(ServerFailure.unAuthorized),
+        success: (data) => EmptyFailure(),
+        undefinedError: (error) => ApiFailure(ServerFailure.exception),
+        apiError: (error) => _getResponseError(error),
+        notConnected: () => ApiFailure(ServerFailure.noNetwork),
+        unauthorized: () => ApiFailure(ServerFailure.unAuthorized),
         tooManyRequests: () => ApiFailure(ServerFailure.tooManyRequests),
-        customError: (customError, errorCode) => _getResponseError(customError),
-        undefinedError: (errorObject) => ApiFailure(ServerFailure.exception),
       );
     } catch (e) {
       Logger.printException(e);

@@ -11,10 +11,10 @@ import 'package:get_it/get_it.dart';
 void registerSources(GetIt getIt) {
   getIt.registerSingleton<TodoSource>(TodoSourceImpl(
     getIt.get<ApiClient>(instanceName: DioConst.jsonPlaceholderInstance),
-    getIt.get<DioErrorHandler<DefaultApiError>>(),
+    getIt.get<DioErrorHandler>(),
   ));
   getIt.registerSingleton<TimeSource>(TimeSourceImpl(
     getIt.get<ApiClient>(instanceName: DioConst.timeApiInstance),
-    getIt.get<DioErrorHandler<DefaultApiError>>(),
+    getIt.get<DioErrorHandler>(),
   ));
 }

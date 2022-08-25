@@ -25,8 +25,8 @@ void main() async {
     Logger.logE('runZonedGuarded: Caught error in root zone. '
         'error: $error, stackTrace: $stackTrace');
     //there we can add FirebaseCrashlytics recordError method
-  })?.catchError((e) {
-    Logger.printException(e);
+  })?.catchError((e, trace) {
+    Logger.printException(trace);
     Logger.logE('FAILED TO INIT APP');
     exit(-1);
   });

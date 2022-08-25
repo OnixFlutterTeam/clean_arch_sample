@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();
 
-  getIt.registerLazySingleton<DioErrorHandler<DefaultApiError>>(
+  getIt.registerLazySingleton<DioErrorHandler>(
       () => dioClientModule.makeDioErrorHandler());
   getIt.registerLazySingleton<ApiClient>(
     //TODO APP BASE URL we can change with with flavor: FlavorConfig.I.baseUrl;

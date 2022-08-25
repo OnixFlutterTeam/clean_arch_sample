@@ -40,42 +40,39 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
       }
       try {
         final result = await _refreshTokenRepository.refresh(refreshToken);
+        final res = result.when(success: (data) async {
+          await _tokenRepository.update(
+            access: data.accessToken,
+            refresh: data.refreshToken,
+          );
+          final RequestOptions requestOptions = err.response!.requestOptions;
+          requestOptions.headers['Authorization'] =
+              'Bearer ${data.accessToken}';
+          final options = Options(
+            method: requestOptions.method,
+            headers: requestOptions.headers,
+          );
+          final Dio dioRefresh = Dio(
+            BaseOptions(
+              baseUrl: requestOptions.baseUrl,
+              headers: <String, String>{
+                'accept': 'application/json',
+              },
+            ),
+          );
+          final response = await dioRefresh.request<dynamic>(
+            requestOptions.path,
+            data: requestOptions.data,
+            queryParameters: requestOptions.queryParameters,
+            options: options,
+          );
+          return handler.resolve(response);
+        }, error: (failure) {
+          _tokenRepository.clear();
+          //TODO reauthorize();
+          return handler.next(err);
+        });
 
-        final res = await result.when(
-          left: (left) async {
-            _tokenRepository.clear();
-            //TODO reauthorize();
-            return handler.next(err);
-          },
-          right: (right) async {
-            await _tokenRepository.update(
-              access: right.accessToken,
-              refresh: right.refreshToken,
-            );
-            final RequestOptions requestOptions = err.response!.requestOptions;
-            requestOptions.headers['Authorization'] =
-                'Bearer ${right.accessToken}';
-            final options = Options(
-              method: requestOptions.method,
-              headers: requestOptions.headers,
-            );
-            final Dio dioRefresh = Dio(
-              BaseOptions(
-                baseUrl: requestOptions.baseUrl,
-                headers: <String, String>{
-                  'accept': 'application/json',
-                },
-              ),
-            );
-            final response = await dioRefresh.request<dynamic>(
-              requestOptions.path,
-              data: requestOptions.data,
-              queryParameters: requestOptions.queryParameters,
-              options: options,
-            );
-            return handler.resolve(response);
-          },
-        );
         return res;
       } on DioError {
         if (err.response?.statusCode == HttpStatus.unauthorized) {
