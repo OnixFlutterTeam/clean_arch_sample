@@ -17,7 +17,8 @@ class TimeSourceImpl extends TimeSource {
   Future<DataResponse<TimeResponse>> getTime() async {
     final request = _apiClient.client.get(_timeNow);
     return _dioErrorHandler.processRequest(
-        onRequest: () => request,
-        onResponse: (response) => TimeResponse.fromJson(response.data));
+      onRequest: () => request,
+      onResponse: (response) => TimeResponse.fromJson(response.data),
+    );
   }
 }

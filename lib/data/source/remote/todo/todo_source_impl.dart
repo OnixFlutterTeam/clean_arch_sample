@@ -25,9 +25,10 @@ class TodoSourceImpl extends TodoSource {
           .toOptions(),
     );
     return _dioErrorHandler.processRequest(
-        onRequest: () => request,
-        onResponse: (response) => (response.data as List)
-            .map((e) => TodoResponse.fromJson(e))
-            .toList());
+      onRequest: () => request,
+      onResponse: (response) =>
+          (response.data as List).map((e) => TodoResponse.fromJson(e)).toList(),
+      checkNetworkConnection: false,
+    );
   }
 }

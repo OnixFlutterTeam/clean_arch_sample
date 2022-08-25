@@ -49,6 +49,8 @@ class MapCommonServerError {
         message: customError.name,
       );
     }
+    //TODO process other error types and provide results
+    //TODO also add new error types to DataResponse if needed
     return ApiFailure(
       ServerFailure.response,
       message: '',

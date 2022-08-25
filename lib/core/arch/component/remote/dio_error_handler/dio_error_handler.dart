@@ -20,6 +20,7 @@ abstract class DioErrorHandler {
   ///Pass 2 required functions:
   ///onRequest - your request Future
   ///onResponse - your response converter, basically call fromJson inside
+  ///checkNetworkConnection - set to false if you need get data from cache interceptor
   Future<DataResponse<R>> processRequest<T, R>({
     required OnRequest<T> onRequest,
     required OnResponse<R> onResponse,
@@ -97,7 +98,7 @@ class DioErrorHandlerImpl implements DioErrorHandler {
     } on DioError catch (e) {
       Logger.printException(e);
       return _processDioError(e);
-    } on Exception catch (e,trace) {
+    } on Exception catch (e, trace) {
       Logger.printException(trace);
       return DataResponse.undefinedError(e);
     }

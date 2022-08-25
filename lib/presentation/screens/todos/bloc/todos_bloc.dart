@@ -41,11 +41,8 @@ class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
   void _onSearch(SearchEvent event, Emitter<TodosScreenState> emit) {
     emit(state.data.copyWith(
         todos: _allTodosList
-            .where(
-              (e) => e.title.toLowerCase().contains(
-                    event.query.toLowerCase(),
-                  ),
-            )
+            .where((e) =>
+                e.title.toLowerCase().contains(event.query.toLowerCase()))
             .toList()));
   }
 
@@ -57,11 +54,14 @@ class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
     final result = await _getTimeUseCase();
     await hideProgress();
 
-    result.when(success: (data) {
-      addSr(TodosSR.getTime(
-          'Time in UTC: ${data.currentDateTime.toIso8601String()}'));
-    }, error: (error) {
-      onFailure(error);
-    });
+    result.when(
+      success: (data) {
+        addSr(TodosSR.getTime(
+            'Time in UTC: ${data.currentDateTime.toIso8601String()}'));
+      },
+      error: (error) {
+        onFailure(error);
+      },
+    );
   }
 }
