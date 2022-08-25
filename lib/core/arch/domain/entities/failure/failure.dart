@@ -1,7 +1,5 @@
 abstract class Failure {}
 
-class EmptyFailure implements Failure {}
-
 class CommonFailure implements Failure {
   CommonFailure(this.e);
 

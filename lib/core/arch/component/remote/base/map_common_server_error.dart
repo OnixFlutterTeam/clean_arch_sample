@@ -28,17 +28,20 @@ class MapCommonServerError {
     DataResponse<T> failure,
   ) {
     try {
-      return failure.when(
-        success: (data) => EmptyFailure(),
-        undefinedError: (error) => ApiFailure(ServerFailure.exception),
+      return failure.maybeWhen(
+        undefinedError: (error) => ApiFailure(
+          ServerFailure.unknown,
+          message: error.toString(),
+        ),
         apiError: (error) => _getResponseError(error),
         notConnected: () => ApiFailure(ServerFailure.noNetwork),
         unauthorized: () => ApiFailure(ServerFailure.unAuthorized),
         tooManyRequests: () => ApiFailure(ServerFailure.tooManyRequests),
+        orElse: () => ApiFailure(ServerFailure.unknown),
       );
     } catch (e) {
       Logger.printException(e);
-      return ApiFailure(ServerFailure.exception);
+      return ApiFailure(ServerFailure.exception, message: e.toString());
     }
   }
 
