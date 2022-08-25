@@ -21,6 +21,7 @@ void registerRemote(GetIt getIt) {
   );
 }
 
-ApiClient apiClient() => GetIt.I.get<ApiClient>();
+ApiClient apiClientJsonPlaceholder() =>
+    GetIt.I.get<ApiClient>(instanceName: DioConst.jsonPlaceholderInstance);
 
 class _DioClientModule extends DioClientModule {}

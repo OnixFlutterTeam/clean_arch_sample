@@ -23,9 +23,11 @@ dependencies:
   encrypt: ^5.0.1 #used with dio_cache_interceptor
   validators: ^3.0.0
 
+  #pick image
   image_picker: ^0.8.5+3
   image_cropper: ^3.0.0
   flutter_image_compress: ^1.1.1
+  image: ^3.2.0
 
   #network
   dio: ^4.0.6
