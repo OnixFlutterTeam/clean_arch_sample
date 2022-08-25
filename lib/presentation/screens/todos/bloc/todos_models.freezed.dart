@@ -478,21 +478,21 @@ mixin _$TodosScreenState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos, String time) data,
+    required TResult Function(List<TodoEntity> todos) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -582,7 +582,7 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos, String time) data,
+    required TResult Function(List<TodoEntity> todos) data,
   }) {
     return loading();
   }
@@ -592,7 +592,7 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
   }) {
     return loading?.call();
   }
@@ -602,7 +602,7 @@ class _$TodosScreenStateLoading extends TodosScreenStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -694,7 +694,7 @@ class _$TodosScreenStateEmpty extends TodosScreenStateEmpty {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos, String time) data,
+    required TResult Function(List<TodoEntity> todos) data,
   }) {
     return empty();
   }
@@ -704,7 +704,7 @@ class _$TodosScreenStateEmpty extends TodosScreenStateEmpty {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
   }) {
     return empty?.call();
   }
@@ -714,7 +714,7 @@ class _$TodosScreenStateEmpty extends TodosScreenStateEmpty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -768,7 +768,7 @@ abstract class _$$TodosScreenStateDataCopyWith<$Res> {
   factory _$$TodosScreenStateDataCopyWith(_$TodosScreenStateData value,
           $Res Function(_$TodosScreenStateData) then) =
       __$$TodosScreenStateDataCopyWithImpl<$Res>;
-  $Res call({List<TodoEntity> todos, String time});
+  $Res call({List<TodoEntity> todos});
 }
 
 /// @nodoc
@@ -785,17 +785,12 @@ class __$$TodosScreenStateDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? todos = freezed,
-    Object? time = freezed,
   }) {
     return _then(_$TodosScreenStateData(
       todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<TodoEntity>,
-      time: time == freezed
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -803,8 +798,7 @@ class __$$TodosScreenStateDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TodosScreenStateData extends TodosScreenStateData {
-  const _$TodosScreenStateData(
-      {final List<TodoEntity> todos = const [], this.time = ''})
+  const _$TodosScreenStateData({final List<TodoEntity> todos = const []})
       : _todos = todos,
         super._();
 
@@ -817,12 +811,8 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   }
 
   @override
-  @JsonKey()
-  final String time;
-
-  @override
   String toString() {
-    return 'TodosScreenState.data(todos: $todos, time: $time)';
+    return 'TodosScreenState.data(todos: $todos)';
   }
 
   @override
@@ -830,15 +820,12 @@ class _$TodosScreenStateData extends TodosScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TodosScreenStateData &&
-            const DeepCollectionEquality().equals(other._todos, _todos) &&
-            const DeepCollectionEquality().equals(other.time, time));
+            const DeepCollectionEquality().equals(other._todos, _todos));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_todos),
-      const DeepCollectionEquality().hash(time));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_todos));
 
   @JsonKey(ignore: true)
   @override
@@ -851,9 +838,9 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() empty,
-    required TResult Function(List<TodoEntity> todos, String time) data,
+    required TResult Function(List<TodoEntity> todos) data,
   }) {
-    return data(todos, time);
+    return data(todos);
   }
 
   @override
@@ -861,9 +848,9 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
   }) {
-    return data?.call(todos, time);
+    return data?.call(todos);
   }
 
   @override
@@ -871,11 +858,11 @@ class _$TodosScreenStateData extends TodosScreenStateData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? empty,
-    TResult Function(List<TodoEntity> todos, String time)? data,
+    TResult Function(List<TodoEntity> todos)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(todos, time);
+      return data(todos);
     }
     return orElse();
   }
@@ -916,13 +903,11 @@ class _$TodosScreenStateData extends TodosScreenStateData {
 }
 
 abstract class TodosScreenStateData extends TodosScreenState {
-  const factory TodosScreenStateData(
-      {final List<TodoEntity> todos,
-      final String time}) = _$TodosScreenStateData;
+  const factory TodosScreenStateData({final List<TodoEntity> todos}) =
+      _$TodosScreenStateData;
   const TodosScreenStateData._() : super._();
 
   List<TodoEntity> get todos;
-  String get time;
   @JsonKey(ignore: true)
   _$$TodosScreenStateDataCopyWith<_$TodosScreenStateData> get copyWith =>
       throw _privateConstructorUsedError;

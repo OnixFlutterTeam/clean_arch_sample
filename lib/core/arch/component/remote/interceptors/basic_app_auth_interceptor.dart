@@ -1,21 +1,13 @@
+import 'package:clean_arch_sample/core/arch/component/remote/dio_error_handler/dio_error_handler.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:dio/dio.dart';
 
-import 'dio_error_handler/dio_error_handler.dart';
-
-class AppAuthInterceptor extends InterceptorsWrapper {
+class BasicAppAuthInterceptor extends InterceptorsWrapper {
   static const String kAuthHeader = 'Authorization';
   static const String kAuthPrefix = 'Bearer ';
   static const String kAcceptHeader = 'Accept';
   static const String kContentTypeHeader = 'Content-Type';
   static const String kJsonPrefix = 'application/json';
-
-  AppAuthInterceptor(this.previous) {
-    refreshDio = Dio();
-  }
-
-  Dio? refreshDio;
-  Dio previous;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

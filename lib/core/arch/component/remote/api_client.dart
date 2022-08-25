@@ -7,10 +7,10 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import 'app_auth_interceptor.dart';
 import 'base/base_api_client.dart';
 import 'base/flutter_transformer.dart';
-import 'cache_interceptor.dart';
+import 'interceptors/basic_app_auth_interceptor.dart';
+import 'interceptors/cache_interceptor.dart';
 
 class ApiClient implements BaseApiClient {
   static const defaultConnectTimeout = 30000;
@@ -18,13 +18,13 @@ class ApiClient implements BaseApiClient {
 
   ApiClient({required BaseOptions options}) {
     client = Dio(options);
-    customInterceptor = AppAuthInterceptor(client);
+    customInterceptor = BasicAppAuthInterceptor();
     cacheInterceptor = CacheInterceptor(client);
     client.transformer = FlutterTransformer();
     attachLoggerInterceptor();
   }
 
-  late AppAuthInterceptor customInterceptor;
+  late BasicAppAuthInterceptor customInterceptor;
   late CacheInterceptor cacheInterceptor;
 
   CacheOptions? get cacheOptions => cacheInterceptor.cacheOptions;

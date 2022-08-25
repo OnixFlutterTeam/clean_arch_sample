@@ -18,7 +18,7 @@ mixin SingleResultMixin<Event, State, SR> on Bloc<Event, State>
 
   @override
   void addSr(SR sr) {
-    final observer = BlocOverrides.current?.blocObserver;
+    final observer = Bloc.observer;
     if (observer is SrBlocObserver) observer.onSr(this, sr);
     if (!_srController.isClosed) _srController.add(sr);
   }

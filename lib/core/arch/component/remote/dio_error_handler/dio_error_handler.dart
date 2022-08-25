@@ -69,11 +69,14 @@ class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
   final int maxAttemptsCount;
   @protected
   ParseJsonApiError<DE> parseJsonApiError;
+  @protected
+  final bool useRetry;
 
   DioErrorHandlerImpl({
     required this.connectivity,
     required this.internetConnectionChecker,
     required this.parseJsonApiError,
+    this.useRetry = false,
     this.maxAttemptsCount = defaultMaxAttemptsCount,
     this.retryStatusCodes = defaultRetryStatusCodes,
     this.undefinedErrorCodes = defaultUndefinedErrorCodes,
@@ -93,14 +96,19 @@ class DioErrorHandlerImpl<DE> implements DioErrorHandler<DE> {
     }
 
     try {
-      final response = await retry(
-        makeRequest,
-        maxAttempts: maxAttemptsCount,
-        retryIf: (exception) => _retryPolicy(
-          exception: exception,
-          retryStatusCodes: retryStatusCodes,
-        ),
-      );
+      T response;
+      if (useRetry) {
+        response = await retry(
+          makeRequest,
+          maxAttempts: maxAttemptsCount,
+          retryIf: (exception) => _retryPolicy(
+            exception: exception,
+            retryStatusCodes: retryStatusCodes,
+          ),
+        );
+      } else {
+        response = await makeRequest();
+      }
       if (_isResponseSuccess(response as Response<dynamic>)) {
         return Either.right(response);
       }
