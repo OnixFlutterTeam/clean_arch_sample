@@ -1,31 +1,15 @@
 import 'package:clean_arch_sample/core/arch/domain/entities/common/either.dart';
 import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
-import 'package:clean_arch_sample/core/arch/domain/usecase/async_use_case.dart';
-import 'package:clean_arch_sample/core/arch/domain/usecase/use_case.dart';
-import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:clean_arch_sample/domain/entity/todo/todo_entity.dart';
 import 'package:clean_arch_sample/domain/repository/todo_repository.dart';
 
-import 'todo_use_case_params.dart';
-
-class GetTodosUseCase extends AsyncUseCase<List<TodoEntity>> {
+class GetTodosUseCase {
   final TodoRepository _todoRepository;
 
   GetTodosUseCase(this._todoRepository);
 
-  @override
-  Future<Either<Failure, List<TodoEntity>>> execute(
-      {UseCaseParams? param}) async {
-    var forceUpdate = false;
-
-    try {
-      if (param != null) {
-        param as GetTodoUseCaseParams;
-        forceUpdate = param.forceUpdate;
-      }
-    } catch (e) {
-      Logger.printException(e);
-    }
-    return await _todoRepository.getTodos(forceUpdate: forceUpdate);
-  }
+  Future<Either<Failure, List<TodoEntity>>> call({
+    bool forceUpdate = false,
+  }) async =>
+      await _todoRepository.getTodos(forceUpdate: forceUpdate);
 }
