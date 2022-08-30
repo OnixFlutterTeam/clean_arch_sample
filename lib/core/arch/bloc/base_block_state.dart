@@ -17,16 +17,20 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
 
   B? _bloc;
 
+  bool lazyBloc = false;
+
+  B create() => GetIt.I.get<B>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<B>(
       create: (BuildContext context) {
-        final bloc = GetIt.I.get<B>();
+        final bloc = create();
         onBlocCreated(context, bloc);
         _bloc = bloc;
         return bloc;
       },
-      lazy: false,
+      lazy: lazyBloc,
       child: Builder(
         builder: (BuildContext context) {
           initParams(context);
