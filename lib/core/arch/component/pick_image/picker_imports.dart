@@ -1,3 +1,4 @@
 export 'app_image_picker.dart';
-export 'croppers/free_cropper.dart';
-export 'resizers/default_resizer.dart';
+export 'compress/base_compress.dart';
+export 'cropper/free_cropper.dart';
+export 'resizer/default_resizer.dart';

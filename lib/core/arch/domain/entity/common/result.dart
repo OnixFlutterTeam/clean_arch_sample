@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/failure/failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'result.freezed.dart';
@@ -12,7 +12,6 @@ class Result<T> with _$Result {
   const factory Result.error({
     required Failure failure,
   }) = ResultError;
-
 
   bool get success => this is ResultSuccess;
 

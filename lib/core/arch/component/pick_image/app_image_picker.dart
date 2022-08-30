@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
+import 'package:clean_arch_sample/core/app/localization/common_app_localization_ext.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'compress/base_compress.dart';
-import 'croppers/base_cropper.dart';
-import 'resizers/base_resizer.dart';
+import 'cropper/base_cropper.dart';
+import 'resizer/base_resizer.dart';
 
 class AppImagePicker {
   SourceModel? _sourceModel;
@@ -136,11 +136,11 @@ class AppImagePicker {
       context: context,
       useRootNavigator: true,
       builder: (BuildContext context) => CupertinoActionSheet(
-        title: Text(str(context).imageSource),
+        title: Text(context.str.imageSource),
         actions: <Widget>[
           _showGallery
               ? CupertinoActionSheetAction(
-                  child: Text(str(context).imageSourceImageGalleryBtn),
+                  child: Text(context.str.imageSourceImageGalleryBtn),
                   onPressed: () => Navigator.pop(
                     context,
                     SourceModel(
@@ -151,7 +151,7 @@ class AppImagePicker {
                 )
               : const SizedBox(),
           CupertinoActionSheetAction(
-            child: Text(str(context).imageSourceImageCameraBtn),
+            child: Text(context.str.imageSourceImageCameraBtn),
             onPressed: () => Navigator.pop(
               context,
               SourceModel(
@@ -164,7 +164,7 @@ class AppImagePicker {
               ? _onlyPhoto
                   ? const SizedBox()
                   : CupertinoActionSheetAction(
-                      child: Text(str(context).imageSourceVideoGalleryBtn),
+                      child: Text(context.str.imageSourceVideoGalleryBtn),
                       onPressed: () => Navigator.pop(
                         context,
                         SourceModel(
@@ -177,7 +177,7 @@ class AppImagePicker {
           _onlyPhoto
               ? const SizedBox()
               : CupertinoActionSheetAction(
-                  child: Text(str(context).imageSourceVideoCameraBtn),
+                  child: Text(context.str.imageSourceVideoCameraBtn),
                   onPressed: () => Navigator.pop(
                     context,
                     SourceModel(
@@ -190,7 +190,7 @@ class AppImagePicker {
         cancelButton: CupertinoActionSheetAction(
           isDefaultAction: true,
           onPressed: () => Navigator.pop(context, null),
-          child: Text(str(context).imageSourceCancelBtn),
+          child: Text(context.str.imageSourceCancelBtn),
         ),
       ),
     );

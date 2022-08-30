@@ -9,8 +9,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'base/base_api_client.dart';
 import 'base/flutter_transformer.dart';
-import 'interceptors/basic_app_auth_interceptor.dart';
-import 'interceptors/cache_interceptor.dart';
+import 'interceptor/basic_app_auth_interceptor.dart';
+import 'interceptor/cache_interceptor.dart';
 
 class ApiClient implements BaseApiClient {
   static const defaultConnectTimeout = 30000;

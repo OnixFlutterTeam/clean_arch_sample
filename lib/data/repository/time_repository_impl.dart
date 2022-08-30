@@ -1,6 +1,6 @@
 import 'package:clean_arch_sample/core/arch/component/remote/base/map_common_server_error.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/common/result.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/failure/api_failure.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/common/result.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:clean_arch_sample/data/mapper/time_mapper.dart';
 import 'package:clean_arch_sample/data/source/remote/time/time_source.dart';

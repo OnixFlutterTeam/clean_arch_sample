@@ -4,9 +4,9 @@ import 'LOCAL.dart';
 import 'app.dart';
 import 'bloc.dart';
 import 'remote.dart';
-import 'repositories.dart';
-import 'sources.dart';
-import 'usecases.dart';
+import 'repository.dart';
+import 'source.dart';
+import 'usecase.dart';
 
 void initializeDi(GetIt getIt) {
   registerLocal(getIt);

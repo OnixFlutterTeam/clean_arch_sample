@@ -1,24 +1,14 @@
 import 'package:clean_arch_sample/core/arch/component/remote/dio_error_handler/dio_error_handler.dart';
-import 'package:clean_arch_sample/domain/repository/refresh_token_repository.dart';
-import 'package:clean_arch_sample/domain/repository/token_repository.dart';
+import 'package:clean_arch_sample/core/di/repository.dart';
 import 'package:dio/dio.dart';
 
 class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
-  final TokenRepository _tokenRepository;
-  final RefreshTokenRepository _refreshTokenRepository;
-
-  AuthorizationInterceptor({
-    required TokenRepository tokenRepository,
-    required RefreshTokenRepository refreshTokenRepository,
-  })  : _tokenRepository = tokenRepository,
-        _refreshTokenRepository = refreshTokenRepository;
-
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final String? token = _tokenRepository.accessToken;
+    final String? token = tokenRepository().accessToken;
     if (token != null && token.isNotEmpty) {
       options.headers.addAll(
         <String, String>{
@@ -32,16 +22,16 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
-      final refreshToken = _tokenRepository.refreshToken;
+      final refreshToken = tokenRepository().refreshToken;
       if (refreshToken == null || refreshToken.isEmpty) {
-        _tokenRepository.clear();
+        tokenRepository().clear();
         //TODO reauthorize();
         return handler.next(err);
       }
       try {
-        final result = await _refreshTokenRepository.refresh(refreshToken);
+        final result = await refreshTokenRepository().refresh(refreshToken);
         final res = result.when(success: (data) async {
-          await _tokenRepository.update(
+          await tokenRepository().update(
             access: data.accessToken,
             refresh: data.refreshToken,
           );
@@ -68,7 +58,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
           );
           return handler.resolve(response);
         }, error: (failure) {
-          _tokenRepository.clear();
+          tokenRepository().clear();
           //TODO reauthorize();
           return handler.next(err);
         });
@@ -76,7 +66,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
         return res;
       } on DioError {
         if (err.response?.statusCode == HttpStatus.unauthorized) {
-          await _tokenRepository.clear();
+          await tokenRepository().clear();
           //TODO reauthorize();
         }
       }

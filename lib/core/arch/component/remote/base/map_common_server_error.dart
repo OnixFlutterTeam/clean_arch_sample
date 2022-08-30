@@ -1,8 +1,8 @@
-import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
+import 'package:clean_arch_sample/core/app/localization/common_app_localization_ext.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/common/data_response.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/failure/api_failure.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/failure/failure.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:flutter/material.dart';
 
@@ -10,17 +10,17 @@ class MapCommonServerError {
   static String getApiFailureMessage(BuildContext context, ApiFailure failure) {
     switch (failure.failure) {
       case ServerFailure.noNetwork:
-        return str(context).apiFailureNoNetwork;
+        return context.str.apiFailureNoNetwork;
       case ServerFailure.exception:
-        return str(context).apiFailureUndefined;
+        return context.str.apiFailureUndefined;
       case ServerFailure.unAuthorized:
-        return str(context).apiFailureUnAuthorized;
+        return context.str.apiFailureUnAuthorized;
       case ServerFailure.tooManyRequests:
-        return str(context).apiFailureTooManyRequests;
+        return context.str.apiFailureTooManyRequests;
       case ServerFailure.response:
         return failure.message;
       case ServerFailure.unknown:
-        return str(context).apiFailureUndefined;
+        return context.str.apiFailureUndefined;
     }
   }
 

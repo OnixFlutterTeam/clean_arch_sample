@@ -1,5 +1,4 @@
-
-import 'package:clean_arch_sample/core/arch/domain/entities/common/result.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/common/result.dart';
 import 'package:clean_arch_sample/domain/entity/auth/auth_entity.dart';
 import 'package:clean_arch_sample/domain/repository/refresh_token_repository.dart';
 

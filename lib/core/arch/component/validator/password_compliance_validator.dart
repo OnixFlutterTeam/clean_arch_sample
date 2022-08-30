@@ -1,5 +1,4 @@
-
-import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
+import 'package:clean_arch_sample/core/app/localization/common_app_localization_ext.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'base/base_value_validator.dart';
@@ -11,7 +10,7 @@ class PasswordComplianceValidator extends BaseValueValidator<String> {
   ValidatorResult validate(BuildContext context, String? value) {
     var errors = <String>[];
     if (value == null || value.trim().isEmpty) {
-      errors.add(str(context).errorEmptyField);
+      errors.add(context.str.errorEmptyField);
       return ValidatorResult(errors);
     }
     var password = value.trim();
@@ -19,19 +18,19 @@ class PasswordComplianceValidator extends BaseValueValidator<String> {
     var check = passwordChecker.checkPassword(password);
     if (!check.isCompliant) {
       if (!check.isMinLengthEnough) {
-        errors.add(str(context).errorPasswordToShort);
+        errors.add(context.str.errorPasswordToShort);
       }
       if (!check.isMaxLengthEnough) {
-        errors.add(str(context).errorPasswordToLong);
+        errors.add(context.str.errorPasswordToLong);
       }
       if (!check.hasSpecialCharacters) {
-        errors.add(str(context).errorPasswordSpecialCharacter);
+        errors.add(context.str.errorPasswordSpecialCharacter);
       }
       if (!check.hasLetters) {
-        errors.add(str(context).errorPasswordLetters);
+        errors.add(context.str.errorPasswordLetters);
       }
       if (!check.hasDigits) {
-        errors.add(str(context).errorPasswordNumeral);
+        errors.add(context.str.errorPasswordNumeral);
       }
     }
     return ValidatorResult(errors);

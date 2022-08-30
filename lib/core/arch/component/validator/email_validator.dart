@@ -1,5 +1,4 @@
-
-import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
+import 'package:clean_arch_sample/core/app/localization/common_app_localization_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 
@@ -11,11 +10,11 @@ class EmailValidator extends BaseValueValidator<String> {
   ValidatorResult validate(BuildContext context, String? value) {
     var errors = List<String>.empty(growable: true);
     if (value == null || value.trim().isEmpty) {
-      errors.add(str(context).errorEmptyField);
+      errors.add(context.str.errorEmptyField);
       return ValidatorResult(errors);
     }
     if (!isEmail(value.trim())) {
-      errors.add(str(context).errorEmail);
+      errors.add(context.str.errorEmail);
       return ValidatorResult(errors);
     }
 

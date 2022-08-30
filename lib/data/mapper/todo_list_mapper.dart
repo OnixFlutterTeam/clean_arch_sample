@@ -1,6 +1,6 @@
 import 'package:clean_arch_sample/core/arch/domain/common/converter/mapper.dart';
-import 'package:clean_arch_sample/data/models/local/todo_model.dart';
-import 'package:clean_arch_sample/data/models/remote/todo/todo_response.dart';
+import 'package:clean_arch_sample/data/model/local/todo_model.dart';
+import 'package:clean_arch_sample/data/model/remote/todo/todo_response.dart';
 import 'package:clean_arch_sample/domain/entity/todo/todo_entity.dart';
 
 class _TodoRemoteListMapper

@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/data/models/local/todo_model.dart';
+import 'package:clean_arch_sample/data/model/local/todo_model.dart';
 
 import 'base_database.dart';
 

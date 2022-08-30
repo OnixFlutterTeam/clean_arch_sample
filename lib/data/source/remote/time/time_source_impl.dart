@@ -1,7 +1,7 @@
 import 'package:clean_arch_sample/core/arch/component/remote/api_client.dart';
 import 'package:clean_arch_sample/core/arch/component/remote/dio_error_handler/dio_error_handler.dart';
-import 'package:clean_arch_sample/core/arch/domain/entities/common/data_response.dart';
-import 'package:clean_arch_sample/data/models/remote/time/time_response.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
+import 'package:clean_arch_sample/data/model/remote/time/time_response.dart';
 
 import 'time_source.dart';
 

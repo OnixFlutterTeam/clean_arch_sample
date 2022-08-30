@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
+import 'package:clean_arch_sample/core/app/localization/common_app_localization_ext.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -31,14 +31,14 @@ class FreeCropper extends BaseCropper {
           ],
           uiSettings: [
             AndroidUiSettings(
-              toolbarTitle: str(context).commonImageEditor,
+              toolbarTitle: context.str.commonImageEditor,
               toolbarColor: Theme.of(context).primaryColor,
               toolbarWidgetColor: Theme.of(context).backgroundColor,
               activeControlsWidgetColor: Theme.of(context).primaryColor,
               initAspectRatio: CropAspectRatioPreset.square,
             ),
             IOSUiSettings(
-              title: str(context).commonImageEditor,
+              title: context.str.commonImageEditor,
               aspectRatioPickerButtonHidden: false,
               resetAspectRatioEnabled: false,
               aspectRatioLockDimensionSwapEnabled: false,

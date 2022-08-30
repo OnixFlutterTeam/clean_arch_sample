@@ -1,5 +1,4 @@
-
-import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
+import 'package:clean_arch_sample/core/app/localization/common_app_localization_ext.dart';
 import 'package:flutter/material.dart';
 
 import 'base/validator_result.dart';
@@ -12,11 +11,11 @@ class PasswordMachValidator {
   ) {
     var errors = List<String>.empty(growable: true);
     if (value == null || value.trim().isEmpty) {
-      errors.add(str(context).errorEmptyField);
+      errors.add(context.str.errorEmptyField);
       return ValidatorResult(errors);
     }
     if (value.trim() != secondValue?.trim()) {
-      errors.add(str(context).errorPasswordNotMatch);
+      errors.add(context.str.errorPasswordNotMatch);
       return ValidatorResult(errors);
     }
     return ValidatorResult.success();

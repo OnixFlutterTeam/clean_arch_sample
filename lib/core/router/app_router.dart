@@ -3,7 +3,7 @@ import 'package:clean_arch_sample/presentation/screens/splash/splash_screen.dart
 import 'package:clean_arch_sample/presentation/screens/todos/todos_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'guards/init_guard.dart';
+import 'guard/init_guard.dart';
 
 part 'app_router.gr.dart';
 

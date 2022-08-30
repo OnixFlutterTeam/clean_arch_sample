@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
+import 'package:clean_arch_sample/core/app/localization/common_app_localization_ext.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/flavor_banner.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/presentation/style/styles.dart';
@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-
 
 class App extends StatelessWidget {
   App({super.key});
@@ -41,7 +40,7 @@ class App extends StatelessWidget {
                   Locale(AppLocalizations.supportedLocales.last.languageCode);
               return locale;
             },
-            onGenerateTitle: (BuildContext context) => str(context).title,
+            onGenerateTitle: (BuildContext context) => context.str.title,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             routerDelegate: appRouter().delegate(
