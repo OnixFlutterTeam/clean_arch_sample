@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
-import 'package:clean_arch_sample/internal/localization/common_app_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 

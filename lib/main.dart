@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'internal/app.dart';
-import 'internal/app_initialisation.dart';
+import 'app.dart';
+import 'core/app/app_initialisation.dart';
 
 void main() async {
   runZonedGuarded(() async {

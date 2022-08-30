@@ -1,3 +1,4 @@
+import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/flavor_banner.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/presentation/style/styles.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'localization/common_app_localization.dart';
 
 class App extends StatelessWidget {
   App({super.key});

@@ -1,9 +1,9 @@
+import 'package:clean_arch_sample/core/app/localization/common_app_localization.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entities/common/data_response.dart';
 import 'package:clean_arch_sample/core/arch/domain/entities/failure/api_failure.dart';
 import 'package:clean_arch_sample/core/arch/domain/entities/failure/failure.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';
-import 'package:clean_arch_sample/internal/localization/common_app_localization.dart';
 import 'package:flutter/material.dart';
 
 class MapCommonServerError {
