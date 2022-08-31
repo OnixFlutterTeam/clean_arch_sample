@@ -1,4 +1,5 @@
-import 'package:clean_arch_sample/core/arch/component/remote/dio_error_handler/dio_error_handler.dart';
+import 'dart:io';
+
 import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:dio/dio.dart';
 

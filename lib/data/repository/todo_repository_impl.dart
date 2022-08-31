@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/core/arch/component/remote/base/map_common_server_error.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/base/map_common_server_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/common/result.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:clean_arch_sample/core/arch/logger.dart';

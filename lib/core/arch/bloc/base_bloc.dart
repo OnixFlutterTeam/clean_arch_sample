@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:clean_arch_sample/core/arch/component/remote/base/map_common_server_error.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/base/map_common_server_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/failure.dart';
 import 'package:flutter/material.dart';

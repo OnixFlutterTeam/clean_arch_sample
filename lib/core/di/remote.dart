@@ -1,14 +1,13 @@
-import 'package:clean_arch_sample/core/arch/component/remote/api_client.dart';
-import 'package:clean_arch_sample/core/arch/component/remote/dio_client_module.dart';
-import 'package:clean_arch_sample/core/arch/component/remote/dio_const.dart';
-import 'package:clean_arch_sample/core/arch/component/remote/dio_error_handler/dio_error_handler.dart';
-import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/api_client.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/dio_client_module.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/dio_const.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/dio_request_processor/dio_request_processor.dart';
 import 'package:get_it/get_it.dart';
 
 void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();
 
-  getIt.registerLazySingleton<DioErrorHandler>(
+  getIt.registerLazySingleton<DioRequestProcessor>(
       () => dioClientModule.makeDioErrorHandler());
   getIt.registerLazySingleton<ApiClient>(
     //TODO APP BASE URL we can change with with flavor: FlavorConfig.I.baseUrl;

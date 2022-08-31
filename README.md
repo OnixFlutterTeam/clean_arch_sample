@@ -14,7 +14,9 @@ Clean Architecture Project Sample (Project template).
 * [Bloc](https://pub.dev/packages/flutter_bloc) - state management
 * [Shared Preferences](https://pub.dev/packages/shared_preferences) - key-value storage
 
+##DO AFTER SETUP
 
+* `DefaultApiError` is default api error body - so change it to your purposes.
 
 ##Build Runner
 

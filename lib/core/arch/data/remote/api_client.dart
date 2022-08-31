@@ -12,6 +12,7 @@ import 'base/flutter_transformer.dart';
 import 'interceptor/basic_app_auth_interceptor.dart';
 import 'interceptor/cache_interceptor.dart';
 
+
 class ApiClient implements BaseApiClient {
   static const defaultConnectTimeout = 30000;
   static const defaultReceiveTimeout = 30000;
