@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ScrollRootMax extends StatelessWidget {
-  ScrollRootMax({Key? key, required this.child}) : super(key: key);
+  const ScrollRootMax({
+    super.key,
+    required this.child,
+  });
+
   final Widget child;
 
   @override

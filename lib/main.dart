@@ -20,7 +20,7 @@ void main() async {
       DeviceOrientation.portraitDown,
     ]);
     Bloc.observer = AppBlocObserver();
-    runApp(App());
+    runApp(const App());
   }, (error, stackTrace) {
     Logger.logE('runZonedGuarded: Caught error in root zone. '
         'error: $error, stackTrace: $stackTrace');

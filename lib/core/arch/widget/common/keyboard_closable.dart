@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class KeyboardClosable extends StatelessWidget {
   const KeyboardClosable({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

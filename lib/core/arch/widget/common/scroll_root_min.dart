@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class ScrollRootMin extends StatelessWidget {
   const ScrollRootMin({
-    Key? key,
+    super.key,
     required this.child,
     this.physics,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final ScrollPhysics? physics;

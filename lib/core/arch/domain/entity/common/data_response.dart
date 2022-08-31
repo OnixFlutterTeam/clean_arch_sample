@@ -1,4 +1,3 @@
-import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'data_response.freezed.dart';

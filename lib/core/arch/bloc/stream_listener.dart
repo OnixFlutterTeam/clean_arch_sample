@@ -23,7 +23,7 @@ class StreamListener<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _StreamListenerState createState() => _StreamListenerState<T>();
+  State<StreamListener<T>> createState() => _StreamListenerState<T>();
 }
 
 class _StreamListenerState<T> extends State<StreamListener<T>> {

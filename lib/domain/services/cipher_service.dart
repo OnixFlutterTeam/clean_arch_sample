@@ -13,10 +13,12 @@ class CipherService {
   final SecureStorageSource _storage;
 
   late IV _iv;
-  late Encrypter _encrypter;
+  late Encrypter _encryptor;
 
   Future<void> init() async {
-    final skKeyHEX = await _storage.read(SecureStorageKeys.kSecretKeyCipher);
+    final skKeyHEX = await _storage.read(
+      SecureStorageKeys.kSecretKeyCipher,
+    );
     final Key key;
 
     if (skKeyHEX.isNotEmpty) {
@@ -24,12 +26,14 @@ class CipherService {
     } else {
       key = await _generateNewKey();
     }
-    _encrypter = Encrypter(AES(key));
+    _encryptor = Encrypter(
+      AES(key),
+    );
   }
 
   Future<List<int>> encrypt(List<int> bytes) async {
     try {
-      final encrypted = _encrypter.encryptBytes(bytes, iv: _iv);
+      final encrypted = _encryptor.encryptBytes(bytes, iv: _iv);
       return encrypted.bytes.toList();
     } catch (e) {
       Logger.printException(e);
@@ -39,8 +43,12 @@ class CipherService {
 
   Future<List<int>> decrypt(List<int> bytes) async {
     try {
-      final decrypted = _encrypter
-          .decryptBytes(Encrypted(Uint8List.fromList(bytes)), iv: _iv);
+      final decrypted = _encryptor.decryptBytes(
+        Encrypted(
+          Uint8List.fromList(bytes),
+        ),
+        iv: _iv,
+      );
       return decrypted;
     } catch (e) {
       Logger.printException(e);
@@ -64,7 +72,11 @@ class CipherService {
   }
 
   String _toHex(List<int> bytes) {
-    return bytes.map((e) => e.toRadixString(16).padLeft(2, '0')).join(' ');
+    return bytes
+        .map(
+          (e) => e.toRadixString(16).padLeft(2, '0'),
+        )
+        .join(' ');
   }
 
   Future<Key> _generateNewKey() async {
@@ -77,6 +89,8 @@ class CipherService {
 
   Future<Key> _getKey(String skKeyHEX) async {
     final bytes = _fromHex(skKeyHEX);
-    return Key(Uint8List.fromList(bytes));
+    return Key(
+      Uint8List.fromList(bytes),
+    );
   }
 }

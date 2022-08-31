@@ -6,6 +6,7 @@ part of 'todo_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 _$_TodoResponse _$$_TodoResponseFromJson(Map<String, dynamic> json) =>
     _$_TodoResponse(
       userId: json['userId'] as int?,
@@ -14,6 +15,7 @@ _$_TodoResponse _$$_TodoResponseFromJson(Map<String, dynamic> json) =>
       completed: json['completed'] as bool?,
     );
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$$_TodoResponseToJson(_$_TodoResponse instance) =>
     <String, dynamic>{
       'userId': instance.userId,

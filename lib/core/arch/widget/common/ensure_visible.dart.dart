@@ -29,12 +29,12 @@ import 'package:flutter/rendering.dart';
 ///
 class EnsureVisibleWhenFocused extends StatefulWidget {
   const EnsureVisibleWhenFocused({
-    Key? key,
+    super.key,
     required this.child,
     required this.focusNode,
     this.curve = Curves.easeIn,
     this.duration = const Duration(milliseconds: 100),
-  }) : super(key: key);
+  });
 
   /// The node we will monitor to determine if the child is focused
   final FocusNode focusNode;
@@ -53,7 +53,7 @@ class EnsureVisibleWhenFocused extends StatefulWidget {
   final Duration duration;
 
   @override
-  _EnsureVisibleWhenFocusedState createState() =>
+  State<EnsureVisibleWhenFocused> createState() =>
       _EnsureVisibleWhenFocusedState();
 }
 
@@ -121,6 +121,9 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     }
 
     // Find the object which has the focus
+    if (!mounted) {
+      return;
+    }
     final object = context.findRenderObject()!;
     final viewport = RenderAbstractViewport.of(object);
 

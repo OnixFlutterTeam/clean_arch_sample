@@ -8,7 +8,7 @@ class Delimiter extends SizedBox {
 
 class ClickableWidget extends StatelessWidget {
   const ClickableWidget({
-    Key? key,
+    super.key,
     required this.child,
     this.onTap,
     this.color = Colors.transparent,
@@ -16,7 +16,7 @@ class ClickableWidget extends StatelessWidget {
     this.borderRadius,
     this.borderRadiusInk,
     this.elevation = 0,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback? onTap;

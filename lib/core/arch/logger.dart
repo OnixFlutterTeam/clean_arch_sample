@@ -60,9 +60,14 @@ class Logger {
     PrintColor color = PrintColor.none,
   }) {
     final pattern = RegExp('.{1,800}');
-    pattern
-        .allMatches(text)
-        .forEach((match) => print(_printColored(match.group(0), color: color)));
+    pattern.allMatches(text).forEach(
+          (match) => print(
+            _printColored(
+              match.group(0),
+              color: color,
+            ),
+          ),
+        );
   }
 
   static dynamic _printColored(
