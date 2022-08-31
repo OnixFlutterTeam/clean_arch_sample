@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:dio/dio.dart';
 
 class BasicAppAuthInterceptor extends InterceptorsWrapper {
@@ -12,7 +12,7 @@ class BasicAppAuthInterceptor extends InterceptorsWrapper {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    Logger.log('AppInterceptor onRequest');
+    logger.d('AppInterceptor onRequest');
     //TODO add accessToken
     // var accessToken = 'some token';
     // options.headers[kAuthHeader] = '$kAuthPrefix$accessToken';
@@ -23,7 +23,7 @@ class BasicAppAuthInterceptor extends InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    Logger.log('AppInterceptor start: ${err.toString()}');
+    logger.d('AppInterceptor start: ${err.toString()}');
     if (err.response?.statusCode == HttpStatus.unauthorized) {
       //TODO disposeSessionLocal
       return;

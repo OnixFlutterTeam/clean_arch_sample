@@ -1,7 +1,7 @@
 import 'package:clean_arch_sample/core/arch/data/remote/base/map_common_server_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/common/result.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/data/mapper/todo_list_mapper.dart';
 import 'package:clean_arch_sample/data/model/remote/todo/todo_response.dart';
 import 'package:clean_arch_sample/data/source/local/database/todo_database.dart';
@@ -45,8 +45,8 @@ class TodoRepositoryImpl extends TodoRepository {
         final failure = MapCommonServerError.getServerFailureDetails(response);
         return Result.error(failure: failure);
       }
-    } catch (e) {
-      Logger.printException(e);
+    } catch (e, trace) {
+      logger.e('get_todos_error', e, trace);
       //TODO make repository failure
       return Result.error(
         failure: ApiFailure(

@@ -21,13 +21,9 @@ dependencies:
   freezed_annotation: ^2.1.0
   path_provider: ^2.0.11  #used with dio_cache_interceptor
   encrypt: ^5.0.1 #used with dio_cache_interceptor
-  validators: ^3.0.0
+  form_field_validator: ^1.1.0
+  logger: ^1.1.0
 
-  #pick image
-  image_picker: ^0.8.5+3
-  image_cropper: ^3.0.0
-  flutter_image_compress: ^1.1.1
-  image: ^3.2.0
 
   #network
   dio: ^4.0.6
@@ -52,6 +48,7 @@ dependencies:
   loader_overlay: ^2.0.10
   adaptive_dialog: ^1.8.0
   fluttertoast: ^8.0.9
+
 
 dev_dependencies:
   flutter_test:

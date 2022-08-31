@@ -1,7 +1,7 @@
 import 'package:clean_arch_sample/core/arch/data/remote/base/map_common_server_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/common/result.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/data/mapper/time_mapper.dart';
 import 'package:clean_arch_sample/data/source/remote/time/time_source.dart';
 import 'package:clean_arch_sample/domain/entity/time/time_entity.dart';
@@ -27,8 +27,8 @@ class TimeRepositoryImpl extends TimeRepository {
         final failure = MapCommonServerError.getServerFailureDetails(response);
         return Result.error(failure: failure);
       }
-    } catch (e) {
-      Logger.printException(e);
+    } catch (e, trace) {
+      logger.e('getTime_API_ERR', e, trace);
       //TODO make repository failure
       return Result.error(
         failure: ApiFailure(

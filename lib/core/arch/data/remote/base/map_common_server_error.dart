@@ -3,7 +3,7 @@ import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.
 import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/failure.dart';
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:flutter/material.dart';
 
 class MapCommonServerError {
@@ -39,8 +39,8 @@ class MapCommonServerError {
         tooManyRequests: () => ApiFailure(ServerFailure.tooManyRequests),
         orElse: () => ApiFailure(ServerFailure.unknown),
       );
-    } catch (e) {
-      Logger.printException(e);
+    } catch (e,trace) {
+      logger.e('Mapping Error Failed',e,trace);
       return ApiFailure(ServerFailure.exception, message: e.toString());
     }
   }

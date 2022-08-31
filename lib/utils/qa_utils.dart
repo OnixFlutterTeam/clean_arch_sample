@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/toast.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/remote.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +62,8 @@ class QaUtils {
               ),
               onPressed: () {
                 if (ip != null && port != null) {
-                  Logger.log('value: $ip, port: $port');
+                  logger.d('value: $ip, port: $port');
+
                   apiClientJsonPlaceholder().attachCharlesProxy(ip, port);
                   Navigator.of(context, rootNavigator: true).pop(context);
                   CustomToast.showToast('DONE on $ip:$port');

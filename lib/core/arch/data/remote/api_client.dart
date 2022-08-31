@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
@@ -71,20 +71,20 @@ class ApiClient implements BaseApiClient {
           (X509Certificate cert, String host, int port) => true;
       return client;
     };
-    Logger.log('CharlesProxyEnabled');
+    logger.d('CharlesProxyEnabled');
   }
 
   CachePolicy getCachePolicy(bool forceRefresh) =>
       cacheInterceptor.getCachePolicy(forceRefresh);
 
   Future<void> clearCache() async {
-    Logger.log('clearCache');
+    logger.d('clearCache');
     await cacheInterceptor.clearCache();
     _attachCacheInterceptor();
   }
 
   Future<void> _attachCacheInterceptor() async {
-    Logger.log('attachCacheInterceptor');
+    logger.d('attachCacheInterceptor');
     cacheInterceptor.attachCacheInterceptor();
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/local.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:clean_arch_sample/domain/services/cipher_service.dart';
@@ -32,9 +31,9 @@ class CacheInterceptor {
             (X509Certificate cert, String host, int port) => true;
         return client;
       };
-      Logger.log('DioCacheInterceptor ADDED');
-    } catch (e) {
-      Logger.printException(e);
+      logger.d('DioCacheInterceptor ADDED');
+    } catch (e, trace) {
+      logger.e('DioCacheInterceptor Error', e, trace);
     }
   }
 

@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/injection.dart';
 import 'package:clean_arch_sample/data/model/local/todo_model.dart';
 import 'package:get_it/get_it.dart';
@@ -16,7 +16,7 @@ class AppInitialization {
     //TODO init firebase / Crashlytics / Messaging
     await _initializeDatabase();
     initializeDi(GetIt.I);
-    Logger.log('APP Init: done');
+    logger.d('APP Init: done');
   }
 
   Future<void> _initializeDatabase() async {

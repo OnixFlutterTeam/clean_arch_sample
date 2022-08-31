@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
-import 'package:clean_arch_sample/core/arch/logger.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -80,11 +80,11 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
         return DataResponse.success(onResponse(response));
       }
       return DataResponse.success(onResponse(response));
-    } on DioError catch (e) {
-      Logger.printException(e);
+    } on DioError catch (e, trace) {
+      logger.e('onDioError', e, trace);
       return _processDioError(e);
     } on Exception catch (e, trace) {
-      Logger.printException(trace);
+      logger.e('onDioCommonError', e, trace);
       return DataResponse.undefinedError(e);
     }
   }

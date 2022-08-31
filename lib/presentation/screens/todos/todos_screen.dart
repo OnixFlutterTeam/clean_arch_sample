@@ -2,9 +2,9 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:clean_arch_sample/core/arch/bloc/base_block_state.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/base/map_common_server_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
-import 'package:clean_arch_sample/core/arch/logger.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/misk.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/toast.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/presentation/screens/todos/bloc/todos_models.dart';
 import 'package:clean_arch_sample/presentation/style/colors.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +39,6 @@ class _TodosScreenState
     });
   }
 
-
-
   @override
   Widget buildWidget(BuildContext context) {
     return SafeArea(
@@ -58,7 +56,7 @@ class _TodosScreenState
   void _onSr(BuildContext context, TodosSR singleResult) {
     singleResult.when(
       getTime: (time) {
-        Logger.log('time: $time');
+        logger.d('time: $time');
         CustomToast.showToast(time);
       },
     );
@@ -114,6 +112,4 @@ class _TodosScreenState
       ],
     );
   }
-
-
 }

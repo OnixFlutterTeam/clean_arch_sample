@@ -4,6 +4,7 @@ import 'package:clean_arch_sample/core/router/router_logging_observer.dart';
 import 'package:clean_arch_sample/core/router/router_module.dart';
 import 'package:clean_arch_sample/domain/repository/startup_repository.dart';
 import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 
 void registerApp(GetIt getIt) {
   final routerModule = _RouterModule();
@@ -14,9 +15,13 @@ void registerApp(GetIt getIt) {
       routerModule.appRouter(getIt.get<InitGuard>()));
   getIt.registerFactory<RouterLoggingObserver>(
       () => routerModule.routerLoggingObserver(getIt.get<AppRouter>()));
+  getIt.registerSingleton<Logger>(Logger());
+
 }
 
 AppRouter appRouter() => GetIt.I<AppRouter>();
+
+Logger get logger => GetIt.I<Logger>();
 
 RouterLoggingObserver routerLoggingObserver() =>
     GetIt.I<RouterLoggingObserver>();
