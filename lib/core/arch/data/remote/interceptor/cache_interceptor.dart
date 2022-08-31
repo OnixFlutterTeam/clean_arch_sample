@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/local.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_keys.dart';
-import 'package:clean_arch_sample/domain/services/cipher_service.dart';
+import 'package:clean_arch_sample/domain/service/cipher_service.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';

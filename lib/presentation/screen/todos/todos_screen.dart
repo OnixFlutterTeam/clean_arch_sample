@@ -5,7 +5,7 @@ import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.da
 import 'package:clean_arch_sample/core/arch/widget/common/misk.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/toast.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
-import 'package:clean_arch_sample/presentation/screens/todos/bloc/todos_models.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/bloc/todos_models.dart';
 import 'package:clean_arch_sample/presentation/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
