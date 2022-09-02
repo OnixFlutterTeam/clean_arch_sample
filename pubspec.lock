@@ -14,7 +14,7 @@ packages:
       name: adaptive_dialog
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.0+1"
   analyzer:
     dependency: transitive
     description:
@@ -63,7 +63,7 @@ packages:
       name: auto_route_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.1"
+    version: "5.0.2"
   back_button_interceptor:
     dependency: transitive
     description:
@@ -273,7 +273,7 @@ packages:
       name: dio_cache_interceptor
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.0"
+    version: "3.3.1"
   dio_cache_interceptor_hive_store:
     dependency: "direct main"
     description:

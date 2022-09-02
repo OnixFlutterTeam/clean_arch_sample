@@ -24,12 +24,11 @@ dependencies:
   form_field_validator: ^1.1.0
   logger: ^1.1.0
 
-
   #network
   dio: ^4.0.6
   pretty_dio_logger: ^1.1.1
   retry: ^3.1.0
-  dio_cache_interceptor: ^3.3.0
+  dio_cache_interceptor: ^3.3.1
   dio_cache_interceptor_hive_store: ^3.2.0
   json_annotation: ^4.6.0
   internet_connection_checker: ^0.0.1+4
@@ -46,16 +45,15 @@ dependencies:
   flutter_screenutil: 5.5.3+2
   cupertino_icons: ^1.0.5
   loader_overlay: ^2.0.10
-  adaptive_dialog: ^1.8.0
+  adaptive_dialog: ^1.8.0+1
   fluttertoast: ^8.0.9
-
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.1
-  auto_route_generator: ^5.0.1
+  auto_route_generator: ^5.0.2
   build_runner: ^2.2.0
   freezed: ^2.1.0+1
   json_serializable: ^6.3.1

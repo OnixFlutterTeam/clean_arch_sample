@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app.dart';
-import 'core/app/app_initialisation.dart';
+import 'core/app/app_initialization.dart';
 import 'core/di/app.dart';
 
 void main() async {
