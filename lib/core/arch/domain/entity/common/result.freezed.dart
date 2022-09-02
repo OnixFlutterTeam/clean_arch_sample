@@ -37,19 +37,19 @@ mixin _$Result<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ResultSuccess<T> value) success,
+    required TResult Function(_ResultSuccess<T> value) success,
     required TResult Function(ResultError<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ResultSuccess<T> value)? success,
+    TResult Function(_ResultSuccess<T> value)? success,
     TResult Function(ResultError<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ResultSuccess<T> value)? success,
+    TResult Function(_ResultSuccess<T> value)? success,
     TResult Function(ResultError<T> value)? error,
     required TResult orElse(),
   }) =>
@@ -72,29 +72,29 @@ class _$ResultCopyWithImpl<T, $Res> implements $ResultCopyWith<T, $Res> {
 }
 
 /// @nodoc
-abstract class _$$ResultSuccessCopyWith<T, $Res> {
-  factory _$$ResultSuccessCopyWith(
-          _$ResultSuccess<T> value, $Res Function(_$ResultSuccess<T>) then) =
-      __$$ResultSuccessCopyWithImpl<T, $Res>;
+abstract class _$$_ResultSuccessCopyWith<T, $Res> {
+  factory _$$_ResultSuccessCopyWith(
+          _$_ResultSuccess<T> value, $Res Function(_$_ResultSuccess<T>) then) =
+      __$$_ResultSuccessCopyWithImpl<T, $Res>;
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$ResultSuccessCopyWithImpl<T, $Res>
+class __$$_ResultSuccessCopyWithImpl<T, $Res>
     extends _$ResultCopyWithImpl<T, $Res>
-    implements _$$ResultSuccessCopyWith<T, $Res> {
-  __$$ResultSuccessCopyWithImpl(
-      _$ResultSuccess<T> _value, $Res Function(_$ResultSuccess<T>) _then)
-      : super(_value, (v) => _then(v as _$ResultSuccess<T>));
+    implements _$$_ResultSuccessCopyWith<T, $Res> {
+  __$$_ResultSuccessCopyWithImpl(
+      _$_ResultSuccess<T> _value, $Res Function(_$_ResultSuccess<T>) _then)
+      : super(_value, (v) => _then(v as _$_ResultSuccess<T>));
 
   @override
-  _$ResultSuccess<T> get _value => super._value as _$ResultSuccess<T>;
+  _$_ResultSuccess<T> get _value => super._value as _$_ResultSuccess<T>;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_$ResultSuccess<T>(
+    return _then(_$_ResultSuccess<T>(
       data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -105,8 +105,8 @@ class __$$ResultSuccessCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$ResultSuccess<T> extends ResultSuccess<T> {
-  const _$ResultSuccess(this.data) : super._();
+class _$_ResultSuccess<T> extends _ResultSuccess<T> {
+  const _$_ResultSuccess(this.data) : super._();
 
   @override
   final T data;
@@ -120,7 +120,7 @@ class _$ResultSuccess<T> extends ResultSuccess<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResultSuccess<T> &&
+            other is _$_ResultSuccess<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -130,8 +130,8 @@ class _$ResultSuccess<T> extends ResultSuccess<T> {
 
   @JsonKey(ignore: true)
   @override
-  _$$ResultSuccessCopyWith<T, _$ResultSuccess<T>> get copyWith =>
-      __$$ResultSuccessCopyWithImpl<T, _$ResultSuccess<T>>(this, _$identity);
+  _$$_ResultSuccessCopyWith<T, _$_ResultSuccess<T>> get copyWith =>
+      __$$_ResultSuccessCopyWithImpl<T, _$_ResultSuccess<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -167,7 +167,7 @@ class _$ResultSuccess<T> extends ResultSuccess<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ResultSuccess<T> value) success,
+    required TResult Function(_ResultSuccess<T> value) success,
     required TResult Function(ResultError<T> value) error,
   }) {
     return success(this);
@@ -176,7 +176,7 @@ class _$ResultSuccess<T> extends ResultSuccess<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ResultSuccess<T> value)? success,
+    TResult Function(_ResultSuccess<T> value)? success,
     TResult Function(ResultError<T> value)? error,
   }) {
     return success?.call(this);
@@ -185,7 +185,7 @@ class _$ResultSuccess<T> extends ResultSuccess<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ResultSuccess<T> value)? success,
+    TResult Function(_ResultSuccess<T> value)? success,
     TResult Function(ResultError<T> value)? error,
     required TResult orElse(),
   }) {
@@ -196,13 +196,13 @@ class _$ResultSuccess<T> extends ResultSuccess<T> {
   }
 }
 
-abstract class ResultSuccess<T> extends Result<T> {
-  const factory ResultSuccess(final T data) = _$ResultSuccess<T>;
-  const ResultSuccess._() : super._();
+abstract class _ResultSuccess<T> extends Result<T> {
+  const factory _ResultSuccess(final T data) = _$_ResultSuccess<T>;
+  const _ResultSuccess._() : super._();
 
   T get data;
   @JsonKey(ignore: true)
-  _$$ResultSuccessCopyWith<T, _$ResultSuccess<T>> get copyWith =>
+  _$$_ResultSuccessCopyWith<T, _$_ResultSuccess<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -301,7 +301,7 @@ class _$ResultError<T> extends ResultError<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ResultSuccess<T> value) success,
+    required TResult Function(_ResultSuccess<T> value) success,
     required TResult Function(ResultError<T> value) error,
   }) {
     return error(this);
@@ -310,7 +310,7 @@ class _$ResultError<T> extends ResultError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ResultSuccess<T> value)? success,
+    TResult Function(_ResultSuccess<T> value)? success,
     TResult Function(ResultError<T> value)? error,
   }) {
     return error?.call(this);
@@ -319,7 +319,7 @@ class _$ResultError<T> extends ResultError<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ResultSuccess<T> value)? success,
+    TResult Function(_ResultSuccess<T> value)? success,
     TResult Function(ResultError<T> value)? error,
     required TResult orElse(),
   }) {
