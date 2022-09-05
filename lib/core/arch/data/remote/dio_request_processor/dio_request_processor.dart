@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
 import 'package:dio/dio.dart';
 
@@ -6,7 +7,7 @@ import 'package:dio/dio.dart';
 typedef OnRequest<T> = Future<T> Function();
 
 ///Custom Function to provide response converter (Map to Object)
-typedef OnResponse<T> = T Function(Response<dynamic> resposne);
+typedef OnResponse<T> = T Function(Response<dynamic> response);
 
 abstract class DioRequestProcessor {
   ///Pass 2 required functions:
@@ -19,4 +20,3 @@ abstract class DioRequestProcessor {
     bool checkNetworkConnection = true,
   });
 }
-
