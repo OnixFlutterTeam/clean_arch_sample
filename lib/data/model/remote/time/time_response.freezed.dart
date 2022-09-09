@@ -93,7 +93,8 @@ class __$$_TimeResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_TimeResponse implements _TimeResponse {
   const _$_TimeResponse(
       {@JsonKey(name: 'currentDateTime') required this.currentDateTime});
