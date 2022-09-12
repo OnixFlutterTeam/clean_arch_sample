@@ -16,7 +16,7 @@ import 'package:get_it/get_it.dart';
 
 void registerRepositories(GetIt getIt) {
   getIt
-    ..registerLazySingleton<StartupRepository>(() => StartupRepositoryImpl())
+    ..registerLazySingleton<StartupRepository>(StartupRepositoryImpl.new)
     ..registerSingleton<TodoRepository>(
       TodoRepositoryImpl(
         getIt<TodoSource>(),

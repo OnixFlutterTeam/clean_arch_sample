@@ -6,18 +6,8 @@ class Delimiter extends SizedBox {
   const Delimiter.width(double w, {Key? key}) : super(key: key, width: w);
 }
 
+//ignore: prefer-single-widget-per-file
 class ClickableWidget extends StatelessWidget {
-  const ClickableWidget({
-    super.key,
-    required this.child,
-    this.onTap,
-    this.color = Colors.transparent,
-    this.splashColor,
-    this.borderRadius,
-    this.borderRadiusInk,
-    this.elevation = 0,
-  });
-
   final Widget child;
   final VoidCallback? onTap;
   final Color color;
@@ -25,6 +15,17 @@ class ClickableWidget extends StatelessWidget {
   final double elevation;
   final BorderRadiusGeometry? borderRadius;
   final BorderRadius? borderRadiusInk;
+
+  const ClickableWidget({
+    required this.child,
+    this.onTap,
+    this.color = Colors.transparent,
+    this.splashColor,
+    this.borderRadius,
+    this.borderRadiusInk,
+    this.elevation = 0,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Material(

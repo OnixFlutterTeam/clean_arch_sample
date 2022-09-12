@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class KeyboardClosable extends StatelessWidget {
-  const KeyboardClosable({
-    super.key,
-    required this.child,
-  });
-
   final Widget child;
+
+  const KeyboardClosable({
+    required this.child,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => GestureDetector(

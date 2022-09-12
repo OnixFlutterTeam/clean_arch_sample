@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/core/router/app_router.dart';
 import 'package:flutter/material.dart';
-
-import 'app_router.dart';
 
 class RouterLoggingObserver extends AutoRouterObserver {
   final AppRouter appRouter;
@@ -14,7 +13,8 @@ class RouterLoggingObserver extends AutoRouterObserver {
   @override
   void didPush(Route route, Route? previousRoute) {
     logger.w(
-        'ROUTING New route pushed: ${route.settings.name}, stack${_stack()}');
+      'ROUTING New route pushed: ${route.settings.name}, stack${_stack()}',
+    );
   }
 
   @override
@@ -30,7 +30,8 @@ class RouterLoggingObserver extends AutoRouterObserver {
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
     logger.w(
-        'ROUTING Route replaced to: ${newRoute?.settings.name} from: ${oldRoute?.settings.name}, stack${_stack()}');
+      'ROUTING Route replaced to: ${newRoute?.settings.name} from: ${oldRoute?.settings.name}, stack${_stack()}',
+    );
   }
 
   @override

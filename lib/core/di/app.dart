@@ -9,14 +9,17 @@ import 'package:logger/logger.dart';
 void registerApp(GetIt getIt) {
   final routerModule = _RouterModule();
 
-  getIt.registerSingleton<InitGuard>(
-      routerModule.initGuard(getIt.get<StartupRepository>()));
-  getIt.registerSingleton<AppRouter>(
-      routerModule.appRouter(getIt.get<InitGuard>()));
-  getIt.registerFactory<RouterLoggingObserver>(
-      () => routerModule.routerLoggingObserver(getIt.get<AppRouter>()));
-  getIt.registerSingleton<Logger>(Logger());
-
+  getIt
+    ..registerSingleton<InitGuard>(
+      routerModule.initGuard(getIt.get<StartupRepository>()),
+    )
+    ..registerSingleton<AppRouter>(
+      routerModule.appRouter(getIt.get<InitGuard>()),
+    )
+    ..registerFactory<RouterLoggingObserver>(
+      () => routerModule.routerLoggingObserver(getIt.get<AppRouter>()),
+    )
+    ..registerSingleton<Logger>(Logger());
 }
 
 AppRouter appRouter() => GetIt.I<AppRouter>();

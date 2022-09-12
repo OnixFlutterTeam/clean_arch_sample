@@ -7,17 +7,19 @@ import 'package:get_it/get_it.dart';
 void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();
 
-  getIt.registerLazySingleton<DioRequestProcessor>(
-      () => dioClientModule.makeDioErrorHandler());
-  getIt.registerLazySingleton<ApiClient>(
-    //TODO APP BASE URL we can change with with flavor: FlavorConfig.I.baseUrl;
-    () => dioClientModule.makeApiClient(DioConst.jsonPlaceholderBaseUrl),
-    instanceName: DioConst.jsonPlaceholderInstance,
-  );
-  getIt.registerLazySingleton<ApiClient>(
-    () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
-    instanceName: DioConst.timeApiInstance,
-  );
+  getIt
+    ..registerLazySingleton<DioRequestProcessor>(
+      dioClientModule.makeDioErrorHandler,
+    )
+    ..registerLazySingleton<ApiClient>(
+      //TODO APP BASE URL we can change with with flavor: FlavorConfig.I.baseUrl;
+      () => dioClientModule.makeApiClient(DioConst.jsonPlaceholderBaseUrl),
+      instanceName: DioConst.jsonPlaceholderInstance,
+    )
+    ..registerLazySingleton<ApiClient>(
+      () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
+      instanceName: DioConst.timeApiInstance,
+    );
 }
 
 ApiClient apiClientJsonPlaceholder() =>

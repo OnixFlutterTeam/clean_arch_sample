@@ -6,9 +6,9 @@ class ErrorView extends StatelessWidget {
   final VoidCallback onRetryPressed;
 
   const ErrorView({
-    super.key,
-    this.errorText,
     required this.onRetryPressed,
+    this.errorText,
+    super.key,
   });
 
   @override
@@ -30,7 +30,7 @@ class ErrorView extends StatelessWidget {
                 'Retry',
                 style: Theme.of(context).textTheme.button,
               ),
-            )
+            ),
           ],
         ),
       );

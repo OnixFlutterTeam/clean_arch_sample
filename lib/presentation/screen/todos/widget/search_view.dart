@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SearchView extends StatefulWidget {
   final ValueChanged<String> onSearchChanged;
 
-  const SearchView({super.key, required this.onSearchChanged});
+  const SearchView({required this.onSearchChanged, super.key});
 
   @override
   State<StatefulWidget> createState() => _SearchViewState();
@@ -43,30 +43,33 @@ class _SearchViewState extends State<SearchView> {
               ),
             ),
           ),
-          _showClearButton
-              ? Positioned(
-                  right: 0.0,
-                  top: 0.0,
-                  bottom: 0.0,
-                  child: GestureDetector(
-                    onTap: () {
-                      widget.onSearchChanged('');
-                      _searchController.clear();
-                      _searchNode.unfocus();
-                      setState(() {
-                        _showClearButton = false;
-                      });
-                    },
-                    child: SizedBox(
-                      height: 56.h,
-                      width: 56.h,
-                      child: const Icon(Icons.clear),
-                    ),
-                  ),
-                )
-              : const SizedBox.shrink()
+          if (_showClearButton)
+            Positioned(
+              right: 0.0,
+              top: 0.0,
+              bottom: 0.0,
+              child: GestureDetector(
+                onTap: _onClearButtonTap,
+                child: SizedBox(
+                  height: 56.h,
+                  width: 56.h,
+                  child: const Icon(Icons.clear),
+                ),
+              ),
+            )
+          else
+            const SizedBox.shrink(),
         ],
       ),
     );
+  }
+
+  void _onClearButtonTap() {
+    widget.onSearchChanged('');
+    _searchController.clear();
+    _searchNode.unfocus();
+    setState(() {
+      _showClearButton = false;
+    });
   }
 }

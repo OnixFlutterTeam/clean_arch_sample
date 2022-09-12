@@ -9,6 +9,7 @@ typedef OnRequest<T> = Future<T> Function();
 ///Custom Function to provide response converter (Map to Object)
 typedef OnResponse<T> = T Function(Response<dynamic> response);
 
+//ignore: one_member_abstracts
 abstract class DioRequestProcessor {
   ///Pass 2 required functions:
   ///onRequest - your request Future

@@ -1,7 +1,6 @@
 import 'package:clean_arch_sample/core/arch/data/local/prefs/base_preferences.dart';
-
-import 'preferences_keys.dart';
-import 'preferences_source.dart';
+import 'package:clean_arch_sample/data/source/local/preferences_source/preferences_keys.dart';
+import 'package:clean_arch_sample/data/source/local/preferences_source/preferences_source.dart';
 
 class PreferencesSourceImpl implements PreferencesSource {
   final BasePreferences _preferences;
@@ -10,7 +9,7 @@ class PreferencesSourceImpl implements PreferencesSource {
 
   @override
   Future<int> getCacheTimestamp() async {
-    return await _preferences.get<int>(PrefsKeys.kCacheWriteTimestampKey, -1);
+    return _preferences.get<int>(PrefsKeys.kCacheWriteTimestampKey, -1);
   }
 
   @override

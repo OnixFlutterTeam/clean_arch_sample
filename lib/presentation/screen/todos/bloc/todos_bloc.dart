@@ -4,9 +4,8 @@ import 'package:clean_arch_sample/core/arch/bloc/base_bloc.dart';
 import 'package:clean_arch_sample/domain/entity/todo/todo_entity.dart';
 import 'package:clean_arch_sample/domain/usecase/get_time_use_case.dart';
 import 'package:clean_arch_sample/domain/usecase/get_todos_use_case.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/bloc/todos_models.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'todos_models.dart';
 
 class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
   final GetTodosUseCase _synchronizeTodosUseCase;
@@ -21,14 +20,18 @@ class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
     add(TodosScreenEvent.getTodos());
   }
 
-  void _getTodos(GetTodosEvent event, Emitter<TodosScreenState> emit) async {
+  Future<void> _getTodos(
+    GetTodosEvent event,
+    Emitter<TodosScreenState> emit,
+  ) async {
     emit(const TodosScreenState.loading());
     final result =
         await _synchronizeTodosUseCase(forceUpdate: event.forceUpdate);
     result.when(
       success: (data) {
-        _allTodosList.clear();
-        _allTodosList.addAll(data);
+        _allTodosList
+          ..clear()
+          ..addAll(data);
         emit(TodosScreenState.data(todos: _allTodosList));
       },
       error: (error) {
@@ -40,10 +43,12 @@ class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
 
   void _onSearch(SearchEvent event, Emitter<TodosScreenState> emit) {
     emit(state.data.copyWith(
-        todos: _allTodosList
-            .where((e) =>
-                e.title.toLowerCase().contains(event.query.toLowerCase()))
-            .toList()));
+      todos: _allTodosList
+          .where(
+            (e) => e.title.toLowerCase().contains(event.query.toLowerCase()),
+          )
+          .toList(),
+    ));
   }
 
   FutureOr<void> _onGetTime(
@@ -57,7 +62,8 @@ class TodosBloc extends BaseBloc<TodosScreenEvent, TodosScreenState, TodosSR> {
     result.when(
       success: (data) {
         addSr(TodosSR.getTime(
-            'Time in UTC: ${data.currentDateTime.toIso8601String()}'));
+          'Time in UTC: ${data.currentDateTime.toIso8601String()}',
+        ));
       },
       error: (error) {
         onFailure(error);

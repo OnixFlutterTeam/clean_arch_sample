@@ -6,10 +6,12 @@ import 'package:clean_arch_sample/presentation/screen/todos/bloc/todos_bloc.dart
 import 'package:get_it/get_it.dart';
 
 void registerBloc(GetIt getIt) {
-  getIt.registerFactory<SplashBloc>(
-      () => SplashBloc(getIt.get<StartupRepository>()));
-  getIt.registerFactory<TodosBloc>(() => TodosBloc(
-        getIt.get<GetTodosUseCase>(),
-        getIt.get<GetTimeUseCase>(),
-      ));
+  getIt
+    ..registerFactory<SplashBloc>(
+      () => SplashBloc(getIt.get<StartupRepository>()),
+    )
+    ..registerFactory<TodosBloc>(() => TodosBloc(
+          getIt.get<GetTodosUseCase>(),
+          getIt.get<GetTimeUseCase>(),
+        ));
 }

@@ -1,10 +1,10 @@
-import 'failure.dart';
+import 'package:clean_arch_sample/core/arch/domain/entity/failure/failure.dart';
 
 class ApiFailure implements FeatureFailure {
-  ApiFailure(this.failure, {this.message = ''});
-
   final ServerFailure failure;
   final String message;
+
+  ApiFailure(this.failure, {this.message = ''});
 
   @override
   String toString() {

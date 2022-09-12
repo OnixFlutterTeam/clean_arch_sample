@@ -1,30 +1,26 @@
+import 'package:clean_arch_sample/core/arch/bloc/base_bloc.dart';
+import 'package:clean_arch_sample/core/arch/bloc/stream_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import 'base_bloc.dart';
-import 'stream_listener.dart';
-
 typedef ListenDelegate<S> = void Function(BuildContext context, S state);
 typedef StateListener<S> = Widget Function(S state);
 typedef SingleResultListener<SR> = void Function(
-    BuildContext context, SR singleResult);
+  BuildContext context,
+  SR singleResult,
+);
 
 abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     W extends StatefulWidget> extends State<W> {
-  B blocOf(BuildContext context) => BlocProvider.of<B>(context);
-
-  B? _bloc;
-
   bool lazyBloc = false;
-
-  B createBloc() => GetIt.I.get<B>();
+  B? _bloc;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<B>(
-      create: (BuildContext context) {
+      create: (context) {
         final bloc = createBloc();
         onBlocCreated(context, bloc);
         _bloc = bloc;
@@ -32,7 +28,7 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
       },
       lazy: lazyBloc,
       child: Builder(
-        builder: (BuildContext context) {
+        builder: (context) {
           initParams(context);
           return buildWidget(context);
         },
@@ -40,6 +36,19 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     );
   }
 
+  @override
+  void dispose() {
+    if (_bloc != null) {
+      _bloc?.dispose();
+    }
+    super.dispose();
+  }
+
+  B blocOf(BuildContext context) => BlocProvider.of<B>(context);
+
+  B createBloc() => GetIt.I.get<B>();
+
+  //ignore: avoid_types_on_closure_parameters
   Widget stateObserver(
     BuildContext context,
     StateListener<S> stateListener, {
@@ -49,24 +58,17 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     return StreamListener<SR>(
       stream: (_bloc ?? context.read<B>()).singleResults,
       onData: (data) {
-        if (onSR != null) {
-          onSR(context, data);
-        } else {
-          _defaultOnSr(context, data);
-        }
+        onSR != null ? onSR(context, data) : _defaultOnSr(context, data);
       },
       child: BlocConsumer(
         bloc: blocOf(context),
-        builder: (BuildContext context, S state) => stateListener(state),
+        builder: (_, S state) => stateListener(state),
         listener: listenDelegate ?? _defaultListenDelegate,
       ),
     );
   }
 
-  void _defaultOnSr(BuildContext context, SR singleResult) {}
-
-  void _defaultListenDelegate(BuildContext context, S state) {}
-
+  // ignore: no-empty-block
   void onStateChanged(BuildContext context, S state) {}
 
   void onBlocCreated(BuildContext context, B bloc) {
@@ -79,15 +81,14 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     });
   }
 
+  // ignore: no-empty-block
   void initParams(BuildContext context) {}
 
   Widget buildWidget(BuildContext context);
 
-  @override
-  void dispose() {
-    if (_bloc != null) {
-      _bloc?.dispose();
-    }
-    super.dispose();
-  }
+  // ignore: no-empty-block
+  void _defaultOnSr(BuildContext context, SR singleResult) {}
+
+  // ignore: no-empty-block
+  void _defaultListenDelegate(BuildContext context, S state) {}
 }

@@ -25,24 +25,25 @@ class QaUtils {
 
   static void _setProps(BuildContext context) {
     final userInfoKey = GlobalKey<FormState>();
-    String? ip, port;
-    var alert = AlertDialog(
+    String? ip;
+    String? port;
+    final alert = AlertDialog(
       scrollable: true,
-      title: const Text("Set CHARLES PROXY"),
+      title: const Text('Set CHARLES PROXY'),
       content: Form(
         key: userInfoKey,
         child: Column(
           children: [
             TextFormField(
               autofocus: true,
-              decoration: const InputDecoration(hintText: "IP"),
+              decoration: const InputDecoration(hintText: 'IP'),
               onChanged: (val) {
                 ip = val;
               },
             ),
             TextFormField(
               autofocus: true,
-              decoration: const InputDecoration(hintText: "PORT"),
+              decoration: const InputDecoration(hintText: 'PORT'),
               onChanged: (val) {
                 port = val;
               },
@@ -57,7 +58,7 @@ class QaUtils {
             MaterialButton(
               elevation: 10.0,
               child: const Text(
-                "Set proxy",
+                'Set proxy',
                 textDirection: TextDirection.ltr,
               ),
               onPressed: () {
@@ -72,7 +73,7 @@ class QaUtils {
             ),
             MaterialButton(
               elevation: 10.0,
-              child: const Text("Cancel"),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop(context);
               },

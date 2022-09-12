@@ -1,15 +1,15 @@
 abstract class Failure {}
 
 class CommonFailure implements Failure {
-  CommonFailure(this.e);
-
   Exception e;
+
+  CommonFailure(this.e);
 }
 
 class DataSourceFailure implements Failure {
-  DataSourceFailure(this.e);
-
   Exception e;
+
+  DataSourceFailure(this.e);
 }
 
 abstract class FeatureFailure implements Failure {}

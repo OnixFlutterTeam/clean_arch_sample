@@ -8,6 +8,6 @@ class GetTimeUseCase {
   GetTimeUseCase(this._timeRepository);
 
   Future<Result<TimeEntity>> call() async {
-    return await _timeRepository.getTime();
+    return _timeRepository.getTime();
   }
 }

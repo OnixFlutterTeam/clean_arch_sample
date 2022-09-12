@@ -33,19 +33,19 @@ class MapCommonServerError {
           ServerFailure.unknown,
           message: error.toString(),
         ),
-        apiError: (error) => _getResponseError(error),
+        apiError: _getResponseError,
         notConnected: () => ApiFailure(ServerFailure.noNetwork),
         unauthorized: () => ApiFailure(ServerFailure.unAuthorized),
         tooManyRequests: () => ApiFailure(ServerFailure.tooManyRequests),
         orElse: () => ApiFailure(ServerFailure.unknown),
       );
-    } catch (e,trace) {
-      logger.e('Mapping Error Failed',e,trace);
+    } catch (e, trace) {
+      logger.e('Mapping Error Failed', e, trace);
       return ApiFailure(ServerFailure.exception, message: e.toString());
     }
   }
 
-  static ApiFailure _getResponseError(dynamic customError) {
+  static ApiFailure _getResponseError(customError) {
     if (customError is DefaultApiError) {
       return ApiFailure(
         ServerFailure.response,

@@ -1,25 +1,25 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BasePreferences {
-  Future<T> get<T>(String key, dynamic defaultValue) async {
-    var prefs = await SharedPreferences.getInstance();
+  Future<T> get<T>(String key, T defaultValue) async {
+    final prefs = await SharedPreferences.getInstance();
     T result;
 
     switch (defaultValue.runtimeType) {
       case String:
-        T? value = prefs.getString(key) as T?;
+        final value = prefs.getString(key) as T?;
         result = value ?? defaultValue;
         break;
       case bool:
-        T? value = prefs.getBool(key) as T?;
+        final value = prefs.getBool(key) as T?;
         result = value ?? defaultValue;
         break;
       case double:
-        T? value = prefs.getDouble(key) as T?;
+        final value = prefs.getDouble(key) as T?;
         result = value ?? defaultValue;
         break;
       case int:
-        T? value = prefs.getInt(key) as T?;
+        final value = prefs.getInt(key) as T?;
         result = value ?? defaultValue;
         break;
       default:
@@ -29,7 +29,7 @@ class BasePreferences {
   }
 
   Future<void> put<T>(String key, T value) async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     switch (value.runtimeType) {
       case String:
         await prefs.setString(key, value as String);
@@ -47,12 +47,12 @@ class BasePreferences {
   }
 
   Future<void> clearPrefs() async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
   }
 
   Future<bool> removePrefByKey(String key) async {
-    var prefs = await SharedPreferences.getInstance();
-    return await prefs.remove(key);
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.remove(key);
   }
 }

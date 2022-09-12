@@ -1,5 +1,7 @@
-import 'dart:io';
-
+import 'package:clean_arch_sample/core/arch/data/remote/base/base_api_client.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/base/flutter_transformer.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/interceptor/basic_app_auth_interceptor.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/interceptor/cache_interceptor.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -7,14 +9,17 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import 'base/base_api_client.dart';
-import 'base/flutter_transformer.dart';
-import 'interceptor/basic_app_auth_interceptor.dart';
-import 'interceptor/cache_interceptor.dart';
-
 class ApiClient implements BaseApiClient {
   static const defaultConnectTimeout = 30000;
   static const defaultReceiveTimeout = 30000;
+
+  late BasicAppAuthInterceptor customInterceptor;
+  late CacheInterceptor cacheInterceptor;
+
+  @override
+  late Dio client;
+
+  CacheOptions? get cacheOptions => cacheInterceptor.cacheOptions;
 
   ApiClient({required BaseOptions options}) {
     client = Dio(options);
@@ -23,14 +28,6 @@ class ApiClient implements BaseApiClient {
     client.transformer = FlutterTransformer();
     attachLoggerInterceptor();
   }
-
-  late BasicAppAuthInterceptor customInterceptor;
-  late CacheInterceptor cacheInterceptor;
-
-  CacheOptions? get cacheOptions => cacheInterceptor.cacheOptions;
-
-  @override
-  late Dio client;
 
   @override
   void attachLoggerInterceptor() {
@@ -61,30 +58,30 @@ class ApiClient implements BaseApiClient {
     clearCache();
   }
 
+  //ignore: cascade_invocations
   void attachCharlesProxy(String? charlesIp, String? port) {
     if (charlesIp == null || port == null) return;
 
     (client.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) {
-      client.findProxy = (uri) => "PROXY $charlesIp:$port";
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+      client.findProxy = (uri) => 'PROXY $charlesIp:$port';
+      client.badCertificateCallback = (cert, host, port) => true;
       return client;
     };
     logger.d('CharlesProxyEnabled');
   }
 
-  CachePolicy getCachePolicy(bool forceRefresh) =>
-      cacheInterceptor.getCachePolicy(forceRefresh);
+  CachePolicy getCachePolicy({required bool forceRefresh}) =>
+      cacheInterceptor.getCachePolicy(forceRefresh: forceRefresh);
 
   Future<void> clearCache() async {
     logger.d('clearCache');
     await cacheInterceptor.clearCache();
-    _attachCacheInterceptor();
+    await _attachCacheInterceptor();
   }
 
   Future<void> _attachCacheInterceptor() async {
     logger.d('attachCacheInterceptor');
-    cacheInterceptor.attachCacheInterceptor();
+    await cacheInterceptor.attachCacheInterceptor();
   }
 }

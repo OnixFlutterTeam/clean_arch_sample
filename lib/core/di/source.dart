@@ -8,12 +8,13 @@ import 'package:clean_arch_sample/data/source/remote/todo/todo_source_impl.dart'
 import 'package:get_it/get_it.dart';
 
 void registerSources(GetIt getIt) {
-  getIt.registerSingleton<TodoSource>(TodoSourceImpl(
-    getIt.get<ApiClient>(instanceName: DioConst.jsonPlaceholderInstance),
-    getIt.get<DioRequestProcessor>(),
-  ));
-  getIt.registerSingleton<TimeSource>(TimeSourceImpl(
-    getIt.get<ApiClient>(instanceName: DioConst.timeApiInstance),
-    getIt.get<DioRequestProcessor>(),
-  ));
+  getIt
+    ..registerSingleton<TodoSource>(TodoSourceImpl(
+      getIt.get<ApiClient>(instanceName: DioConst.jsonPlaceholderInstance),
+      getIt.get<DioRequestProcessor>(),
+    ))
+    ..registerSingleton<TimeSource>(TimeSourceImpl(
+      getIt.get<ApiClient>(instanceName: DioConst.timeApiInstance),
+      getIt.get<DioRequestProcessor>(),
+    ));
 }

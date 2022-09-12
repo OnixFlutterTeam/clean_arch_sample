@@ -30,6 +30,12 @@ class _StreamListenerState<T> extends State<StreamListener<T>> {
   StreamSubscription<T>? _streamSubs;
 
   @override
+  void initState() {
+    super.initState();
+    listen();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return widget.child;
   }
@@ -45,12 +51,6 @@ class _StreamListenerState<T> extends State<StreamListener<T>> {
   void dispose() {
     _streamSubs?.cancel();
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    listen();
   }
 
   void listen() {

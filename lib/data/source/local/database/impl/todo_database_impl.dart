@@ -1,6 +1,5 @@
 import 'package:clean_arch_sample/data/model/local/todo_model.dart';
-
-import '../todo_database.dart';
+import 'package:clean_arch_sample/data/source/local/database/todo_database.dart';
 
 class TodoDatabaseImpl extends TodoDatabase {
   @override

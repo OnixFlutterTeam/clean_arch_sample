@@ -4,6 +4,8 @@ part 'data_response.freezed.dart';
 
 @freezed
 class DataResponse<T> with _$DataResponse {
+  T get data => (this as _DataResponseSuccess).data;
+
   const DataResponse._();
 
   const factory DataResponse.success(T data) = _DataResponseSuccess;
@@ -11,7 +13,7 @@ class DataResponse<T> with _$DataResponse {
   const factory DataResponse.undefinedError(Object? errorObject) =
       _UndefinedError;
 
-  const factory DataResponse.apiError(dynamic error) = _ApiError;
+  const factory DataResponse.apiError(error) = _ApiError;
 
   const factory DataResponse.notConnected() = _NoInternetConnection;
 
@@ -20,8 +22,6 @@ class DataResponse<T> with _$DataResponse {
   const factory DataResponse.tooManyRequests() = _TooManyRequests;
 
   bool isSuccess() => this is _DataResponseSuccess;
-
-  T get data => (this as _DataResponseSuccess).data;
 
   bool isError() => this is! _DataResponseSuccess;
 }

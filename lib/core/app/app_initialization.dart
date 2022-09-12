@@ -5,12 +5,12 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class AppInitialization {
-  AppInitialization._privateConstructor();
-
   static final AppInitialization _instance =
       AppInitialization._privateConstructor();
 
   static AppInitialization get I => _instance;
+
+  AppInitialization._privateConstructor();
 
   Future<void> initApp() async {
     //TODO init firebase / Crashlytics / Messaging

@@ -6,14 +6,14 @@ import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storag
 import 'package:encrypt/encrypt.dart';
 
 class CipherService {
-  CipherService(this._storage) {
-    _iv = IV.fromLength(16);
-  }
-
   final SecureStorageSource _storage;
 
   late IV _iv;
   late Encrypter _encryptor;
+
+  CipherService(this._storage) {
+    _iv = IV.fromLength(16);
+  }
 
   Future<void> init() async {
     final skKeyHEX = await _storage.read(
@@ -57,15 +57,15 @@ class CipherService {
   }
 
   List<int> _fromHex(String s) {
-    s = s.replaceAll(' ', '').replaceAll('\n', '');
-    return List<int>.generate(s.length ~/ 2, (i) {
-      var byteInHex = s.substring(2 * i, 2 * i + 2);
+    final str = s.replaceAll(' ', '').replaceAll('\n', '');
+    return List<int>.generate(str.length ~/ 2, (i) {
+      var byteInHex = str.substring(i * 2, i * 2 + 2);
       if (byteInHex.startsWith('0')) {
         byteInHex = byteInHex.substring(1);
       }
       final result = int.tryParse(byteInHex, radix: 16);
       if (result == null) {
-        throw StateError('Not valid hexadecimal bytes: $s');
+        throw StateError('Not valid hexadecimal bytes: $str');
       }
       return result;
     });

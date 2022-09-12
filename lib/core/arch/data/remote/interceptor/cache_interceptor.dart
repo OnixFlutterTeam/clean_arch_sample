@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/local.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_keys.dart';
@@ -10,12 +9,12 @@ import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_stor
 import 'package:path_provider/path_provider.dart' as pp;
 
 class CacheInterceptor {
-  CacheInterceptor(this.client);
-
   final Dio client;
 
   CacheOptions? cacheOptions;
   HiveCacheStore? _cacheStore;
+
+  CacheInterceptor(this.client);
 
   Future<void> attachCacheInterceptor() async {
     try {
@@ -26,9 +25,8 @@ class CacheInterceptor {
       cacheOptions = options;
 
       (client.httpClientAdapter as DefaultHttpClientAdapter)
-          .onHttpClientCreate = (HttpClient client) {
-        client.badCertificateCallback =
-            (X509Certificate cert, String host, int port) => true;
+          .onHttpClientCreate = (client) {
+        client.badCertificateCallback = (cert, host, port) => true;
         return client;
       };
       logger.d('DioCacheInterceptor ADDED');
@@ -59,7 +57,7 @@ class CacheInterceptor {
     );
   }
 
-  CachePolicy getCachePolicy(bool forceRefresh) {
+  CachePolicy getCachePolicy({required bool forceRefresh}) {
     return forceRefresh
         ? CachePolicy.refreshForceCache
         : CachePolicy.forceCache;

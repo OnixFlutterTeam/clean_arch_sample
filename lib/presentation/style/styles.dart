@@ -1,7 +1,6 @@
+import 'package:clean_arch_sample/presentation/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'colors.dart';
 
 class Styles {
   static ThemeData appTheme = ThemeData(
@@ -10,9 +9,10 @@ class Styles {
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellowAccent),
     textTheme: TextTheme(
       headline1: TextStyle(
-          fontSize: 28.sp,
-          fontWeight: FontWeight.w700,
-          color: AppColors.darkGrey),
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w700,
+        color: AppColors.darkGrey,
+      ),
       headline2: TextStyle(
         fontSize: 24.sp,
         fontWeight: FontWeight.w600,

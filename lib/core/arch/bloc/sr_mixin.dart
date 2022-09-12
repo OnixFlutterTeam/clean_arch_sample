@@ -37,6 +37,7 @@ abstract class SingleResultProvider<SingleResult> {
 }
 
 /// Protocol for receiving events [SingleResult]
+//ignore: one_member_abstracts
 abstract class SingleResultEmmiter<SingleResult> {
   void addSr(SingleResult sr);
 }
@@ -45,5 +46,6 @@ abstract class SingleResultEmmiter<SingleResult> {
 class SrBlocObserver<SR> extends BlocObserver {
   @protected
   @mustCallSuper
+  //ignore: no-empty-block,avoid-unused-parameters
   void onSr(Bloc bloc, SR sr) {}
 }

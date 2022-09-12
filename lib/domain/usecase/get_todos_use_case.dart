@@ -10,5 +10,5 @@ class GetTodosUseCase {
   Future<Result<List<TodoEntity>>> call({
     bool forceUpdate = false,
   }) async =>
-      await _todoRepository.getTodos(forceUpdate: forceUpdate);
+      _todoRepository.getTodos(forceUpdate: forceUpdate);
 }

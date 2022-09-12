@@ -28,14 +28,6 @@ import 'package:flutter/rendering.dart';
 /// user clicks the TextFormField/TextField which still has the focus.
 ///
 class EnsureVisibleWhenFocused extends StatefulWidget {
-  const EnsureVisibleWhenFocused({
-    super.key,
-    required this.child,
-    required this.focusNode,
-    this.curve = Curves.easeIn,
-    this.duration = const Duration(milliseconds: 100),
-  });
-
   /// The node we will monitor to determine if the child is focused
   final FocusNode focusNode;
 
@@ -52,8 +44,22 @@ class EnsureVisibleWhenFocused extends StatefulWidget {
   /// Defaults to 100 milliseconds.
   final Duration duration;
 
+  /// The alignment will override the default alignment behaviour
+  ///
+  /// No default value.
+  final double? alignment;
+
+  const EnsureVisibleWhenFocused({
+    required this.child,
+    required this.focusNode,
+    super.key,
+    this.curve = Curves.easeIn,
+    this.duration = const Duration(milliseconds: 100),
+    this.alignment,
+  });
+
   @override
-  State<EnsureVisibleWhenFocused> createState() =>
+  _EnsureVisibleWhenFocusedState createState() =>
       _EnsureVisibleWhenFocusedState();
 }
 
@@ -68,6 +74,9 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     widget.focusNode.addListener(_ensureVisible);
     WidgetsBinding.instance.addObserver(this);
   }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 
   @override
   void dispose() {
@@ -112,7 +121,7 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     // Wait for the keyboard to come into view
     await Future.any([
       Future.delayed(const Duration(milliseconds: 300)),
-      _keyboardToggled()
+      _keyboardToggled(),
     ]);
 
     // No need to go any further if the node has not the focus
@@ -151,14 +160,12 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
       return;
     }
 
+    //ignore: unawaited_futures
     position.ensureVisible(
       object,
-      alignment: alignment,
+      alignment: widget.alignment ?? alignment,
       duration: widget.duration,
       curve: widget.curve,
     );
   }
-
-  @override
-  Widget build(BuildContext context) => widget.child;
 }

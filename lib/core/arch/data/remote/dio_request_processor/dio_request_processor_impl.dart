@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:clean_arch_sample/core/arch/data/remote/base/http_status.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/dio_request_processor/dio_request_processor.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
@@ -9,9 +11,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:retry/retry.dart';
-
-import '../base/http_status.dart';
-import 'dio_request_processor.dart';
 
 class DioRequestProcessorImpl implements DioRequestProcessor {
   /// Number of attempts to re-execute the request
@@ -150,13 +149,13 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     if (apiError != null) {
       return DataResponse.apiError(apiError);
     }
-    //TODO process other error types and provide results
-    //TODO also add new error types to DataResponse if needed
+    // TODO: process other error types and provide results
+    // TODO: also add new error types to DataResponse if needed
 
     return DataResponse.undefinedError(e);
   }
 
-  DefaultApiError? _asDefaultApiError(dynamic response) {
+  DefaultApiError? _asDefaultApiError(response) {
     if (response != null) {
       return DefaultApiError.fromJson(response);
     }

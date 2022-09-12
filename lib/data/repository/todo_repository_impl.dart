@@ -57,7 +57,7 @@ class TodoRepositoryImpl extends TodoRepository {
     }
   }
 
-  _saveTodoToDb(List<TodoResponse> todos) async {
+  Future<void> _saveTodoToDb(List<TodoResponse> todos) async {
     final models = _todoMappers.mapRemoteToDbTodoList(todos);
     await _todoDatabase.clear();
     await _todoDatabase.save(models);

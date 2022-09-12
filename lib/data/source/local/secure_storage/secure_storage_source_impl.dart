@@ -1,16 +1,15 @@
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_source.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import 'secure_storage_source.dart';
-
 class SecureStorageSourceImpl implements SecureStorageSource {
+  FlutterSecureStorage? _secureStorage;
+
   SecureStorageSourceImpl() {
     _secureStorage = const FlutterSecureStorage(
       aOptions: AndroidOptions(encryptedSharedPreferences: true),
     );
   }
-
-  FlutterSecureStorage? _secureStorage;
 
   @override
   Future<void> clear() async {

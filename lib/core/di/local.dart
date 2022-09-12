@@ -10,11 +10,13 @@ import 'package:get_it/get_it.dart';
 void registerLocal(GetIt getIt) {
   getIt
     ..registerSingleton<TodoDatabase>(TodoDatabaseImpl())
-    ..registerLazySingleton(() => BasePreferences())
+    ..registerLazySingleton(BasePreferences.new)
     ..registerLazySingleton<PreferencesSource>(
-        () => PreferencesSourceImpl(getIt.get<BasePreferences>()))
+      () => PreferencesSourceImpl(getIt.get<BasePreferences>()),
+    )
     ..registerLazySingleton<SecureStorageSource>(
-        () => SecureStorageSourceImpl());
+      SecureStorageSourceImpl.new,
+    );
 }
 
 SecureStorageSource secureStorageSource() => GetIt.I.get<SecureStorageSource>();

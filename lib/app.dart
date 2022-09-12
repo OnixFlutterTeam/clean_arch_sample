@@ -45,13 +45,14 @@ class _AppState extends State<App> {
                   Locale(AppLocalizations.supportedLocales.last.languageCode);
               return locale;
             },
-            onGenerateTitle: (BuildContext context) => context.str.title,
+            onGenerateTitle: (context) => context.str.title,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             routerDelegate: appRouter().delegate(
-                navigatorObservers: () => [
-                      routerLoggingObserver(),
-                    ]),
+              navigatorObservers: () => [
+                routerLoggingObserver(),
+              ],
+            ),
             routeInformationParser: appRouter().defaultRouteParser(),
           );
         },

@@ -1,11 +1,10 @@
+import 'package:clean_arch_sample/domain/entity/todo/todo_entity.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../domain/entity/todo/todo_entity.dart';
 
 class TodoView extends StatelessWidget {
   final TodoEntity item;
 
-  const TodoView({super.key, required this.item});
+  const TodoView({required this.item, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,11 @@ analyzer:
     - "**/*.config.dart"
     - "**/*.mocks.dart"
     - "ios/**"
+    - "test/**"
+    - "lib/core/arch/**"
   errors:
+    prefer_mixin: ignore
+    flutter_style_todos: ignore
     invalid_annotation_target: ignore
     always_use_package_imports: warning
     avoid_dynamic_calls: info
@@ -59,6 +63,8 @@ dart_code_metrics:
     - "**/*.config.dart"
     - "**/*.mocks.dart"
     - "ios/**"
+    - "test/**"
+    - "lib/core/arch/**"
   rules:
     # Common
     - avoid-duplicate-exports:
@@ -77,6 +83,11 @@ dart_code_metrics:
     - no-empty-block
     - no-equal-arguments:
         severity: style
+        ignored-parameters:
+          - height
+          - width
+          - splashColor
+          - highlightColor
     - prefer-first
     - prefer-last
     # Flutter
@@ -88,7 +99,7 @@ dart_code_metrics:
     - avoid-unnecessary-setstate
     - prefer-correct-edge-insets-constructor
     - prefer-extracting-callbacks:
-        allowed-line-count: 3
+        allowed-line-count: 5
     - prefer-single-widget-per-file:
         ignore-private-widgets: true
     - member-ordering-extended:
@@ -142,7 +153,6 @@ linter:
     avoid_web_libraries_in_flutter: true
     cancel_subscriptions: true
     close_sinks: true
-    #    comment_references: true
     control_flow_in_finally: true
     empty_statements: true
     hash_and_equals: true
@@ -170,7 +180,6 @@ linter:
     annotate_overrides: true
     avoid_annotating_with_dynamic: true
     avoid_bool_literals_in_conditional_expressions: true
-    #    avoid_catches_without_on_clauses: true
     avoid_catching_errors: true
     avoid_equals_and_hash_code_on_mutable_classes: true
     avoid_escaping_inner_quotes: true
@@ -183,7 +192,6 @@ linter:
     avoid_null_checks_in_equality_operators: true
     avoid_positional_boolean_parameters: true
     avoid_private_typedef_functions: true
-    avoid_redundant_argument_values: true
     avoid_renaming_method_parameters: true
     avoid_return_types_on_setters: true
     avoid_returning_null: true

@@ -5,17 +5,16 @@ import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.da
 import 'package:clean_arch_sample/core/arch/widget/common/misk.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/toast.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/bloc/todos_bloc.dart';
 import 'package:clean_arch_sample/presentation/screen/todos/bloc/todos_models.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/widget/empty_state.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/widget/loading_state.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/widget/no_todos_view.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_screen_content.dart';
+import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_view.dart';
 import 'package:clean_arch_sample/presentation/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'bloc/todos_bloc.dart';
-import 'widget/empty_state.dart';
-import 'widget/loading_state.dart';
-import 'widget/no_todos_view.dart';
-import 'widget/search_view.dart';
-import 'widget/todo_view.dart';
 
 class TodosScreen extends StatefulWidget {
   const TodosScreen({Key? key}) : super(key: key);
@@ -53,7 +52,7 @@ class _TodosScreenState
     );
   }
 
-  void _onSr(BuildContext context, TodosSR singleResult) {
+  void _onSr(BuildContext _, TodosSR singleResult) {
     singleResult.when(
       getTime: (time) {
         logger.d('time: $time');
@@ -70,11 +69,11 @@ class _TodosScreenState
     );
   }
 
-  Widget _buildMainContent(BuildContext context, TodosScreenStateData state) {
+  Widget _buildMainContent(BuildContext _, TodosScreenStateData state) {
     return Column(
       children: [
         Delimiter.height(10.h),
-        _buildTopContent(context),
+        const TodoScreenContent(),
         Expanded(
           child: state.todos.isEmpty
               ? const NoTodosView()
@@ -85,30 +84,6 @@ class _TodosScreenState
                   ),
                 ),
         ),
-      ],
-    );
-  }
-
-  Widget _buildTopContent(BuildContext context) {
-    return Row(
-      children: [
-        Flexible(
-          child: SearchView(
-            onSearchChanged: (query) {
-              blocOf(context).add(TodosScreenEvent.onSearch(query: query));
-            },
-          ),
-        ),
-        ClickableWidget(
-          onTap: () {
-            blocOf(context).add(TodosScreenEvent.getTime());
-          },
-          child: Padding(
-            padding: EdgeInsets.all(8.0.w),
-            child: const Icon(Icons.access_time_outlined),
-          ),
-        ),
-        Delimiter.width(10.w),
       ],
     );
   }

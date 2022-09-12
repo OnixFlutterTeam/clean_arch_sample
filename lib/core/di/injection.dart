@@ -1,12 +1,11 @@
+import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/core/di/bloc.dart';
+import 'package:clean_arch_sample/core/di/local.dart';
+import 'package:clean_arch_sample/core/di/remote.dart';
+import 'package:clean_arch_sample/core/di/repository.dart';
+import 'package:clean_arch_sample/core/di/source.dart';
+import 'package:clean_arch_sample/core/di/usecase.dart';
 import 'package:get_it/get_it.dart';
-
-import 'LOCAL.dart';
-import 'app.dart';
-import 'bloc.dart';
-import 'remote.dart';
-import 'repository.dart';
-import 'source.dart';
-import 'usecase.dart';
 
 void initializeDi(GetIt getIt) {
   registerLocal(getIt);
