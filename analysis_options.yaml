@@ -50,7 +50,7 @@ analyzer:
     use_key_in_widget_constructors: info
     valid_regexps: error
 
-# TODO code-dart_code_metrics use after adding https://pub.dev/packages/dart_code_metrics
+# TODO code-dart_code_metrics can be used after adding https://pub.dev/packages/dart_code_metrics
 dart_code_metrics:
   metrics-exclude:
     - test/**
