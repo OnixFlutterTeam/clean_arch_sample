@@ -2,6 +2,12 @@
 
 Clean Architecture Project Sample (Project template).
 
+## SonarQube Setup
+
+* Set `sonar.projectKey` in `sonar-project.properties`
+* Replace main in `only: - main` to your main branch name in `.gitlab-ci.yml`
+
+
 ## Technologies used in Example
 
 * [GetIt](https://pub.dev/packages/get_it) - service locator (DI)
