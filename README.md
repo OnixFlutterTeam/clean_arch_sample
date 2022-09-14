@@ -39,25 +39,25 @@ If you have conflicts use command:
 
 # Build
 ## IOS
-*`flutter build ios --release`
-*`flutter build ios --flavor dev --release -t lib/core/flavors/main_dev.dart`
-*`flutter build ios --flavor prod --release -t lib/core/flavors/main_prod.dart`
+* `flutter build ios --release`
+* `flutter build ios --flavor dev --release -t lib/core/flavors/main_dev.dart`
+* `flutter build ios --flavor prod --release -t lib/core/flavors/main_prod.dart`
 
 ## Android
 ### APK
-*`flutter build apk`
-*`flutter build apk --flavor dev -t lib/core/flavors/main_dev.dart`
-*`flutter build apk --flavor prod -t lib/core/flavors/main_prod.dart`
+* `flutter build apk`
+* `flutter build apk --flavor dev -t lib/core/flavors/main_dev.dart`
+* `flutter build apk --flavor prod -t lib/core/flavors/main_prod.dart`
 
 ### AAB
-*`flutter build appbundle`
-*`flutter build appbundle --flavor dev -t lib/core/flavors/main_dev.dart`
-*`flutter build appbundle --flavor prod -t lib/core/flavors/main_prod.dart`
+* `flutter build appbundle`
+* `flutter build appbundle --flavor dev -t lib/core/flavors/main_dev.dart`
+* `flutter build appbundle --flavor prod -t lib/core/flavors/main_prod.dart`
 
 ## run release
-*`flutter run --release`
-*`flutter run --flavor dev --release -t lib/core/flavors/main_dev.dart`
-*`flutter run --flavor prod --release -t lib/core/flavors/main_prod.dart`
+* `flutter run --release`
+* `flutter run --flavor dev --release -t lib/core/flavors/main_dev.dart`
+* `flutter run --flavor prod --release -t lib/core/flavors/main_prod.dart`
 
 # update IOS repos:
 * Most common use case is after firebase libraries update
