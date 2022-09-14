@@ -41,31 +41,31 @@ If you have conflicts use command:
 ## IOS
 `flutter build ios --release`
 
-`flutter build ios --flavor dev --release`
+`flutter build ios --flavor dev --release -t lib/core/flavors/main_dev.dart`
 
-`flutter build ios --flavor prod --release`
+`flutter build ios --flavor prod --release -t lib/core/flavors/main_prod.dart`
 
 ## Android
 ### APK
 `flutter build apk`
 
-`flutter build apk --flavor dev`
+`flutter build apk --flavor dev -t lib/core/flavors/main_dev.dart`
 
-`flutter build apk --flavor prod`
+`flutter build apk --flavor prod -t lib/core/flavors/main_prod.dart`
 
 ### AAB
 `flutter build appbundle`
 
-`flutter build appbundle --flavor dev`
+`flutter build appbundle --flavor dev -t lib/core/flavors/main_dev.dart`
 
-`flutter build appbundle --flavor prod`
+`flutter build appbundle --flavor prod -t lib/core/flavors/main_prod.dart`
 
 # run release
 `flutter run --release`
 
-`flutter run --flavor dev --release`
+`flutter run --flavor dev --release -t lib/core/flavors/main_dev.dart`
 
-`flutter run --flavor prod --release`
+`flutter run --flavor prod --release -t lib/core/flavors/main_prod.dart`
 
 # update IOS repos:
 * Most common use case is after firebase libraries update
