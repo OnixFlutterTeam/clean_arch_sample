@@ -61,13 +61,7 @@ If you have conflicts use command:
 
 # update IOS repos:
 * Most common use case is after firebase libraries update
-`cd ios
-pod cache clean --all
-pod repo update
-pod update
-cd ..
-flutter clean
-flutter pub get`
+`cd ios && pod cache clean --all && pod repo update && pod update && cd .. && flutter clean && flutter pub get`
 
 # flutter_launcher_icons
 init flutter_launcher_icons
