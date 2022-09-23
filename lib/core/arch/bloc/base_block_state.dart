@@ -48,28 +48,40 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
 
   B createBloc() => GetIt.I.get<B>();
 
-  //ignore: avoid_types_on_closure_parameters
-  Widget stateObserver(
-    BuildContext context,
-    StateListener<S> stateListener, {
-    SingleResultListener<SR>? onSR,
-    ListenDelegate<S>? listenDelegate,
+  Widget srObserver({
+    required BuildContext context,
+    required Widget child,
+    required SingleResultListener<SR> onSR,
   }) {
     return StreamListener<SR>(
       stream: (_bloc ?? context.read<B>()).singleResults,
       onData: (data) {
-        onSR != null ? onSR(context, data) : _defaultOnSr(context, data);
+        onSR(context, data);
       },
-      child: BlocConsumer(
-        bloc: blocOf(context),
-        builder: (_, S state) => stateListener(state),
-        listener: listenDelegate ?? _defaultListenDelegate,
-      ),
+      child: child,
     );
   }
 
-  // ignore: no-empty-block
-  void onStateChanged(BuildContext context, S state) {}
+  Widget blocConsumer({
+    required StateListener<S> stateListener,
+    ListenDelegate<S>? listenDelegate,
+    BlocBuilderCondition<S>? buildWhen,
+    BlocListenerCondition<S>? listenWhen,
+  }) {
+    return BlocConsumer<B, S>(
+      builder: (_, S state) => stateListener(state),
+      listener: listenDelegate ?? _defaultListenDelegate,
+      buildWhen: buildWhen,
+      listenWhen: listenWhen,
+    );
+  }
+
+  Widget blocBuilder({
+    required BlocWidgetBuilder<S> builder,
+    BlocBuilderCondition<S>? buildWhen,
+  }) {
+    return BlocBuilder<B, S>(builder: builder, buildWhen: buildWhen);
+  }
 
   void onBlocCreated(BuildContext context, B bloc) {
     bloc.progressStream.listen((event) async {
@@ -85,9 +97,6 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
   void initParams(BuildContext context) {}
 
   Widget buildWidget(BuildContext context);
-
-  // ignore: no-empty-block
-  void _defaultOnSr(BuildContext context, SR singleResult) {}
 
   // ignore: no-empty-block
   void _defaultListenDelegate(BuildContext context, S state) {}

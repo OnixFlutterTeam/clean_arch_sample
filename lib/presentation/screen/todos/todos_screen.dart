@@ -43,9 +43,9 @@ class _TodosScreenState
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundGrey,
-        body: stateObserver(
-          context,
-          (state) => _buildMainState(context, state),
+        body: srObserver(
+          context: context,
+          child: blocBuilder(builder: _buildMainState),
           onSR: _onSr,
         ),
       ),

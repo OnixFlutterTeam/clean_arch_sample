@@ -17,12 +17,14 @@ class _SplashScreenState
     extends BaseState<SplashScreenState, SplashBloc, SplashSR, SplashScreen> {
   @override
   Widget buildWidget(BuildContext context) {
-    return stateObserver(
-      context,
-      (state) => Scaffold(
+    return srObserver(
+      context: context,
+      child: Scaffold(
         backgroundColor: Colors.white,
         body: SizedBox.expand(
-          child: _buildMainContainer(context, state),
+          child: blocConsumer(
+            stateListener: (state) => _buildMainContainer(context, state),
+          ),
         ),
       ),
       onSR: _onSingleResult,
