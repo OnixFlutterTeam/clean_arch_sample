@@ -1,4 +1,5 @@
 import 'package:clean_arch_sample/core/arch/data/remote/api_client.dart';
+import 'package:clean_arch_sample/core/arch/data/remote/base/base_api_client.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/dio_request_processor/dio_request_processor.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/dio_request_processor/dio_request_processor_impl.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -11,6 +12,10 @@ abstract class DioClientModule {
           baseUrl: baseUrl,
           connectTimeout: ApiClient.defaultConnectTimeout,
           receiveTimeout: ApiClient.defaultReceiveTimeout,
+          headers: {
+            BaseApiClient.kAcceptHeader: BaseApiClient.kJsonPrefix,
+            BaseApiClient.kContentTypeHeader: BaseApiClient.kJsonPrefix,
+          },
         ),
       );
 

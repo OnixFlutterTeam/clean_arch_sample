@@ -37,6 +37,7 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     HttpStatus.notImplemented,
     HttpStatus.badGateway,
     HttpStatus.serviceUnavailable,
+    HttpStatus.notFound,
   ];
 
   @protected
@@ -73,8 +74,8 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
         (resultConnectivity == ConnectivityResult.none || !hasConnection)) {
       return const DataResponse.notConnected();
     }
-    final response = await _call(onRequest);
     try {
+      final response = await _call(onRequest);
       if (_isResponseSuccess(response as Response<dynamic>)) {
         return DataResponse.success(onResponse(response));
       }
@@ -143,6 +144,9 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
       return const DataResponse.tooManyRequests();
     }
     if (undefinedErrorCodes.contains(statusCode)) {
+      return DataResponse.undefinedError(e);
+    }
+    if (retryStatusCodesWithoutBadReq.contains(statusCode)) {
       return DataResponse.undefinedError(e);
     }
     final apiError = _asDefaultApiError(responseData);
