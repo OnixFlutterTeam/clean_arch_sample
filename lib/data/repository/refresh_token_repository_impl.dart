@@ -10,21 +10,21 @@ class RefreshTokenRepositoryImpl implements RefreshTokenRepository {
     //implementation like this
     // try {
     //   final response = await _authSource.refreshToken(refreshToken);
-    //   return response.when(
-    //     left: (left) {
-    //       final failure = MapCommonServerError.getServerFailureDetails(left);
-    //       return Either.left(failure);
-    //     },
-    //     right: (right) async {
-    //       final entities = _authMappers.mapRefreshEntity(right);
-    //       return Either.right(entities);
-    //     },
-    //   );
+    //   if (response.isSuccess()) {
+    //     final entities = _authMappers.mapRefreshEntity(right);
+    //     return Result.success(entities);
+    //   } else {
+    //     final failure = MapCommonServerError.getServerFailureDetails(response);
+    //     return Result.error(failure: failure);
+    //   }
     // } catch (e) {
     //   Logger.printException(e);
     //   //TODO make repository failure
-    //   return Either.left(
-    //     ApiFailure(ServerFailure.exception, message: e.toString()),
+    //   return Result.error(
+    //     failure: ApiFailure(
+    //       ServerFailure.exception,
+    //       message: e.toString(),
+    //     ),
     //   );
     // }
   }
