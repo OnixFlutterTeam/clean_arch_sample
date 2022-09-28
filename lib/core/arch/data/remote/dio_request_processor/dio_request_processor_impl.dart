@@ -76,26 +76,14 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     }
     try {
       final response = await _call(onRequest);
-      if (_isResponseSuccess(response as Response<dynamic>)) {
-        return DataResponse.success(onResponse(response));
-      }
-      return DataResponse.success(onResponse(response));
+      return DataResponse.success(onResponse(response as Response<dynamic>));
     } on DioError catch (e, trace) {
       logger.e('onDioError', e, trace);
       return _processDioError(e);
-    } on Exception catch (e, trace) {
+    } catch (e, trace) {
       logger.e('onDioCommonError', e, trace);
       return DataResponse.undefinedError(e);
     }
-  }
-
-  bool _isResponseSuccess(Response<dynamic> response) {
-    if (response.statusCode == HttpStatus.kCodeSuccess200 ||
-        response.statusCode == HttpStatus.kCodeSuccess201 &&
-            response.data != null) {
-      return true;
-    }
-    return false;
   }
 
   Future<T> _call<T>(OnRequest<T> request) async {
