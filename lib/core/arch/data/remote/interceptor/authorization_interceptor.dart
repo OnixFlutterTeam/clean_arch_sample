@@ -1,5 +1,7 @@
+import 'package:clean_arch_sample/core/arch/data/remote/base/base_api_client.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/base/http_status.dart';
 import 'package:clean_arch_sample/core/di/repository.dart';
+import 'package:clean_arch_sample/core/di/services.dart';
 import 'package:dio/dio.dart';
 
 class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
@@ -12,71 +14,70 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
     if (token != null && token.isNotEmpty) {
       options.headers.addAll(
         <String, String>{
-          'Authorization': 'Bearer $token',
+          BaseApiClient.kAuthHeader: '${BaseApiClient.kAuthPrefix}$token',
         },
       );
     }
+    logger.d('token: $token');
     handler.next(options);
   }
 
   @override
   Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401) {
+    if (err.response?.statusCode == HttpStatus.unauthorized) {
       final refreshToken = tokenRepository().refreshToken;
       if (refreshToken == null || refreshToken.isEmpty) {
-        await tokenRepository().clear();
-        //TODO reauthorize();
+        sessionService().closeSession();
         return handler.next(err);
       }
       try {
         final result = await refreshTokenRepository().refresh(refreshToken);
         final res = result.when(
           success: (data) async {
-            await tokenRepository().update(
-              access: data.accessToken,
-              refresh: data.refreshToken,
-            );
-            final requestOptions = err.response?.requestOptions;
-            if (requestOptions != null) {
-              requestOptions.headers['Authorization'] =
-                  'Bearer ${data.accessToken}';
-              final options = Options(
-                method: requestOptions.method,
-                headers: requestOptions.headers,
-              );
-              final dioRefresh = Dio(
-                BaseOptions(
-                  baseUrl: requestOptions.baseUrl,
-                  headers: <String, String>{
-                    'accept': 'application/json',
-                  },
-                ),
-              );
-              final response = await dioRefresh.request<dynamic>(
-                requestOptions.path,
-                data: requestOptions.data,
-                queryParameters: requestOptions.queryParameters,
-                options: options,
-              );
-              return handler.resolve(response);
-            }
-            return handler.next(err);
+            return await _resolveRequest(handler, data);
           },
           error: (failure) {
-            tokenRepository().clear();
-            //TODO reauthorize();
+            sessionService().closeSession();
             return handler.next(err);
           },
         );
-
         return res;
       } on DioError {
         if (err.response?.statusCode == HttpStatus.unauthorized) {
-          await tokenRepository().clear();
-          //TODO reauthorize();
+          sessionService().closeSession();
         }
       }
     }
     handler.next(err);
+  }
+
+  Future<ErrorInterceptorHandler> _resolveRequest(
+    ErrorInterceptorHandler handler,
+    AuthenticationEntity authEntity,
+  ) async {
+    await tokenRepository().update(
+      access: authEntity.accessToken,
+      refresh: authEntity.refreshToken,
+    );
+    final requestOptions = err.response?.requestOptions;
+    if (requestOptions != null) {
+      requestOptions.headers[BaseApiClient.kAuthHeader] =
+          '${BaseApiClient.kAuthPrefix}${authEntity.accessToken}';
+      final options = Options(
+        method: requestOptions.method,
+        headers: requestOptions.headers,
+      );
+      final dioRefresh = Dio(
+        BaseOptions(baseUrl: requestOptions.baseUrl),
+      );
+      final response = await dioRefresh.request<dynamic>(
+        requestOptions.path,
+        data: requestOptions.data,
+        queryParameters: requestOptions.queryParameters,
+        options: options,
+      );
+      return handler.resolve(response);
+    }
+    return handler.next(err);
   }
 }
