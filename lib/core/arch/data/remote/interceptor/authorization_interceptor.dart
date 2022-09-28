@@ -34,7 +34,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
         final result = await refreshTokenRepository().refresh(refreshToken);
         final res = result.when(
           success: (data) async {
-            return await _resolveRequest(handler, data);
+            return await _resolveRequest(err, handler, data);
           },
           error: (failure) {
             sessionService().closeSession();
@@ -51,7 +51,8 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
     handler.next(err);
   }
 
-  Future<ErrorInterceptorHandler> _resolveRequest(
+  Future<void> _resolveRequest(
+    DioError err,
     ErrorInterceptorHandler handler,
     AuthenticationEntity authEntity,
   ) async {
@@ -78,6 +79,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
       );
       return handler.resolve(response);
     }
+    logger.e('err: $err');
     return handler.next(err);
   }
 }
