@@ -2,9 +2,22 @@ import 'package:clean_arch_sample/core/arch/data/remote/base/base_api_client.dar
 import 'package:clean_arch_sample/core/arch/data/remote/base/http_status.dart';
 import 'package:clean_arch_sample/core/di/repository.dart';
 import 'package:clean_arch_sample/core/di/services.dart';
+import 'package:clean_arch_sample/data/mapper/auth/auth_mapper.dart';
+import 'package:clean_arch_sample/data/model/remote/auth/auth_response.dart';
+import 'package:clean_arch_sample/data/model/remote/token/token_request.dart';
+import 'package:clean_arch_sample/domain/entity/auth/auth_entity.dart';
 import 'package:dio/dio.dart';
 
 class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
+  late Dio _refreshDio;
+
+  AuthorizationInterceptor() {
+    _refreshDio = Dio();
+  }
+
+  //TODO change refresh path
+  final _refreshPath = 'auth/refresh';
+
   @override
   Future<void> onRequest(
     RequestOptions options,
@@ -31,17 +44,16 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
         return handler.next(err);
       }
       try {
-        final result = await refreshTokenRepository().refresh(refreshToken);
-        final res = result.when(
-          success: (data) async {
-            return await _resolveRequest(err, handler, data);
-          },
-          error: (failure) {
-            sessionService().closeSession();
-            return handler.next(err);
-          },
+        if (refreshToken == null || refreshToken.isEmpty) {
+          sessionService().closeSession();
+          return handler.next(err);
+        }
+        final request = TokenRequest(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
         );
-        return res;
+        final authEntity = await _refresh(err, request);
+        return await _resolveRequest(err, handler, authEntity);
       } on DioError {
         if (err.response?.statusCode == HttpStatus.unauthorized) {
           sessionService().closeSession();
@@ -49,6 +61,25 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
       }
     }
     handler.next(err);
+  }
+
+  Future<AuthEntity> _refresh(DioError err, TokenRequest request) async {
+    logger.d('_refresh start');
+    final result = await _refreshDio.post(
+      '${err.requestOptions.baseUrl}$_refreshPath',
+      options: Options(
+        headers: {
+          BaseApiClient.kAcceptHeader: BaseApiClient.kJsonPrefix,
+          BaseApiClient.kContentTypeHeader: BaseApiClient.kJsonPrefix,
+          BaseApiClient.kAuthHeader:
+              '${BaseApiClient.kAuthPrefix}${request.accessToken}',
+        },
+      ),
+      data: request.toJson(),
+    );
+    final data = AuthResponse.fromJson(result.data['data']);
+    logger.d('_refresh end');
+    return AuthMapper().mapRefreshEntity(data);
   }
 
   Future<void> _resolveRequest(
