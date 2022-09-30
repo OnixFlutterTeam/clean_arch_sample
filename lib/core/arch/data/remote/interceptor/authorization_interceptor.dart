@@ -51,7 +51,9 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
         final authEntity = await _refresh(err, request);
         return await _resolveRequest(err, handler, authEntity);
       } on DioError {
-        await sessionService().closeSession();
+        if (err.response?.statusCode == HttpStatus.unauthorized) {
+          await sessionService().closeSession();
+        }
       } catch (e) {
         logger.e(e);
         await sessionService().closeSession();
