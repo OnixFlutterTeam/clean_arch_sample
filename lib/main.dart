@@ -1,24 +1,37 @@
-import 'package:clean_arch_sample/src/data/models/local/todo_model.dart';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:clean_arch_sample/app.dart';
+import 'package:clean_arch_sample/core/app/app_initialization.dart';
+import 'package:clean_arch_sample/core/arch/bloc/app_bloc_observer.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'app.dart';
-import 'src/core/DI/injection.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await _initializeDatabase();
-  initializeDi(GetIt.instance);
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  unawaited(runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await AppInitialization.I.initApp();
 
-  runApp(const App());
-}
-
-Future<void> _initializeDatabase() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(TodoModelAdapter());
+      await SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+      Bloc.observer = AppBlocObserver();
+      runApp(const App());
+    },
+    (error, stackTrace) {
+      logger.e(
+        'runZonedGuarded: Caught error in root zone. ',
+        error,
+        stackTrace,
+      );
+      //there we can add FirebaseCrashlytics recordError method
+    },
+  )?.catchError((e, trace) {
+    logger.e('ERROR', e, trace);
+    exit(-1);
+  }));
 }
