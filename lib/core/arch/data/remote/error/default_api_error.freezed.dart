@@ -33,34 +33,37 @@ mixin _$DefaultApiError {
 abstract class $DefaultApiErrorCopyWith<$Res> {
   factory $DefaultApiErrorCopyWith(
           DefaultApiError value, $Res Function(DefaultApiError) then) =
-      _$DefaultApiErrorCopyWithImpl<$Res>;
+      _$DefaultApiErrorCopyWithImpl<$Res, DefaultApiError>;
+  @useResult
   $Res call({String name, String code});
 }
 
 /// @nodoc
-class _$DefaultApiErrorCopyWithImpl<$Res>
+class _$DefaultApiErrorCopyWithImpl<$Res, $Val extends DefaultApiError>
     implements $DefaultApiErrorCopyWith<$Res> {
   _$DefaultApiErrorCopyWithImpl(this._value, this._then);
 
-  final DefaultApiError _value;
   // ignore: unused_field
-  final $Res Function(DefaultApiError) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? code = freezed,
+    Object? name = null,
+    Object? code = null,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -71,31 +74,30 @@ abstract class _$$_DefaultApiErrorCopyWith<$Res>
           _$_DefaultApiError value, $Res Function(_$_DefaultApiError) then) =
       __$$_DefaultApiErrorCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String name, String code});
 }
 
 /// @nodoc
 class __$$_DefaultApiErrorCopyWithImpl<$Res>
-    extends _$DefaultApiErrorCopyWithImpl<$Res>
+    extends _$DefaultApiErrorCopyWithImpl<$Res, _$_DefaultApiError>
     implements _$$_DefaultApiErrorCopyWith<$Res> {
   __$$_DefaultApiErrorCopyWithImpl(
       _$_DefaultApiError _value, $Res Function(_$_DefaultApiError) _then)
-      : super(_value, (v) => _then(v as _$_DefaultApiError));
+      : super(_value, _then);
 
-  @override
-  _$_DefaultApiError get _value => super._value as _$_DefaultApiError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? code = freezed,
+    Object? name = null,
+    Object? code = null,
   }) {
     return _then(_$_DefaultApiError(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
@@ -126,19 +128,17 @@ class _$_DefaultApiError implements _DefaultApiError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DefaultApiError &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.code, code));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(code));
+  int get hashCode => Object.hash(runtimeType, name, code);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DefaultApiErrorCopyWith<_$_DefaultApiError> get copyWith =>
       __$$_DefaultApiErrorCopyWithImpl<_$_DefaultApiError>(this, _$identity);
 

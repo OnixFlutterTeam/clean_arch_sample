@@ -35,35 +35,39 @@ mixin _$AuthResponse {
 abstract class $AuthResponseCopyWith<$Res> {
   factory $AuthResponseCopyWith(
           AuthResponse value, $Res Function(AuthResponse) then) =
-      _$AuthResponseCopyWithImpl<$Res>;
+      _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'access_token') String? accessToken,
       @JsonKey(name: 'refresh_token') String? refreshToken});
 }
 
 /// @nodoc
-class _$AuthResponseCopyWithImpl<$Res> implements $AuthResponseCopyWith<$Res> {
+class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
+    implements $AuthResponseCopyWith<$Res> {
   _$AuthResponseCopyWithImpl(this._value, this._then);
 
-  final AuthResponse _value;
   // ignore: unused_field
-  final $Res Function(AuthResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? accessToken = freezed,
     Object? refreshToken = freezed,
   }) {
     return _then(_value.copyWith(
-      accessToken: accessToken == freezed
+      accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshToken: refreshToken == freezed
+      refreshToken: freezed == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -74,6 +78,7 @@ abstract class _$$_AuthResponseCopyWith<$Res>
           _$_AuthResponse value, $Res Function(_$_AuthResponse) then) =
       __$$_AuthResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'access_token') String? accessToken,
       @JsonKey(name: 'refresh_token') String? refreshToken});
@@ -81,26 +86,24 @@ abstract class _$$_AuthResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_AuthResponseCopyWithImpl<$Res>
-    extends _$AuthResponseCopyWithImpl<$Res>
+    extends _$AuthResponseCopyWithImpl<$Res, _$_AuthResponse>
     implements _$$_AuthResponseCopyWith<$Res> {
   __$$_AuthResponseCopyWithImpl(
       _$_AuthResponse _value, $Res Function(_$_AuthResponse) _then)
-      : super(_value, (v) => _then(v as _$_AuthResponse));
+      : super(_value, _then);
 
-  @override
-  _$_AuthResponse get _value => super._value as _$_AuthResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? accessToken = freezed,
     Object? refreshToken = freezed,
   }) {
     return _then(_$_AuthResponse(
-      accessToken == freezed
+      freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshToken == freezed
+      freezed == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -134,21 +137,19 @@ class _$_AuthResponse implements _AuthResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthResponse &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken) &&
-            const DeepCollectionEquality()
-                .equals(other.refreshToken, refreshToken));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(accessToken),
-      const DeepCollectionEquality().hash(refreshToken));
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthResponseCopyWith<_$_AuthResponse> get copyWith =>
       __$$_AuthResponseCopyWithImpl<_$_AuthResponse>(this, _$identity);
 

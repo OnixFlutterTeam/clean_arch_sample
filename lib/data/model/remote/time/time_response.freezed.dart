@@ -33,28 +33,32 @@ mixin _$TimeResponse {
 abstract class $TimeResponseCopyWith<$Res> {
   factory $TimeResponseCopyWith(
           TimeResponse value, $Res Function(TimeResponse) then) =
-      _$TimeResponseCopyWithImpl<$Res>;
+      _$TimeResponseCopyWithImpl<$Res, TimeResponse>;
+  @useResult
   $Res call({@JsonKey(name: 'currentDateTime') DateTime currentDateTime});
 }
 
 /// @nodoc
-class _$TimeResponseCopyWithImpl<$Res> implements $TimeResponseCopyWith<$Res> {
+class _$TimeResponseCopyWithImpl<$Res, $Val extends TimeResponse>
+    implements $TimeResponseCopyWith<$Res> {
   _$TimeResponseCopyWithImpl(this._value, this._then);
 
-  final TimeResponse _value;
   // ignore: unused_field
-  final $Res Function(TimeResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentDateTime = freezed,
+    Object? currentDateTime = null,
   }) {
     return _then(_value.copyWith(
-      currentDateTime: currentDateTime == freezed
+      currentDateTime: null == currentDateTime
           ? _value.currentDateTime
           : currentDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,26 +69,25 @@ abstract class _$$_TimeResponseCopyWith<$Res>
           _$_TimeResponse value, $Res Function(_$_TimeResponse) then) =
       __$$_TimeResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'currentDateTime') DateTime currentDateTime});
 }
 
 /// @nodoc
 class __$$_TimeResponseCopyWithImpl<$Res>
-    extends _$TimeResponseCopyWithImpl<$Res>
+    extends _$TimeResponseCopyWithImpl<$Res, _$_TimeResponse>
     implements _$$_TimeResponseCopyWith<$Res> {
   __$$_TimeResponseCopyWithImpl(
       _$_TimeResponse _value, $Res Function(_$_TimeResponse) _then)
-      : super(_value, (v) => _then(v as _$_TimeResponse));
+      : super(_value, _then);
 
-  @override
-  _$_TimeResponse get _value => super._value as _$_TimeResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentDateTime = freezed,
+    Object? currentDateTime = null,
   }) {
     return _then(_$_TimeResponse(
-      currentDateTime: currentDateTime == freezed
+      currentDateTime: null == currentDateTime
           ? _value.currentDateTime
           : currentDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -93,8 +96,7 @@ class __$$_TimeResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class _$_TimeResponse implements _TimeResponse {
   const _$_TimeResponse(
       {@JsonKey(name: 'currentDateTime') required this.currentDateTime});
@@ -116,17 +118,17 @@ class _$_TimeResponse implements _TimeResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TimeResponse &&
-            const DeepCollectionEquality()
-                .equals(other.currentDateTime, currentDateTime));
+            (identical(other.currentDateTime, currentDateTime) ||
+                other.currentDateTime == currentDateTime));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentDateTime));
+  int get hashCode => Object.hash(runtimeType, currentDateTime);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TimeResponseCopyWith<_$_TimeResponse> get copyWith =>
       __$$_TimeResponseCopyWithImpl<_$_TimeResponse>(this, _$identity);
 

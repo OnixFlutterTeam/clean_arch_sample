@@ -19,25 +19,40 @@ class _$AppRouter extends RootStackRouter {
   final Map<String, PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const SplashScreen());
+        routeData: routeData,
+        child: const SplashScreen(),
+      );
     },
     TodosRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
-          routeData: routeData, child: const TodosScreen());
-    }
+        routeData: routeData,
+        child: const TodosScreen(),
+        opaque: true,
+      );
+    },
   };
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
-        RouteConfig(TodosRoute.name, path: '/todoScreen')
+        RouteConfig(
+          SplashRoute.name,
+          path: '/',
+        ),
+        RouteConfig(
+          TodosRoute.name,
+          path: '/todoScreen',
+        ),
       ];
 }
 
 /// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute()
+      : super(
+          SplashRoute.name,
+          path: '/',
+        );
 
   static const String name = 'SplashRoute';
 }
@@ -45,7 +60,11 @@ class SplashRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [TodosScreen]
 class TodosRoute extends PageRouteInfo<void> {
-  const TodosRoute() : super(TodosRoute.name, path: '/todoScreen');
+  const TodosRoute()
+      : super(
+          TodosRoute.name,
+          path: '/todoScreen',
+        );
 
   static const String name = 'TodosRoute';
 }

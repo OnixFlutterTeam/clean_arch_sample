@@ -35,18 +35,22 @@ mixin _$TodoResponse {
 abstract class $TodoResponseCopyWith<$Res> {
   factory $TodoResponseCopyWith(
           TodoResponse value, $Res Function(TodoResponse) then) =
-      _$TodoResponseCopyWithImpl<$Res>;
+      _$TodoResponseCopyWithImpl<$Res, TodoResponse>;
+  @useResult
   $Res call({int? userId, int? id, String? title, bool? completed});
 }
 
 /// @nodoc
-class _$TodoResponseCopyWithImpl<$Res> implements $TodoResponseCopyWith<$Res> {
+class _$TodoResponseCopyWithImpl<$Res, $Val extends TodoResponse>
+    implements $TodoResponseCopyWith<$Res> {
   _$TodoResponseCopyWithImpl(this._value, this._then);
 
-  final TodoResponse _value;
   // ignore: unused_field
-  final $Res Function(TodoResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? userId = freezed,
@@ -55,23 +59,23 @@ class _$TodoResponseCopyWithImpl<$Res> implements $TodoResponseCopyWith<$Res> {
     Object? completed = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      completed: completed == freezed
+      completed: freezed == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -82,20 +86,19 @@ abstract class _$$_TodoResponseCopyWith<$Res>
           _$_TodoResponse value, $Res Function(_$_TodoResponse) then) =
       __$$_TodoResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? userId, int? id, String? title, bool? completed});
 }
 
 /// @nodoc
 class __$$_TodoResponseCopyWithImpl<$Res>
-    extends _$TodoResponseCopyWithImpl<$Res>
+    extends _$TodoResponseCopyWithImpl<$Res, _$_TodoResponse>
     implements _$$_TodoResponseCopyWith<$Res> {
   __$$_TodoResponseCopyWithImpl(
       _$_TodoResponse _value, $Res Function(_$_TodoResponse) _then)
-      : super(_value, (v) => _then(v as _$_TodoResponse));
+      : super(_value, _then);
 
-  @override
-  _$_TodoResponse get _value => super._value as _$_TodoResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? userId = freezed,
@@ -104,19 +107,19 @@ class __$$_TodoResponseCopyWithImpl<$Res>
     Object? completed = freezed,
   }) {
     return _then(_$_TodoResponse(
-      userId: userId == freezed
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      completed: completed == freezed
+      completed: freezed == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool?,
@@ -155,23 +158,20 @@ class _$_TodoResponse implements _TodoResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TodoResponse &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.completed, completed));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.completed, completed) ||
+                other.completed == completed));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(completed));
+  int get hashCode => Object.hash(runtimeType, userId, id, title, completed);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TodoResponseCopyWith<_$_TodoResponse> get copyWith =>
       __$$_TodoResponseCopyWithImpl<_$_TodoResponse>(this, _$identity);
 

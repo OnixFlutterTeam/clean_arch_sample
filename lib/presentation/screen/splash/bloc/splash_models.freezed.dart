@@ -23,7 +23,7 @@ mixin _$SplashEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
+    TResult? Function()? init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +39,7 @@ mixin _$SplashEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SplashEventInit value)? init,
+    TResult? Function(SplashEventInit value)? init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,16 +54,18 @@ mixin _$SplashEvent {
 abstract class $SplashEventCopyWith<$Res> {
   factory $SplashEventCopyWith(
           SplashEvent value, $Res Function(SplashEvent) then) =
-      _$SplashEventCopyWithImpl<$Res>;
+      _$SplashEventCopyWithImpl<$Res, SplashEvent>;
 }
 
 /// @nodoc
-class _$SplashEventCopyWithImpl<$Res> implements $SplashEventCopyWith<$Res> {
+class _$SplashEventCopyWithImpl<$Res, $Val extends SplashEvent>
+    implements $SplashEventCopyWith<$Res> {
   _$SplashEventCopyWithImpl(this._value, this._then);
 
-  final SplashEvent _value;
   // ignore: unused_field
-  final $Res Function(SplashEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -75,14 +77,11 @@ abstract class _$$SplashEventInitCopyWith<$Res> {
 
 /// @nodoc
 class __$$SplashEventInitCopyWithImpl<$Res>
-    extends _$SplashEventCopyWithImpl<$Res>
+    extends _$SplashEventCopyWithImpl<$Res, _$SplashEventInit>
     implements _$$SplashEventInitCopyWith<$Res> {
   __$$SplashEventInitCopyWithImpl(
       _$SplashEventInit _value, $Res Function(_$SplashEventInit) _then)
-      : super(_value, (v) => _then(v as _$SplashEventInit));
-
-  @override
-  _$SplashEventInit get _value => super._value as _$SplashEventInit;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -115,7 +114,7 @@ class _$SplashEventInit implements SplashEventInit {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
+    TResult? Function()? init,
   }) {
     return init?.call();
   }
@@ -143,7 +142,7 @@ class _$SplashEventInit implements SplashEventInit {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SplashEventInit value)? init,
+    TResult? Function(SplashEventInit value)? init,
   }) {
     return init?.call(this);
   }
@@ -174,7 +173,7 @@ mixin _$SplashSR {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadFinished,
+    TResult? Function()? loadFinished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -190,7 +189,7 @@ mixin _$SplashSR {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_LoadFinished value)? loadFinished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -204,16 +203,18 @@ mixin _$SplashSR {
 /// @nodoc
 abstract class $SplashSRCopyWith<$Res> {
   factory $SplashSRCopyWith(SplashSR value, $Res Function(SplashSR) then) =
-      _$SplashSRCopyWithImpl<$Res>;
+      _$SplashSRCopyWithImpl<$Res, SplashSR>;
 }
 
 /// @nodoc
-class _$SplashSRCopyWithImpl<$Res> implements $SplashSRCopyWith<$Res> {
+class _$SplashSRCopyWithImpl<$Res, $Val extends SplashSR>
+    implements $SplashSRCopyWith<$Res> {
   _$SplashSRCopyWithImpl(this._value, this._then);
 
-  final SplashSR _value;
   // ignore: unused_field
-  final $Res Function(SplashSR) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -224,14 +225,12 @@ abstract class _$$_LoadFinishedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadFinishedCopyWithImpl<$Res> extends _$SplashSRCopyWithImpl<$Res>
+class __$$_LoadFinishedCopyWithImpl<$Res>
+    extends _$SplashSRCopyWithImpl<$Res, _$_LoadFinished>
     implements _$$_LoadFinishedCopyWith<$Res> {
   __$$_LoadFinishedCopyWithImpl(
       _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
-      : super(_value, (v) => _then(v as _$_LoadFinished));
-
-  @override
-  _$_LoadFinished get _value => super._value as _$_LoadFinished;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -264,7 +263,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadFinished,
+    TResult? Function()? loadFinished,
   }) {
     return loadFinished?.call();
   }
@@ -292,7 +291,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_LoadFinished value)? loadFinished,
   }) {
     return loadFinished?.call(this);
   }

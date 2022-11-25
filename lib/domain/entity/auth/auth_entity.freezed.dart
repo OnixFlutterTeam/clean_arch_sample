@@ -28,34 +28,38 @@ mixin _$AuthenticationEntity {
 abstract class $AuthenticationEntityCopyWith<$Res> {
   factory $AuthenticationEntityCopyWith(AuthenticationEntity value,
           $Res Function(AuthenticationEntity) then) =
-      _$AuthenticationEntityCopyWithImpl<$Res>;
+      _$AuthenticationEntityCopyWithImpl<$Res, AuthenticationEntity>;
+  @useResult
   $Res call({String accessToken, String refreshToken});
 }
 
 /// @nodoc
-class _$AuthenticationEntityCopyWithImpl<$Res>
+class _$AuthenticationEntityCopyWithImpl<$Res,
+        $Val extends AuthenticationEntity>
     implements $AuthenticationEntityCopyWith<$Res> {
   _$AuthenticationEntityCopyWithImpl(this._value, this._then);
 
-  final AuthenticationEntity _value;
   // ignore: unused_field
-  final $Res Function(AuthenticationEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,31 +70,30 @@ abstract class _$$_AuthenticationEntityCopyWith<$Res>
           $Res Function(_$_AuthenticationEntity) then) =
       __$$_AuthenticationEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String accessToken, String refreshToken});
 }
 
 /// @nodoc
 class __$$_AuthenticationEntityCopyWithImpl<$Res>
-    extends _$AuthenticationEntityCopyWithImpl<$Res>
+    extends _$AuthenticationEntityCopyWithImpl<$Res, _$_AuthenticationEntity>
     implements _$$_AuthenticationEntityCopyWith<$Res> {
   __$$_AuthenticationEntityCopyWithImpl(_$_AuthenticationEntity _value,
       $Res Function(_$_AuthenticationEntity) _then)
-      : super(_value, (v) => _then(v as _$_AuthenticationEntity));
+      : super(_value, _then);
 
-  @override
-  _$_AuthenticationEntity get _value => super._value as _$_AuthenticationEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_$_AuthenticationEntity(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
@@ -119,20 +122,18 @@ class _$_AuthenticationEntity implements _AuthenticationEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthenticationEntity &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken) &&
-            const DeepCollectionEquality()
-                .equals(other.refreshToken, refreshToken));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(accessToken),
-      const DeepCollectionEquality().hash(refreshToken));
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthenticationEntityCopyWith<_$_AuthenticationEntity> get copyWith =>
       __$$_AuthenticationEntityCopyWithImpl<_$_AuthenticationEntity>(
           this, _$identity);
