@@ -5,6 +5,7 @@ import 'package:clean_arch_sample/core/arch/data/remote/dio_request_processor/di
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 abstract class DioClientModule {
   ApiClient makeApiClient(String baseUrl) => ApiClient(
@@ -19,8 +20,10 @@ abstract class DioClientModule {
         ),
       );
 
-  DioRequestProcessor makeDioErrorHandler() => DioRequestProcessorImpl(
-        connectivity: Connectivity(),
-        internetConnectionChecker: InternetConnectionChecker(),
-      );
+  DioRequestProcessor makeDioErrorHandler() => kIsWeb
+      ? DioRequestProcessorImpl()
+      : DioRequestProcessorImpl(
+          connectivity: Connectivity(),
+          internetConnectionChecker: InternetConnectionChecker(),
+        );
 }

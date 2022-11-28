@@ -41,9 +41,9 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
   ];
 
   @protected
-  final Connectivity connectivity;
+  final Connectivity? connectivity;
   @protected
-  final InternetConnectionChecker internetConnectionChecker;
+  final InternetConnectionChecker? internetConnectionChecker;
   @protected
   final List<int> retryStatusCodes;
   @protected
@@ -53,8 +53,8 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
   final bool useRetry;
 
   DioRequestProcessorImpl({
-    required this.connectivity,
-    required this.internetConnectionChecker,
+    this.connectivity,
+    this.internetConnectionChecker,
     this.useRetry = false,
     this.maxAttemptsCount = defaultMaxAttemptsCount,
     this.retryStatusCodes = defaultRetryStatusCodes,
@@ -67,13 +67,16 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     required OnResponse<R> onResponse,
     bool checkNetworkConnection = true,
   }) async {
-    final resultConnectivity = await connectivity.checkConnectivity();
-    final hasConnection = await internetConnectionChecker.hasConnection;
+    if (connectivity != null && internetConnectionChecker != null) {
+      final resultConnectivity = await connectivity?.checkConnectivity() ?? false;
+      final hasConnection = await internetConnectionChecker?.hasConnection ?? false;
 
-    if (checkNetworkConnection &&
-        (resultConnectivity == ConnectivityResult.none || !hasConnection)) {
-      return const DataResponse.notConnected();
+      if (checkNetworkConnection &&
+          (resultConnectivity == ConnectivityResult.none || !hasConnection)) {
+        return const DataResponse.notConnected();
+      }
     }
+
     try {
       final response = await _call(onRequest);
       return DataResponse.success(onResponse(response as Response<dynamic>));
