@@ -4,8 +4,7 @@ import 'package:clean_arch_sample/core/arch/bloc/base_block_state.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/misk.dart';
 import 'package:clean_arch_sample/core/router/app_router.dart';
 import 'package:clean_arch_sample/presentation/screen/splash/bloc/splash_bloc_imports.dart';
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_colors.dart';
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_text_styles.dart';
+import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +25,7 @@ class _SplashScreenState
     return srObserver(
       context: context,
       child: Scaffold(
-        backgroundColor: context.backgroundColor,
+        backgroundColor: context.themeColors.backgroundColor,
         body: SizedBox.expand(
           child: blocConsumer(
             stateListener: (state) => _buildMainContainer(context, state),
@@ -57,18 +56,18 @@ class _SplashScreenState
         children: [
           Text(
             'Splash screen',
-            style: context.fs28,
+            style: context.themeTextStyles.fs28,
           ),
           Delimiter.height(10.h),
           Text(
             'Auto navigate next after 20 seconds',
-            style: context.bodyText16,
+            style: context.themeTextStyles.bodyText16,
           ),
           Delimiter.height(10.h),
           OutlinedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                context.buttonColor,
+                context.themeColors.buttonColor,
               ),
             ),
             onPressed: () {
@@ -76,7 +75,7 @@ class _SplashScreenState
             },
             child: Text(
               'Navigate Next',
-              style: context.button18,
+              style: context.themeTextStyles.button18,
             ),
           ),
           Delimiter.height(10.h),
@@ -87,7 +86,7 @@ class _SplashScreenState
             },
             child: Text(
               'Theme dark',
-              style: context.button18,
+              style: context.themeTextStyles.button18,
             ),
           ),
           Delimiter.height(10.h),
@@ -98,7 +97,7 @@ class _SplashScreenState
             },
             child: Text(
               'Theme light',
-              style: context.button18,
+              style: context.themeTextStyles.button18,
             ),
           ),
           Delimiter.height(10.h),
@@ -109,7 +108,7 @@ class _SplashScreenState
             },
             child: Text(
               'Theme system',
-              style: context.button18,
+              style: context.themeTextStyles.button18,
             ),
           ),
         ],

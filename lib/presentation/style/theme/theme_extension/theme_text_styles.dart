@@ -1,22 +1,22 @@
-import 'package:clean_arch_sample/presentation/style/colors.dart';
+import 'package:clean_arch_sample/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
-part 'app_text_styles.tailor.dart';
+part 'theme_text_styles.tailor.dart';
 
-@tailor
-class _$AppTextStyles {
+@Tailor(themeGetter: ThemeGetter.onBuildContext)
+class _$ThemeTextStyles {
   static List<TextStyle> fs28 = [
     TextStyle(
       fontSize: 28.sp,
       fontWeight: FontWeight.w700,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     TextStyle(
       fontSize: 28.sp,
       fontWeight: FontWeight.w600,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
   ];
 
@@ -24,12 +24,12 @@ class _$AppTextStyles {
     TextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeight.w600,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     TextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeight.w500,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
   ];
 
@@ -37,12 +37,12 @@ class _$AppTextStyles {
     TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w500,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
   ];
 
@@ -50,12 +50,12 @@ class _$AppTextStyles {
     TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w600,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
   ];
 
@@ -63,12 +63,12 @@ class _$AppTextStyles {
     TextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     TextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
   ];
 
@@ -76,12 +76,12 @@ class _$AppTextStyles {
     TextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     TextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
   ];
 }

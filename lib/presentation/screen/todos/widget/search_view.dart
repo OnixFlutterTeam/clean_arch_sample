@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_text_styles.dart';
+import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,7 +36,7 @@ class _SearchViewState extends State<SearchView> {
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(right: 60.w, left: 10.w),
               hintText: 'Search for Todos...',
-              hintStyle: context.caption14,
+              hintStyle: context.themeTextStyles.caption14,
               border: UnderlineInputBorder(
                 borderRadius: BorderRadius.circular(
                   14.sm,

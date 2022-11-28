@@ -2,14 +2,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_element
 
-part of 'app_text_styles.dart';
+part of 'theme_text_styles.dart';
 
 // **************************************************************************
 // ThemeTailorGenerator
 // **************************************************************************
 
-class AppTextStyles extends ThemeExtension<AppTextStyles> {
-  const AppTextStyles({
+class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
+  const ThemeTextStyles({
     required this.fs28,
     required this.fs24,
     required this.fs18,
@@ -25,22 +25,22 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   final TextStyle bodyText16;
   final TextStyle caption14;
 
-  static final AppTextStyles light = AppTextStyles(
-    fs28: _$AppTextStyles.fs28[0],
-    fs24: _$AppTextStyles.fs24[0],
-    fs18: _$AppTextStyles.fs18[0],
-    button18: _$AppTextStyles.button18[0],
-    bodyText16: _$AppTextStyles.bodyText16[0],
-    caption14: _$AppTextStyles.caption14[0],
+  static final ThemeTextStyles light = ThemeTextStyles(
+    fs28: _$ThemeTextStyles.fs28[0],
+    fs24: _$ThemeTextStyles.fs24[0],
+    fs18: _$ThemeTextStyles.fs18[0],
+    button18: _$ThemeTextStyles.button18[0],
+    bodyText16: _$ThemeTextStyles.bodyText16[0],
+    caption14: _$ThemeTextStyles.caption14[0],
   );
 
-  static final AppTextStyles dark = AppTextStyles(
-    fs28: _$AppTextStyles.fs28[1],
-    fs24: _$AppTextStyles.fs24[1],
-    fs18: _$AppTextStyles.fs18[1],
-    button18: _$AppTextStyles.button18[1],
-    bodyText16: _$AppTextStyles.bodyText16[1],
-    caption14: _$AppTextStyles.caption14[1],
+  static final ThemeTextStyles dark = ThemeTextStyles(
+    fs28: _$ThemeTextStyles.fs28[1],
+    fs24: _$ThemeTextStyles.fs24[1],
+    fs18: _$ThemeTextStyles.fs18[1],
+    button18: _$ThemeTextStyles.button18[1],
+    bodyText16: _$ThemeTextStyles.bodyText16[1],
+    caption14: _$ThemeTextStyles.caption14[1],
   );
 
   static final themes = [
@@ -49,7 +49,7 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   ];
 
   @override
-  AppTextStyles copyWith({
+  ThemeTextStyles copyWith({
     TextStyle? fs28,
     TextStyle? fs24,
     TextStyle? fs18,
@@ -57,7 +57,7 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
     TextStyle? bodyText16,
     TextStyle? caption14,
   }) {
-    return AppTextStyles(
+    return ThemeTextStyles(
       fs28: fs28 ?? this.fs28,
       fs24: fs24 ?? this.fs24,
       fs18: fs18 ?? this.fs18,
@@ -68,9 +68,9 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   }
 
   @override
-  AppTextStyles lerp(ThemeExtension<AppTextStyles>? other, double t) {
-    if (other is! AppTextStyles) return this;
-    return AppTextStyles(
+  ThemeTextStyles lerp(ThemeExtension<ThemeTextStyles>? other, double t) {
+    if (other is! ThemeTextStyles) return this;
+    return ThemeTextStyles(
       fs28: TextStyle.lerp(fs28, other.fs28, t)!,
       fs24: TextStyle.lerp(fs24, other.fs24, t)!,
       fs18: TextStyle.lerp(fs18, other.fs18, t)!,
@@ -84,7 +84,7 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AppTextStyles &&
+            other is ThemeTextStyles &&
             const DeepCollectionEquality().equals(fs28, other.fs28) &&
             const DeepCollectionEquality().equals(fs24, other.fs24) &&
             const DeepCollectionEquality().equals(fs18, other.fs18) &&
@@ -107,13 +107,7 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   }
 }
 
-extension AppTextStylesBuildContextProps on BuildContext {
-  AppTextStyles get _appTextStyles =>
-      Theme.of(this).extension<AppTextStyles>()!;
-  TextStyle get fs28 => _appTextStyles.fs28;
-  TextStyle get fs24 => _appTextStyles.fs24;
-  TextStyle get fs18 => _appTextStyles.fs18;
-  TextStyle get button18 => _appTextStyles.button18;
-  TextStyle get bodyText16 => _appTextStyles.bodyText16;
-  TextStyle get caption14 => _appTextStyles.caption14;
+extension ThemeTextStylesBuildContext on BuildContext {
+  ThemeTextStyles get themeTextStyles =>
+      Theme.of(this).extension<ThemeTextStyles>()!;
 }
