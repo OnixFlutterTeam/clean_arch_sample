@@ -27,28 +27,32 @@ mixin _$TimeEntity {
 abstract class $TimeEntityCopyWith<$Res> {
   factory $TimeEntityCopyWith(
           TimeEntity value, $Res Function(TimeEntity) then) =
-      _$TimeEntityCopyWithImpl<$Res>;
+      _$TimeEntityCopyWithImpl<$Res, TimeEntity>;
+  @useResult
   $Res call({DateTime currentDateTime});
 }
 
 /// @nodoc
-class _$TimeEntityCopyWithImpl<$Res> implements $TimeEntityCopyWith<$Res> {
+class _$TimeEntityCopyWithImpl<$Res, $Val extends TimeEntity>
+    implements $TimeEntityCopyWith<$Res> {
   _$TimeEntityCopyWithImpl(this._value, this._then);
 
-  final TimeEntity _value;
   // ignore: unused_field
-  final $Res Function(TimeEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentDateTime = freezed,
+    Object? currentDateTime = null,
   }) {
     return _then(_value.copyWith(
-      currentDateTime: currentDateTime == freezed
+      currentDateTime: null == currentDateTime
           ? _value.currentDateTime
           : currentDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -59,25 +63,25 @@ abstract class _$$_TimeEntityCopyWith<$Res>
           _$_TimeEntity value, $Res Function(_$_TimeEntity) then) =
       __$$_TimeEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({DateTime currentDateTime});
 }
 
 /// @nodoc
-class __$$_TimeEntityCopyWithImpl<$Res> extends _$TimeEntityCopyWithImpl<$Res>
+class __$$_TimeEntityCopyWithImpl<$Res>
+    extends _$TimeEntityCopyWithImpl<$Res, _$_TimeEntity>
     implements _$$_TimeEntityCopyWith<$Res> {
   __$$_TimeEntityCopyWithImpl(
       _$_TimeEntity _value, $Res Function(_$_TimeEntity) _then)
-      : super(_value, (v) => _then(v as _$_TimeEntity));
+      : super(_value, _then);
 
-  @override
-  _$_TimeEntity get _value => super._value as _$_TimeEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentDateTime = freezed,
+    Object? currentDateTime = null,
   }) {
     return _then(_$_TimeEntity(
-      currentDateTime: currentDateTime == freezed
+      currentDateTime: null == currentDateTime
           ? _value.currentDateTime
           : currentDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -103,16 +107,16 @@ class _$_TimeEntity implements _TimeEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TimeEntity &&
-            const DeepCollectionEquality()
-                .equals(other.currentDateTime, currentDateTime));
+            (identical(other.currentDateTime, currentDateTime) ||
+                other.currentDateTime == currentDateTime));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentDateTime));
+  int get hashCode => Object.hash(runtimeType, currentDateTime);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TimeEntityCopyWith<_$_TimeEntity> get copyWith =>
       __$$_TimeEntityCopyWithImpl<_$_TimeEntity>(this, _$identity);
 }

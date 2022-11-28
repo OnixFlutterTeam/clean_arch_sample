@@ -28,12 +28,12 @@ mixin _$DataResponse<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(Object? errorObject)? undefinedError,
-    TResult Function(dynamic error)? apiError,
-    TResult Function()? notConnected,
-    TResult Function()? unauthorized,
-    TResult Function()? tooManyRequests,
+    TResult? Function(T data)? success,
+    TResult? Function(Object? errorObject)? undefinedError,
+    TResult? Function(dynamic error)? apiError,
+    TResult? Function()? notConnected,
+    TResult? Function()? unauthorized,
+    TResult? Function()? tooManyRequests,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,12 +59,12 @@ mixin _$DataResponse<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DataResponseSuccess<T> value)? success,
-    TResult Function(_UndefinedError<T> value)? undefinedError,
-    TResult Function(_ApiError<T> value)? apiError,
-    TResult Function(_NoInternetConnection<T> value)? notConnected,
-    TResult Function(_Unauthorized<T> value)? unauthorized,
-    TResult Function(_TooManyRequests<T> value)? tooManyRequests,
+    TResult? Function(_DataResponseSuccess<T> value)? success,
+    TResult? Function(_UndefinedError<T> value)? undefinedError,
+    TResult? Function(_ApiError<T> value)? apiError,
+    TResult? Function(_NoInternetConnection<T> value)? notConnected,
+    TResult? Function(_Unauthorized<T> value)? unauthorized,
+    TResult? Function(_TooManyRequests<T> value)? tooManyRequests,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,17 +84,18 @@ mixin _$DataResponse<T> {
 abstract class $DataResponseCopyWith<T, $Res> {
   factory $DataResponseCopyWith(
           DataResponse<T> value, $Res Function(DataResponse<T>) then) =
-      _$DataResponseCopyWithImpl<T, $Res>;
+      _$DataResponseCopyWithImpl<T, $Res, DataResponse<T>>;
 }
 
 /// @nodoc
-class _$DataResponseCopyWithImpl<T, $Res>
+class _$DataResponseCopyWithImpl<T, $Res, $Val extends DataResponse<T>>
     implements $DataResponseCopyWith<T, $Res> {
   _$DataResponseCopyWithImpl(this._value, this._then);
 
-  final DataResponse<T> _value;
   // ignore: unused_field
-  final $Res Function(DataResponse<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -102,27 +103,25 @@ abstract class _$$_DataResponseSuccessCopyWith<T, $Res> {
   factory _$$_DataResponseSuccessCopyWith(_$_DataResponseSuccess<T> value,
           $Res Function(_$_DataResponseSuccess<T>) then) =
       __$$_DataResponseSuccessCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({T data});
 }
 
 /// @nodoc
 class __$$_DataResponseSuccessCopyWithImpl<T, $Res>
-    extends _$DataResponseCopyWithImpl<T, $Res>
+    extends _$DataResponseCopyWithImpl<T, $Res, _$_DataResponseSuccess<T>>
     implements _$$_DataResponseSuccessCopyWith<T, $Res> {
   __$$_DataResponseSuccessCopyWithImpl(_$_DataResponseSuccess<T> _value,
       $Res Function(_$_DataResponseSuccess<T>) _then)
-      : super(_value, (v) => _then(v as _$_DataResponseSuccess<T>));
+      : super(_value, _then);
 
-  @override
-  _$_DataResponseSuccess<T> get _value =>
-      super._value as _$_DataResponseSuccess<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$_DataResponseSuccess<T>(
-      data == freezed
+      null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -157,6 +156,7 @@ class _$_DataResponseSuccess<T> extends _DataResponseSuccess<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DataResponseSuccessCopyWith<T, _$_DataResponseSuccess<T>> get copyWith =>
       __$$_DataResponseSuccessCopyWithImpl<T, _$_DataResponseSuccess<T>>(
           this, _$identity);
@@ -177,12 +177,12 @@ class _$_DataResponseSuccess<T> extends _DataResponseSuccess<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(Object? errorObject)? undefinedError,
-    TResult Function(dynamic error)? apiError,
-    TResult Function()? notConnected,
-    TResult Function()? unauthorized,
-    TResult Function()? tooManyRequests,
+    TResult? Function(T data)? success,
+    TResult? Function(Object? errorObject)? undefinedError,
+    TResult? Function(dynamic error)? apiError,
+    TResult? Function()? notConnected,
+    TResult? Function()? unauthorized,
+    TResult? Function()? tooManyRequests,
   }) {
     return success?.call(data);
   }
@@ -220,12 +220,12 @@ class _$_DataResponseSuccess<T> extends _DataResponseSuccess<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DataResponseSuccess<T> value)? success,
-    TResult Function(_UndefinedError<T> value)? undefinedError,
-    TResult Function(_ApiError<T> value)? apiError,
-    TResult Function(_NoInternetConnection<T> value)? notConnected,
-    TResult Function(_Unauthorized<T> value)? unauthorized,
-    TResult Function(_TooManyRequests<T> value)? tooManyRequests,
+    TResult? Function(_DataResponseSuccess<T> value)? success,
+    TResult? Function(_UndefinedError<T> value)? undefinedError,
+    TResult? Function(_ApiError<T> value)? apiError,
+    TResult? Function(_NoInternetConnection<T> value)? notConnected,
+    TResult? Function(_Unauthorized<T> value)? unauthorized,
+    TResult? Function(_TooManyRequests<T> value)? tooManyRequests,
   }) {
     return success?.call(this);
   }
@@ -263,26 +263,25 @@ abstract class _$$_UndefinedErrorCopyWith<T, $Res> {
   factory _$$_UndefinedErrorCopyWith(_$_UndefinedError<T> value,
           $Res Function(_$_UndefinedError<T>) then) =
       __$$_UndefinedErrorCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({Object? errorObject});
 }
 
 /// @nodoc
 class __$$_UndefinedErrorCopyWithImpl<T, $Res>
-    extends _$DataResponseCopyWithImpl<T, $Res>
+    extends _$DataResponseCopyWithImpl<T, $Res, _$_UndefinedError<T>>
     implements _$$_UndefinedErrorCopyWith<T, $Res> {
   __$$_UndefinedErrorCopyWithImpl(
       _$_UndefinedError<T> _value, $Res Function(_$_UndefinedError<T>) _then)
-      : super(_value, (v) => _then(v as _$_UndefinedError<T>));
+      : super(_value, _then);
 
-  @override
-  _$_UndefinedError<T> get _value => super._value as _$_UndefinedError<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? errorObject = freezed,
   }) {
     return _then(_$_UndefinedError<T>(
-      errorObject == freezed ? _value.errorObject : errorObject,
+      freezed == errorObject ? _value.errorObject : errorObject,
     ));
   }
 }
@@ -315,6 +314,7 @@ class _$_UndefinedError<T> extends _UndefinedError<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UndefinedErrorCopyWith<T, _$_UndefinedError<T>> get copyWith =>
       __$$_UndefinedErrorCopyWithImpl<T, _$_UndefinedError<T>>(
           this, _$identity);
@@ -335,12 +335,12 @@ class _$_UndefinedError<T> extends _UndefinedError<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(Object? errorObject)? undefinedError,
-    TResult Function(dynamic error)? apiError,
-    TResult Function()? notConnected,
-    TResult Function()? unauthorized,
-    TResult Function()? tooManyRequests,
+    TResult? Function(T data)? success,
+    TResult? Function(Object? errorObject)? undefinedError,
+    TResult? Function(dynamic error)? apiError,
+    TResult? Function()? notConnected,
+    TResult? Function()? unauthorized,
+    TResult? Function()? tooManyRequests,
   }) {
     return undefinedError?.call(errorObject);
   }
@@ -378,12 +378,12 @@ class _$_UndefinedError<T> extends _UndefinedError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DataResponseSuccess<T> value)? success,
-    TResult Function(_UndefinedError<T> value)? undefinedError,
-    TResult Function(_ApiError<T> value)? apiError,
-    TResult Function(_NoInternetConnection<T> value)? notConnected,
-    TResult Function(_Unauthorized<T> value)? unauthorized,
-    TResult Function(_TooManyRequests<T> value)? tooManyRequests,
+    TResult? Function(_DataResponseSuccess<T> value)? success,
+    TResult? Function(_UndefinedError<T> value)? undefinedError,
+    TResult? Function(_ApiError<T> value)? apiError,
+    TResult? Function(_NoInternetConnection<T> value)? notConnected,
+    TResult? Function(_Unauthorized<T> value)? unauthorized,
+    TResult? Function(_TooManyRequests<T> value)? tooManyRequests,
   }) {
     return undefinedError?.call(this);
   }
@@ -422,29 +422,25 @@ abstract class _$$_ApiErrorCopyWith<T, $Res> {
   factory _$$_ApiErrorCopyWith(
           _$_ApiError<T> value, $Res Function(_$_ApiError<T>) then) =
       __$$_ApiErrorCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({dynamic error});
 }
 
 /// @nodoc
 class __$$_ApiErrorCopyWithImpl<T, $Res>
-    extends _$DataResponseCopyWithImpl<T, $Res>
+    extends _$DataResponseCopyWithImpl<T, $Res, _$_ApiError<T>>
     implements _$$_ApiErrorCopyWith<T, $Res> {
   __$$_ApiErrorCopyWithImpl(
       _$_ApiError<T> _value, $Res Function(_$_ApiError<T>) _then)
-      : super(_value, (v) => _then(v as _$_ApiError<T>));
+      : super(_value, _then);
 
-  @override
-  _$_ApiError<T> get _value => super._value as _$_ApiError<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$_ApiError<T>(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      null == error ? _value.error : error,
     ));
   }
 }
@@ -476,6 +472,7 @@ class _$_ApiError<T> extends _ApiError<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ApiErrorCopyWith<T, _$_ApiError<T>> get copyWith =>
       __$$_ApiErrorCopyWithImpl<T, _$_ApiError<T>>(this, _$identity);
 
@@ -495,12 +492,12 @@ class _$_ApiError<T> extends _ApiError<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(Object? errorObject)? undefinedError,
-    TResult Function(dynamic error)? apiError,
-    TResult Function()? notConnected,
-    TResult Function()? unauthorized,
-    TResult Function()? tooManyRequests,
+    TResult? Function(T data)? success,
+    TResult? Function(Object? errorObject)? undefinedError,
+    TResult? Function(dynamic error)? apiError,
+    TResult? Function()? notConnected,
+    TResult? Function()? unauthorized,
+    TResult? Function()? tooManyRequests,
   }) {
     return apiError?.call(error);
   }
@@ -538,12 +535,12 @@ class _$_ApiError<T> extends _ApiError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DataResponseSuccess<T> value)? success,
-    TResult Function(_UndefinedError<T> value)? undefinedError,
-    TResult Function(_ApiError<T> value)? apiError,
-    TResult Function(_NoInternetConnection<T> value)? notConnected,
-    TResult Function(_Unauthorized<T> value)? unauthorized,
-    TResult Function(_TooManyRequests<T> value)? tooManyRequests,
+    TResult? Function(_DataResponseSuccess<T> value)? success,
+    TResult? Function(_UndefinedError<T> value)? undefinedError,
+    TResult? Function(_ApiError<T> value)? apiError,
+    TResult? Function(_NoInternetConnection<T> value)? notConnected,
+    TResult? Function(_Unauthorized<T> value)? unauthorized,
+    TResult? Function(_TooManyRequests<T> value)? tooManyRequests,
   }) {
     return apiError?.call(this);
   }
@@ -585,15 +582,11 @@ abstract class _$$_NoInternetConnectionCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_NoInternetConnectionCopyWithImpl<T, $Res>
-    extends _$DataResponseCopyWithImpl<T, $Res>
+    extends _$DataResponseCopyWithImpl<T, $Res, _$_NoInternetConnection<T>>
     implements _$$_NoInternetConnectionCopyWith<T, $Res> {
   __$$_NoInternetConnectionCopyWithImpl(_$_NoInternetConnection<T> _value,
       $Res Function(_$_NoInternetConnection<T>) _then)
-      : super(_value, (v) => _then(v as _$_NoInternetConnection<T>));
-
-  @override
-  _$_NoInternetConnection<T> get _value =>
-      super._value as _$_NoInternetConnection<T>;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -632,12 +625,12 @@ class _$_NoInternetConnection<T> extends _NoInternetConnection<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(Object? errorObject)? undefinedError,
-    TResult Function(dynamic error)? apiError,
-    TResult Function()? notConnected,
-    TResult Function()? unauthorized,
-    TResult Function()? tooManyRequests,
+    TResult? Function(T data)? success,
+    TResult? Function(Object? errorObject)? undefinedError,
+    TResult? Function(dynamic error)? apiError,
+    TResult? Function()? notConnected,
+    TResult? Function()? unauthorized,
+    TResult? Function()? tooManyRequests,
   }) {
     return notConnected?.call();
   }
@@ -675,12 +668,12 @@ class _$_NoInternetConnection<T> extends _NoInternetConnection<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DataResponseSuccess<T> value)? success,
-    TResult Function(_UndefinedError<T> value)? undefinedError,
-    TResult Function(_ApiError<T> value)? apiError,
-    TResult Function(_NoInternetConnection<T> value)? notConnected,
-    TResult Function(_Unauthorized<T> value)? unauthorized,
-    TResult Function(_TooManyRequests<T> value)? tooManyRequests,
+    TResult? Function(_DataResponseSuccess<T> value)? success,
+    TResult? Function(_UndefinedError<T> value)? undefinedError,
+    TResult? Function(_ApiError<T> value)? apiError,
+    TResult? Function(_NoInternetConnection<T> value)? notConnected,
+    TResult? Function(_Unauthorized<T> value)? unauthorized,
+    TResult? Function(_TooManyRequests<T> value)? tooManyRequests,
   }) {
     return notConnected?.call(this);
   }
@@ -717,14 +710,11 @@ abstract class _$$_UnauthorizedCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_UnauthorizedCopyWithImpl<T, $Res>
-    extends _$DataResponseCopyWithImpl<T, $Res>
+    extends _$DataResponseCopyWithImpl<T, $Res, _$_Unauthorized<T>>
     implements _$$_UnauthorizedCopyWith<T, $Res> {
   __$$_UnauthorizedCopyWithImpl(
       _$_Unauthorized<T> _value, $Res Function(_$_Unauthorized<T>) _then)
-      : super(_value, (v) => _then(v as _$_Unauthorized<T>));
-
-  @override
-  _$_Unauthorized<T> get _value => super._value as _$_Unauthorized<T>;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -762,12 +752,12 @@ class _$_Unauthorized<T> extends _Unauthorized<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(Object? errorObject)? undefinedError,
-    TResult Function(dynamic error)? apiError,
-    TResult Function()? notConnected,
-    TResult Function()? unauthorized,
-    TResult Function()? tooManyRequests,
+    TResult? Function(T data)? success,
+    TResult? Function(Object? errorObject)? undefinedError,
+    TResult? Function(dynamic error)? apiError,
+    TResult? Function()? notConnected,
+    TResult? Function()? unauthorized,
+    TResult? Function()? tooManyRequests,
   }) {
     return unauthorized?.call();
   }
@@ -805,12 +795,12 @@ class _$_Unauthorized<T> extends _Unauthorized<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DataResponseSuccess<T> value)? success,
-    TResult Function(_UndefinedError<T> value)? undefinedError,
-    TResult Function(_ApiError<T> value)? apiError,
-    TResult Function(_NoInternetConnection<T> value)? notConnected,
-    TResult Function(_Unauthorized<T> value)? unauthorized,
-    TResult Function(_TooManyRequests<T> value)? tooManyRequests,
+    TResult? Function(_DataResponseSuccess<T> value)? success,
+    TResult? Function(_UndefinedError<T> value)? undefinedError,
+    TResult? Function(_ApiError<T> value)? apiError,
+    TResult? Function(_NoInternetConnection<T> value)? notConnected,
+    TResult? Function(_Unauthorized<T> value)? unauthorized,
+    TResult? Function(_TooManyRequests<T> value)? tooManyRequests,
   }) {
     return unauthorized?.call(this);
   }
@@ -847,14 +837,11 @@ abstract class _$$_TooManyRequestsCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_TooManyRequestsCopyWithImpl<T, $Res>
-    extends _$DataResponseCopyWithImpl<T, $Res>
+    extends _$DataResponseCopyWithImpl<T, $Res, _$_TooManyRequests<T>>
     implements _$$_TooManyRequestsCopyWith<T, $Res> {
   __$$_TooManyRequestsCopyWithImpl(
       _$_TooManyRequests<T> _value, $Res Function(_$_TooManyRequests<T>) _then)
-      : super(_value, (v) => _then(v as _$_TooManyRequests<T>));
-
-  @override
-  _$_TooManyRequests<T> get _value => super._value as _$_TooManyRequests<T>;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -892,12 +879,12 @@ class _$_TooManyRequests<T> extends _TooManyRequests<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? success,
-    TResult Function(Object? errorObject)? undefinedError,
-    TResult Function(dynamic error)? apiError,
-    TResult Function()? notConnected,
-    TResult Function()? unauthorized,
-    TResult Function()? tooManyRequests,
+    TResult? Function(T data)? success,
+    TResult? Function(Object? errorObject)? undefinedError,
+    TResult? Function(dynamic error)? apiError,
+    TResult? Function()? notConnected,
+    TResult? Function()? unauthorized,
+    TResult? Function()? tooManyRequests,
   }) {
     return tooManyRequests?.call();
   }
@@ -935,12 +922,12 @@ class _$_TooManyRequests<T> extends _TooManyRequests<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_DataResponseSuccess<T> value)? success,
-    TResult Function(_UndefinedError<T> value)? undefinedError,
-    TResult Function(_ApiError<T> value)? apiError,
-    TResult Function(_NoInternetConnection<T> value)? notConnected,
-    TResult Function(_Unauthorized<T> value)? unauthorized,
-    TResult Function(_TooManyRequests<T> value)? tooManyRequests,
+    TResult? Function(_DataResponseSuccess<T> value)? success,
+    TResult? Function(_UndefinedError<T> value)? undefinedError,
+    TResult? Function(_ApiError<T> value)? apiError,
+    TResult? Function(_NoInternetConnection<T> value)? notConnected,
+    TResult? Function(_Unauthorized<T> value)? unauthorized,
+    TResult? Function(_TooManyRequests<T> value)? tooManyRequests,
   }) {
     return tooManyRequests?.call(this);
   }

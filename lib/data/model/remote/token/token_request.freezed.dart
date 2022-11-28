@@ -31,35 +31,39 @@ mixin _$TokenRequest {
 abstract class $TokenRequestCopyWith<$Res> {
   factory $TokenRequestCopyWith(
           TokenRequest value, $Res Function(TokenRequest) then) =
-      _$TokenRequestCopyWithImpl<$Res>;
+      _$TokenRequestCopyWithImpl<$Res, TokenRequest>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'refresh_token') String refreshToken});
 }
 
 /// @nodoc
-class _$TokenRequestCopyWithImpl<$Res> implements $TokenRequestCopyWith<$Res> {
+class _$TokenRequestCopyWithImpl<$Res, $Val extends TokenRequest>
+    implements $TokenRequestCopyWith<$Res> {
   _$TokenRequestCopyWithImpl(this._value, this._then);
 
-  final TokenRequest _value;
   // ignore: unused_field
-  final $Res Function(TokenRequest) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -70,6 +74,7 @@ abstract class _$$_TokenRequestCopyWith<$Res>
           _$_TokenRequest value, $Res Function(_$_TokenRequest) then) =
       __$$_TokenRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'refresh_token') String refreshToken});
@@ -77,26 +82,24 @@ abstract class _$$_TokenRequestCopyWith<$Res>
 
 /// @nodoc
 class __$$_TokenRequestCopyWithImpl<$Res>
-    extends _$TokenRequestCopyWithImpl<$Res>
+    extends _$TokenRequestCopyWithImpl<$Res, _$_TokenRequest>
     implements _$$_TokenRequestCopyWith<$Res> {
   __$$_TokenRequestCopyWithImpl(
       _$_TokenRequest _value, $Res Function(_$_TokenRequest) _then)
-      : super(_value, (v) => _then(v as _$_TokenRequest));
+      : super(_value, _then);
 
-  @override
-  _$_TokenRequest get _value => super._value as _$_TokenRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_$_TokenRequest(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
@@ -128,21 +131,19 @@ class _$_TokenRequest implements _TokenRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TokenRequest &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken) &&
-            const DeepCollectionEquality()
-                .equals(other.refreshToken, refreshToken));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(accessToken),
-      const DeepCollectionEquality().hash(refreshToken));
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TokenRequestCopyWith<_$_TokenRequest> get copyWith =>
       __$$_TokenRequestCopyWithImpl<_$_TokenRequest>(this, _$identity);
 

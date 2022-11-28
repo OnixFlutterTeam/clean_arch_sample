@@ -30,43 +30,47 @@ mixin _$TodoEntity {
 abstract class $TodoEntityCopyWith<$Res> {
   factory $TodoEntityCopyWith(
           TodoEntity value, $Res Function(TodoEntity) then) =
-      _$TodoEntityCopyWithImpl<$Res>;
+      _$TodoEntityCopyWithImpl<$Res, TodoEntity>;
+  @useResult
   $Res call({int userId, int id, String title, bool completed});
 }
 
 /// @nodoc
-class _$TodoEntityCopyWithImpl<$Res> implements $TodoEntityCopyWith<$Res> {
+class _$TodoEntityCopyWithImpl<$Res, $Val extends TodoEntity>
+    implements $TodoEntityCopyWith<$Res> {
   _$TodoEntityCopyWithImpl(this._value, this._then);
 
-  final TodoEntity _value;
   // ignore: unused_field
-  final $Res Function(TodoEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? completed = freezed,
+    Object? userId = null,
+    Object? id = null,
+    Object? title = null,
+    Object? completed = null,
   }) {
     return _then(_value.copyWith(
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      completed: completed == freezed
+      completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,40 +81,40 @@ abstract class _$$_TodoEntityCopyWith<$Res>
           _$_TodoEntity value, $Res Function(_$_TodoEntity) then) =
       __$$_TodoEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int userId, int id, String title, bool completed});
 }
 
 /// @nodoc
-class __$$_TodoEntityCopyWithImpl<$Res> extends _$TodoEntityCopyWithImpl<$Res>
+class __$$_TodoEntityCopyWithImpl<$Res>
+    extends _$TodoEntityCopyWithImpl<$Res, _$_TodoEntity>
     implements _$$_TodoEntityCopyWith<$Res> {
   __$$_TodoEntityCopyWithImpl(
       _$_TodoEntity _value, $Res Function(_$_TodoEntity) _then)
-      : super(_value, (v) => _then(v as _$_TodoEntity));
+      : super(_value, _then);
 
-  @override
-  _$_TodoEntity get _value => super._value as _$_TodoEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? completed = freezed,
+    Object? userId = null,
+    Object? id = null,
+    Object? title = null,
+    Object? completed = null,
   }) {
     return _then(_$_TodoEntity(
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      completed: completed == freezed
+      completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -146,22 +150,19 @@ class _$_TodoEntity implements _TodoEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TodoEntity &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.completed, completed));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.completed, completed) ||
+                other.completed == completed));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(completed));
+  int get hashCode => Object.hash(runtimeType, userId, id, title, completed);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TodoEntityCopyWith<_$_TodoEntity> get copyWith =>
       __$$_TodoEntityCopyWithImpl<_$_TodoEntity>(this, _$identity);
 }

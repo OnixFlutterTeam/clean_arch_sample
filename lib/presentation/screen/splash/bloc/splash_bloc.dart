@@ -26,7 +26,7 @@ class SplashBloc extends BaseBloc<SplashEvent, SplashScreenState, SplashSR> {
     Emitter<SplashScreenState> emit,
   ) async {
     _timer = Timer(
-      const Duration(milliseconds: 1000),
+      const Duration(seconds: 20),
       () {
         _isReadyTimer = true;
         _navNext();
