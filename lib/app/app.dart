@@ -3,8 +3,7 @@ import 'package:clean_arch_sample/core/app/localization/common_app_localization_
 import 'package:clean_arch_sample/core/arch/bloc/base_block_state.dart';
 import 'package:clean_arch_sample/core/arch/widget/common/flavor_banner.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_colors.dart';
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_text_styles.dart';
+import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -42,18 +41,8 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
                   );
                 },
                 scrollBehavior: const CupertinoScrollBehavior(),
-                theme: ThemeData.light().copyWith(
-                  extensions: [
-                    AppColors.light,
-                    AppTextStyles.light,
-                  ],
-                ),
-                darkTheme: ThemeData.dark().copyWith(
-                  extensions: [
-                    AppColors.dark,
-                    AppTextStyles.dark,
-                  ],
-                ),
+                theme: createLightTheme(),
+                darkTheme: createDarkTheme(),
                 themeMode: state.themeMode,
                 debugShowCheckedModeBanner: false,
                 locale: locale,

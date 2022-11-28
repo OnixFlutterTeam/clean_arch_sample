@@ -1,4 +1,4 @@
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_text_styles.dart';
+import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +20,7 @@ class ErrorView extends StatelessWidget {
           children: [
             Text(
               'No todos found',
-              style: context.caption14,
+              style: context.themeTextStyles.caption14,
             ),
             SizedBox(
               height: 10.h,
@@ -29,7 +29,7 @@ class ErrorView extends StatelessWidget {
               onPressed: onRetryPressed,
               child: Text(
                 'Retry',
-                style: context.button18,
+                style: context.themeTextStyles.button18,
               ),
             ),
           ],

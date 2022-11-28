@@ -1,5 +1,5 @@
 import 'package:clean_arch_sample/domain/entity/todo/todo_entity.dart';
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_text_styles.dart';
+import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:flutter/material.dart';
 
 class TodoView extends StatelessWidget {
@@ -13,7 +13,7 @@ class TodoView extends StatelessWidget {
       leading: const Icon(Icons.text_snippet_outlined),
       title: Text(
         item.title,
-        style: context.bodyText16,
+        style: context.themeTextStyles.bodyText16,
       ),
     );
   }

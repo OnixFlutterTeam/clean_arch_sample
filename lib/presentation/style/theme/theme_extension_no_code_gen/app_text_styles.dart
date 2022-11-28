@@ -1,71 +1,71 @@
-import 'package:clean_arch_sample/presentation/style/colors.dart';
+import 'package:clean_arch_sample/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppTextStyles extends ThemeExtension<AppTextStyles> {
-  static final light = AppTextStyles(
+class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
+  static final light = ThemeTextStyles(
     fs28: TextStyle(
       fontSize: 28.sp,
       fontWeight: FontWeight.w700,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     fs24: TextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeight.w600,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     fs18: TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w500,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     button18: TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w600,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     bodyText16: TextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
     caption14: TextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textLight,
+      color: AppColors.textLight,
     ),
   );
 
-  static final dark = AppTextStyles(
+  static final dark = ThemeTextStyles(
     fs28: TextStyle(
       fontSize: 28.sp,
       fontWeight: FontWeight.w600,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
     fs24: TextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeight.w500,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
     fs18: TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
     button18: TextStyle(
       fontSize: 18.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
     bodyText16: TextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
     caption14: TextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
-      color: ColorPalette.textDark,
+      color: AppColors.textDark,
     ),
   );
 
@@ -76,7 +76,7 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   final TextStyle? bodyText16;
   final TextStyle? caption14;
 
-  const AppTextStyles({
+  const ThemeTextStyles({
     required this.fs28,
     required this.fs24,
     required this.fs18,
@@ -86,7 +86,7 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   });
 
   @override
-  ThemeExtension<AppTextStyles> copyWith({
+  ThemeExtension<ThemeTextStyles> copyWith({
     TextStyle? fs28,
     TextStyle? fs24,
     TextStyle? fs18,
@@ -94,7 +94,7 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
     TextStyle? bodyText16,
     TextStyle? caption14,
   }) {
-    return AppTextStyles(
+    return ThemeTextStyles(
       fs28: fs28 ?? this.fs28,
       fs24: fs24 ?? this.fs24,
       fs18: fs18 ?? this.fs18,
@@ -105,14 +105,14 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   }
 
   @override
-  ThemeExtension<AppTextStyles> lerp(
-    ThemeExtension<AppTextStyles>? other,
+  ThemeExtension<ThemeTextStyles> lerp(
+    ThemeExtension<ThemeTextStyles>? other,
     double t,
   ) {
-    if (other is! AppTextStyles) {
+    if (other is! ThemeTextStyles) {
       return this;
     }
-    return AppTextStyles(
+    return ThemeTextStyles(
       fs28: TextStyle.lerp(fs28, other.fs28, t),
       fs24: TextStyle.lerp(fs24, other.fs24, t),
       fs18: TextStyle.lerp(fs18, other.fs18, t),

@@ -12,7 +12,7 @@ import 'package:clean_arch_sample/presentation/screen/todos/widget/loading_state
 import 'package:clean_arch_sample/presentation/screen/todos/widget/no_todos_view.dart';
 import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_screen_content.dart';
 import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_view.dart';
-import 'package:clean_arch_sample/presentation/style/theme_extension/app_colors.dart';
+import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -42,7 +42,7 @@ class _TodosScreenState
   Widget buildWidget(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: context.backgroundColor,
+        backgroundColor: context.themeColors.backgroundColor,
         body: srObserver(
           context: context,
           child: blocBuilder(builder: _buildMainState),
