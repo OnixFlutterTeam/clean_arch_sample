@@ -44,7 +44,7 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     super.dispose();
   }
 
-  B blocOf(BuildContext context) => BlocProvider.of<B>(context);
+  B blocOf(BuildContext context) => context.read<B>();
 
   B createBloc() => GetIt.I.get<B>();
 
