@@ -13,7 +13,6 @@ analyzer:
     - "**/*.mocks.dart"
     - "**/*.tailor.dart"
     - "ios/**"
-    - "test/**"
     - "lib/core/arch/**"
   errors:
     prefer_mixin: ignore
