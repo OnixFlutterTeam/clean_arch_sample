@@ -1,3 +1,4 @@
+//ignore: one_member_abstracts
 abstract class Mapper<T, E> {
   E map(T from);
 }

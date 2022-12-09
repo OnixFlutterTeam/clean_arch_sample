@@ -59,6 +59,7 @@ class EnsureVisibleWhenFocused extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _EnsureVisibleWhenFocusedState createState() =>
       _EnsureVisibleWhenFocusedState();
 }
@@ -133,6 +134,7 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     if (!mounted) {
       return;
     }
+    // ignore: avoid-non-null-assertion
     final object = context.findRenderObject()!;
     final viewport = RenderAbstractViewport.of(object);
 
@@ -142,6 +144,7 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     }
 
     // Get the Scrollable state (in order to retrieve its offset)
+    // ignore: avoid-non-null-assertion
     final scrollableState = Scrollable.of(context)!;
 
     // Get its offset

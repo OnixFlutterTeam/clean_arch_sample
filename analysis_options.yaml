@@ -14,7 +14,6 @@ analyzer:
     - "**/*.tailor.dart"
     - "ios/**"
     - "test/**"
-    - "lib/core/arch/**"
   errors:
     prefer_mixin: ignore
     flutter_style_todos: ignore
@@ -66,7 +65,6 @@ dart_code_metrics:
     - "**/*.tailor.dart"
     - "ios/**"
     - "test/**"
-    - "lib/core/arch/**"
   rules:
     # Common
     - avoid-duplicate-exports:

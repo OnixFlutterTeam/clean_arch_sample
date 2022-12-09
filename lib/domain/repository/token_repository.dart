@@ -7,4 +7,6 @@ abstract class TokenRepository {
   Future<void> clear();
 
   Future<void> update(AuthenticationEntity authEntity);
+
+  Future<AuthenticationEntity?> getAuthData();
 }

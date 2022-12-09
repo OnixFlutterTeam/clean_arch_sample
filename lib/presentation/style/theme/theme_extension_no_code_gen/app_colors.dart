@@ -33,7 +33,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
 
   @override
   ThemeExtension<ThemeColors> lerp(
-      ThemeExtension<ThemeColors>? other, double t) {
+    ThemeExtension<ThemeColors>? other,
+    double t,
+  ) {
     if (other is! ThemeColors) {
       return this;
     }
