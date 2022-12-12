@@ -57,18 +57,15 @@ class CipherService {
   }
 
   List<int> _fromHex(String s) {
-    final str = s.replaceAll(' ', '').replaceAll('\n', '');
-    return List<int>.generate(str.length ~/ 2, (i) {
-      var byteInHex = str.substring(i * 2, i * 2 + 2);
-      if (byteInHex.startsWith('0')) {
-        byteInHex = byteInHex.substring(1);
-      }
-      final result = int.tryParse(byteInHex, radix: 16);
+    s.replaceAll('\n', '');
+    return s.split(' ').map((e) {
+      final result = int.tryParse(e, radix: 16);
+
       if (result == null) {
-        throw StateError('Not valid hexadecimal bytes: $str');
+        throw StateError('Not valid hexadecimal bytes: $s, $e');
       }
       return result;
-    });
+    }).toList();
   }
 
   String _toHex(List<int> bytes) {

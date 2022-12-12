@@ -58,13 +58,13 @@ class ApiClient implements BaseApiClient {
     clearCache();
   }
 
-  //ignore: cascade_invocations
   void attachCharlesProxy(String? charlesIp, String? port) {
     if (charlesIp == null || port == null) return;
 
     (client.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) {
       client.findProxy = (uri) => 'PROXY $charlesIp:$port';
+      //ignore: cascade_invocations
       client.badCertificateCallback = (cert, host, port) => true;
       return client;
     };

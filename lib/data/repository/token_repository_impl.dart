@@ -1,23 +1,57 @@
+import 'dart:async';
+
+import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_keys.dart';
+import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_source.dart';
 import 'package:clean_arch_sample/domain/entity/auth/auth_entity.dart';
 import 'package:clean_arch_sample/domain/repository/token_repository.dart';
 
 class TokenRepositoryImpl implements TokenRepository {
+  final SecureStorageSource _secureStorage;
+
   @override
   String? accessToken;
 
   @override
   String? refreshToken;
 
+  TokenRepositoryImpl(this._secureStorage);
+
   @override
-  Future<void> clear() {
-    // TODO: implement clear
-    throw UnimplementedError();
+  Future<void> clear() async {
+    accessToken = null;
+    refreshToken = null;
+    await _secureStorage.delete(SecureStorageKeys.kAccessToken);
+    await _secureStorage.delete(SecureStorageKeys.kRefreshToken);
   }
 
   @override
   Future<void> update(AuthenticationEntity authEntity) async {
     accessToken = authEntity.accessToken;
     refreshToken = authEntity.refreshToken;
-    // TODO: implement saveTokens
+
+    await _secureStorage.write(
+      SecureStorageKeys.kAccessToken,
+      authEntity.accessToken,
+    );
+    await _secureStorage.write(
+      SecureStorageKeys.kRefreshToken,
+      authEntity.refreshToken,
+    );
+  }
+
+  @override
+  Future<AuthenticationEntity?> getAuthData() async {
+    final accessToken =
+        await _secureStorage.read(SecureStorageKeys.kAccessToken);
+    final refreshToken =
+        await _secureStorage.read(SecureStorageKeys.kRefreshToken);
+
+    if (accessToken.isNotEmpty && refreshToken.isNotEmpty) {
+      return AuthenticationEntity(
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      );
+    }
+    return null;
   }
 }

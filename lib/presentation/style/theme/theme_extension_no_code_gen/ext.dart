@@ -3,9 +3,11 @@ import 'package:clean_arch_sample/presentation/style/theme/theme_extension_no_co
 import 'package:flutter/material.dart';
 
 extension ThemeFromContextExtension on BuildContext {
+  // ignore: avoid-non-null-assertion
   ThemeColors get appColors => Theme.of(this).extension<ThemeColors>()!;
 
   ThemeTextStyles get appTextStyles =>
+      // ignore: avoid-non-null-assertion
       Theme.of(this).extension<ThemeTextStyles>()!;
 
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;

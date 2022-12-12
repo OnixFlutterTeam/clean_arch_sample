@@ -54,7 +54,7 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     required SingleResultListener<SR> onSR,
   }) {
     return StreamListener<SR>(
-      stream: (_bloc ?? context.read<B>()).singleResults,
+      stream: (_bloc ?? blocOf(context)).singleResults,
       onData: (data) {
         onSR(context, data);
       },
@@ -69,7 +69,7 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     BlocListenerCondition<S>? listenWhen,
   }) {
     return BlocConsumer<B, S>(
-      builder: (_, S state) => stateListener(state),
+      builder: (_, state) => stateListener(state),
       listener: listenDelegate ?? _defaultListenDelegate,
       buildWhen: buildWhen,
       listenWhen: listenWhen,

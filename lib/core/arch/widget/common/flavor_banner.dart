@@ -12,6 +12,7 @@ class FlavorBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO with flavor: if (FlavorConfig.I.flavor == Flavors.prod) return child;
     return child;
+    //ignore: dead_code
     return Stack(
       children: <Widget>[
         child,

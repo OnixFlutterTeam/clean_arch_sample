@@ -1,5 +1,6 @@
 import 'package:clean_arch_sample/core/arch/data/remote/base/base_api_client.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/base/http_status.dart';
+import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/repository.dart';
 import 'package:clean_arch_sample/core/di/services.dart';
 import 'package:clean_arch_sample/data/mapper/auth/auth_mapper.dart';
@@ -39,8 +40,12 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
   Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == HttpStatus.unauthorized) {
       final refreshToken = tokenRepository().refreshToken;
+      final accessToken = tokenRepository().accessToken;
       try {
-        if (refreshToken == null || refreshToken.isEmpty) {
+        if (refreshToken == null ||
+            refreshToken.isEmpty ||
+            accessToken == null ||
+            accessToken.isEmpty) {
           await sessionService().closeSession();
           return handler.next(err);
         }
@@ -54,15 +59,18 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
         if (err.response?.statusCode == HttpStatus.unauthorized) {
           await sessionService().closeSession();
         }
-      } catch (e) {
-        logger.e(e);
+      } catch (e, stackTrace) {
+        logger.e(e, stackTrace);
         await sessionService().closeSession();
       }
     }
     handler.next(err);
   }
 
-  Future<AuthEntity> _refresh(DioError err, TokenRequest request) async {
+  Future<AuthenticationEntity> _refresh(
+    DioError err,
+    TokenRequest request,
+  ) async {
     logger.d('_refresh start');
     final result = await _refreshDio.post(
       '${err.requestOptions.baseUrl}$_refreshPath',
@@ -87,8 +95,10 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
     AuthenticationEntity authEntity,
   ) async {
     await tokenRepository().update(
-      access: authEntity.accessToken,
-      refresh: authEntity.refreshToken,
+      AuthenticationEntity(
+        accessToken: authEntity.accessToken,
+        refreshToken: authEntity.refreshToken,
+      ),
     );
     final requestOptions = err.response?.requestOptions;
     if (requestOptions != null) {
