@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:clean_arch_sample/domain/repository/startup_repository.dart';
 
 class StartupRepositoryImpl implements StartupRepository {
-  bool _isInited = false;
+  bool _isInitialized = false;
 
   @override
   Future<void> initialized() async {
     //TODO init firebaseMessagingService / accountService
-    _isInited = true;
+    _isInitialized = true;
   }
 
   @override
-  bool isInited() => _isInited;
+  bool isInitialized() => _isInitialized;
 }

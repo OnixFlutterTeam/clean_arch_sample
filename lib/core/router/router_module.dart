@@ -13,7 +13,7 @@ abstract class RouterModule {
   }
 
   InitGuard initGuard(StartupRepository startupRepository) =>
-      InitGuard(isInited: startupRepository.isInited);
+      InitGuard(isInitialized: startupRepository.isInitialized);
 
   RouterLoggingObserver routerLoggingObserver(
     AppRouter appRouter,
