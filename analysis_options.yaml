@@ -65,7 +65,6 @@ dart_code_metrics:
     - "**/*.tailor.dart"
     - "ios/**"
     - "test/**"
-    - "lib/core/arch/**"
   rules:
     # Common
     - avoid-duplicate-exports:
