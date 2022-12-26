@@ -5,6 +5,7 @@ import 'package:clean_arch_sample/core/arch/widget/common/misk.dart';
 import 'package:clean_arch_sample/core/router/app_router.dart';
 import 'package:clean_arch_sample/presentation/screen/splash/bloc/splash_bloc_imports.dart';
 import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
+import 'package:clean_arch_sample/util/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,6 +51,7 @@ class _SplashScreenState
     BuildContext context,
     SplashScreenState _,
   ) {
+    final button18 = context.themeTextStyles.button18;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,12 +60,12 @@ class _SplashScreenState
             'Splash screen',
             style: context.themeTextStyles.fs28,
           ),
-          Delimiter.height(10.h),
+          Delimiter.height(Dimensions.delimiterH10),
           Text(
             'Auto navigate next after 20 seconds',
             style: context.themeTextStyles.bodyText16,
           ),
-          Delimiter.height(10.h),
+          Delimiter.height(Dimensions.delimiterH10),
           OutlinedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
@@ -75,7 +77,7 @@ class _SplashScreenState
             },
             child: Text(
               'Navigate Next',
-              style: context.themeTextStyles.button18,
+              style: button18,
             ),
           ),
           Delimiter.height(10.h),
@@ -86,10 +88,10 @@ class _SplashScreenState
             },
             child: Text(
               'Theme dark',
-              style: context.themeTextStyles.button18,
+              style: button18,
             ),
           ),
-          Delimiter.height(10.h),
+          Delimiter.height(Dimensions.delimiterH10),
           OutlinedButton(
             onPressed: () {
               _appBlocOf(context)
@@ -97,10 +99,10 @@ class _SplashScreenState
             },
             child: Text(
               'Theme light',
-              style: context.themeTextStyles.button18,
+              style: button18,
             ),
           ),
-          Delimiter.height(10.h),
+          Delimiter.height(Dimensions.delimiterH10),
           OutlinedButton(
             onPressed: () {
               _appBlocOf(context)
@@ -108,7 +110,7 @@ class _SplashScreenState
             },
             child: Text(
               'Theme system',
-              style: context.themeTextStyles.button18,
+              style: button18,
             ),
           ),
         ],

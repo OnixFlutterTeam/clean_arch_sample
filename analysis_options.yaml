@@ -85,6 +85,9 @@ dart_code_metrics:
     - prefer-last
     - avoid-double-slash-imports
     - avoid-unnecessary-conditionals
+    - prefer-moving-to-variable:
+        allowed-duplicated-chains: 5
+        severity: performance
     # Flutter
     - avoid-border-all
     - avoid-use-expanded-as-spacer
