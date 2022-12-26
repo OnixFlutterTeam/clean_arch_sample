@@ -13,7 +13,7 @@ analyzer:
     - "**/*.mocks.dart"
     - "**/*.tailor.dart"
     - "ios/**"
-    - "lib/core/arch/**"
+    - "test/**"
   errors:
     prefer_mixin: ignore
     flutter_style_todos: ignore
@@ -83,6 +83,11 @@ dart_code_metrics:
     - no-empty-block
     - prefer-first
     - prefer-last
+    - avoid-double-slash-imports
+    - avoid-unnecessary-conditionals
+    - prefer-moving-to-variable:
+        allowed-duplicated-chains: 5
+        severity: performance
     # Flutter
     - avoid-border-all
     - avoid-use-expanded-as-spacer
@@ -91,6 +96,7 @@ dart_code_metrics:
     - avoid-returning-widgets
     - avoid-unnecessary-setstate
     - prefer-correct-edge-insets-constructor
+    - prefer-using-list-view
     - prefer-extracting-callbacks:
         allowed-line-count: 5
     - prefer-single-widget-per-file:

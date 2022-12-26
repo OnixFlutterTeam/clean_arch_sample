@@ -13,8 +13,8 @@ import 'package:clean_arch_sample/presentation/screen/todos/widget/no_todos_view
 import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_screen_content.dart';
 import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_view.dart';
 import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
+import 'package:clean_arch_sample/util/dimensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TodosScreen extends StatefulWidget {
   const TodosScreen({Key? key}) : super(key: key);
@@ -72,7 +72,7 @@ class _TodosScreenState
   Widget _buildMainContent(BuildContext _, TodosScreenStateData state) {
     return Column(
       children: [
-        Delimiter.height(10.h),
+        Delimiter.height(Dimensions.delimiterH10),
         const TodoScreenContent(),
         Expanded(
           child: state.todos.isEmpty

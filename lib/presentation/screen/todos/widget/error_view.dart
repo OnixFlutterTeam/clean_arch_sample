@@ -1,6 +1,6 @@
 import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
+import 'package:clean_arch_sample/util/dimensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ErrorView extends StatelessWidget {
   final String? errorText;
@@ -22,9 +22,7 @@ class ErrorView extends StatelessWidget {
               'No todos found',
               style: context.themeTextStyles.caption14,
             ),
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: Dimensions.delimiterH10),
             OutlinedButton(
               onPressed: onRetryPressed,
               child: Text(
