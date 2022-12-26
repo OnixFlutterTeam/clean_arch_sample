@@ -1,6 +1,11 @@
 
 Clean Architecture Project Sample (Project template).
 
+## Setup Template
+
+* Go to `core/app/app_initialization.dart` and put your initializations in `initApp()` function;
+* Modify `core/arch/data/remote/error/default_api_error.dart` to your default api response model;
+
 ## Technologies used in Example
 
 * [GetIt](https://pub.dev/packages/get_it) - service locator (DI)

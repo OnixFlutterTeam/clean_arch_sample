@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 
 class QaUtils {
   static Widget buildCharlesProxyBtn(BuildContext context) {
+    return const SizedBox();
     //TODO SHOW set proxy ONLY FOR QA BUILDS
-    if (false /*FlavorConfig.I.flavor == Flavors.prod*/) {
+    /*if (false *//*FlavorConfig.I.flavor == Flavors.prod*//*) {
       return const SizedBox();
     } else {
       if (!Platform.isAndroid) {
@@ -20,7 +21,7 @@ class QaUtils {
         },
         child: const Text('Set Proxy'),
       );
-    }
+    }*/
   }
 
   static void _setProps(BuildContext context) {

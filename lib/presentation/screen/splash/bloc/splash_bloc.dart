@@ -37,7 +37,7 @@ class SplashBloc extends BaseBloc<SplashEvent, SplashScreenState, SplashSR> {
   }
 
   void _navNext() {
-    if (_isReadyTimer && startupRepository.isInited()) {
+    if (_isReadyTimer && startupRepository.isInitialized()) {
       _timer?.cancel();
       addSr(const SplashSR.loadFinished());
     }
