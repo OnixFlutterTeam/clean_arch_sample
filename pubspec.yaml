@@ -23,6 +23,7 @@ dependencies:
   encrypt: ^5.0.1 #used with dio_cache_interceptor
   form_field_validator: ^1.1.0
   logger: ^1.1.0
+  theme_tailor_annotation: ^1.0.3
 
   #network
   dio: ^4.0.6
@@ -57,9 +58,8 @@ dev_dependencies:
   build_runner: ^2.3.3
   freezed: ^2.3.2
   json_serializable: ^6.5.4
-  dart_code_metrics: ^5.3.0
+  dart_code_metrics: ^5.4.0
   theme_tailor: ^1.0.8
-  theme_tailor_annotation: ^1.0.3
 
 flutter:
   uses-material-design: true
