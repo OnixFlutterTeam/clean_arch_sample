@@ -82,6 +82,7 @@ class ApiClient implements BaseApiClient {
 
   Future<void> _attachCacheInterceptor() async {
     logger.d('attachCacheInterceptor');
+    cacheInterceptor.deAttachInterceptor();
     await cacheInterceptor.attachCacheInterceptor();
   }
 }

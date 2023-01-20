@@ -16,15 +16,14 @@ class CipherService {
   }
 
   Future<void> init() async {
-    final skKeyHEX = await _storage.read(
-      SecureStorageKeys.kSecretKeyCipher,
-    );
     final Key key;
+    final containsKey =
+    await _storage.containsKey(SecureStorageKeys.kSecretKeyCipher);
 
-    if (skKeyHEX.isNotEmpty) {
-      key = await _getKey(skKeyHEX);
-    } else {
+    if (!containsKey) {
       key = await _generateNewKey();
+    } else {
+      key = await _readStorage();
     }
     _encryptor = Encrypter(
       AES(key),
@@ -89,5 +88,16 @@ class CipherService {
     return Key(
       Uint8List.fromList(bytes),
     );
+  }
+
+  Future<Key> _readStorage() async {
+    final skKeyHEX = await _storage.read(
+      SecureStorageKeys.kSecretKeyCipher,
+    );
+    if (skKeyHEX.isNotEmpty) {
+      return _getKey(skKeyHEX);
+    } else {
+      return _generateNewKey();
+    }
   }
 }
