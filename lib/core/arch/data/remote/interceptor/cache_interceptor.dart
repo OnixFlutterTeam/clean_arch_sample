@@ -1,7 +1,7 @@
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/local.dart';
+import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_keys.dart';
-import 'package:clean_arch_sample/domain/service/cipher_service.dart';
 import 'package:clean_arch_sample/domain/service/hive_cipher_key_service.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -35,7 +35,11 @@ class CacheInterceptor {
       };
       logger.d('DioCacheInterceptor ADDED');
     } catch (e, trace) {
-      logger.e('DioCacheInterceptor Error', e, trace);
+      logger.crash(
+        reason: 'DioCacheInterceptor Error',
+        error: e,
+        stackTrace: trace,
+      );
     }
   }
 
@@ -44,7 +48,8 @@ class CacheInterceptor {
     final keyService = HiveCipherKeyService(secureStorageSource());
     final key = await keyService.init();
 
-    _cacheStore = HiveCacheStore(dir.path, encryptionCipher: HiveAesCipher(key));
+    _cacheStore =
+        HiveCacheStore(dir.path, encryptionCipher: HiveAesCipher(key));
 
     return CacheOptions(
       store: _cacheStore,

@@ -6,6 +6,7 @@ import 'package:clean_arch_sample/core/arch/data/remote/dio_request_processor/di
 import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -81,10 +82,10 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
       final response = await _call(onRequest);
       return DataResponse.success(onResponse(response as Response<dynamic>));
     } on DioError catch (e, trace) {
-      logger.e('onDioError', e, trace);
+      logger.crash(reason: 'onDioError', error: e, stackTrace: trace);
       return _processDioError(e);
     } catch (e, trace) {
-      logger.e('onDioCommonError', e, trace);
+      logger.crash(reason: 'onDioCommonError', error: e, stackTrace: trace);
       return DataResponse.undefinedError(e);
     }
   }

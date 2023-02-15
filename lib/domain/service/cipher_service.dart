@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_source.dart';
 import 'package:encrypt/encrypt.dart';
@@ -35,7 +36,7 @@ class CipherService {
       final encrypted = _encryptor.encryptBytes(bytes, iv: _iv);
       return encrypted.bytes.toList();
     } catch (e, trace) {
-      logger.e('encrypt error', e, trace);
+      logger.crash(reason: 'encrypt_error', error: e, stackTrace: trace);
       return [];
     }
   }
@@ -50,7 +51,7 @@ class CipherService {
       );
       return decrypted;
     } catch (e, trace) {
-      logger.e('decrypt_error', e, trace);
+      logger.crash(reason: 'decrypt_error', error: e, stackTrace: trace);
       return [];
     }
   }

@@ -3,6 +3,7 @@ import 'package:clean_arch_sample/core/arch/data/remote/base/http_status.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/repository.dart';
 import 'package:clean_arch_sample/core/di/services.dart';
+import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:clean_arch_sample/data/mapper/auth/auth_mapper.dart';
 import 'package:clean_arch_sample/data/model/remote/auth/auth_response.dart';
 import 'package:clean_arch_sample/data/model/remote/token/token_request.dart';
@@ -60,7 +61,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
           await sessionService().closeSession();
         }
       } catch (e, stackTrace) {
-        logger.e(e, stackTrace);
+        logger.crash(error: e, stackTrace: stackTrace);
         await sessionService().closeSession();
       }
     }
