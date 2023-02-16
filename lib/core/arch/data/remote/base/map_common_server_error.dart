@@ -4,6 +4,7 @@ import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.d
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/failure.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:flutter/material.dart';
 
 class MapCommonServerError {
@@ -40,7 +41,7 @@ class MapCommonServerError {
         orElse: () => ApiFailure(ServerFailure.unknown),
       );
     } catch (e, trace) {
-      logger.e('Mapping Error Failed', e, trace);
+      logger.crash(reason: 'Mapping Error Failed', error: e, stackTrace: trace);
       return ApiFailure(ServerFailure.exception, message: e.toString());
     }
   }

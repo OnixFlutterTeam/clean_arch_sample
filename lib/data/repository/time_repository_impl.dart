@@ -2,6 +2,7 @@ import 'package:clean_arch_sample/core/arch/data/remote/base/map_common_server_e
 import 'package:clean_arch_sample/core/arch/domain/entity/common/result.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:clean_arch_sample/data/mapper/time_mapper.dart';
 import 'package:clean_arch_sample/data/source/remote/time/time_source.dart';
 import 'package:clean_arch_sample/domain/entity/time/time_entity.dart';
@@ -28,7 +29,7 @@ class TimeRepositoryImpl extends TimeRepository {
         return Result.error(failure: failure);
       }
     } catch (e, trace) {
-      logger.e('getTime_API_ERR', e, trace);
+      logger.crash(reason: 'getTime_API_ERR', error: e, stackTrace: trace);
       //TODO make repository failure
       return Result.error(
         failure: ApiFailure(

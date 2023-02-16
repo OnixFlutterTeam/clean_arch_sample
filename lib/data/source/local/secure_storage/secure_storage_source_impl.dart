@@ -1,4 +1,5 @@
 import 'package:clean_arch_sample/core/di/app.dart';
+import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_source.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -21,7 +22,11 @@ class SecureStorageSourceImpl implements SecureStorageSource {
     try {
       await _secureStorage?.delete(key: key);
     } catch (e, trace) {
-      logger.e('secure_storage_clear', e, trace);
+      logger.crash(
+        reason: 'secure_storage_clear',
+        error: e,
+        stackTrace: trace,
+      );
     }
   }
 
@@ -30,7 +35,11 @@ class SecureStorageSourceImpl implements SecureStorageSource {
     try {
       return await _secureStorage?.read(key: key) ?? '';
     } catch (e, trace) {
-      logger.e('secure_storage_read', e, trace);
+      logger.crash(
+        reason: 'secure_storage_read',
+        error: e,
+        stackTrace: trace,
+      );
       return '';
     }
   }
@@ -40,7 +49,11 @@ class SecureStorageSourceImpl implements SecureStorageSource {
     try {
       await _secureStorage?.write(key: key, value: value);
     } catch (e, trace) {
-      logger.e('secure_storage_write', e, trace);
+      logger.crash(
+        reason: 'secure_storage_write',
+        error: e,
+        stackTrace: trace,
+      );
     }
   }
 
