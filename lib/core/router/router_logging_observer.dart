@@ -44,5 +44,5 @@ class RouterLoggingObserver extends AutoRouterObserver {
     logger.w('ROUTING Tab route re-visited: ${route.name}, stack${_stack()}');
   }
 
-  String _stack() => appRouter.stack.map((it) => it.name).toString();
+  String _stack() => appRouter.routes.map((it) => it.name).toString();
 }

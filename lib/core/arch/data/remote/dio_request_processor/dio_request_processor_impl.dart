@@ -69,8 +69,10 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     bool checkNetworkConnection = true,
   }) async {
     if (connectivity != null && internetConnectionChecker != null) {
-      final resultConnectivity = await connectivity?.checkConnectivity() ?? false;
-      final hasConnection = await internetConnectionChecker?.hasConnection ?? false;
+      final resultConnectivity =
+          await connectivity?.checkConnectivity() ?? false;
+      final hasConnection =
+          await internetConnectionChecker?.hasConnection ?? false;
 
       if (checkNetworkConnection &&
           (resultConnectivity == ConnectivityResult.none || !hasConnection)) {
@@ -124,7 +126,7 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
   Future<DataResponse<T>> _processDioError<T>(DioError e) async {
     final responseData = e.response?.data;
     final statusCode = e.response?.statusCode;
-    if (e.type == DioErrorType.connectTimeout ||
+    if (e.type == DioErrorType.connectionTimeout ||
         e.type == DioErrorType.sendTimeout ||
         statusCode == HttpStatus.networkConnectTimeoutError) {
       return const DataResponse.notConnected();
