@@ -1,70 +1,58 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 part of 'app_router.dart';
 
-class _$AppRouter extends RootStackRouter {
+abstract class _$AppRouter extends RootStackRouter {
   _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
   final Map<String, PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashScreen(),
       );
     },
     TodosRoute.name: (routeData) {
-      return AdaptivePage<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const TodosScreen(),
-        opaque: true,
       );
     },
   };
-
-  @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          SplashRoute.name,
-          path: '/',
-        ),
-        RouteConfig(
-          TodosRoute.name,
-          path: '/todoScreen',
-        ),
-      ];
 }
 
 /// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute()
+  const SplashRoute({List<PageRouteInfo>? children})
       : super(
           SplashRoute.name,
-          path: '/',
+          initialChildren: children,
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [TodosScreen]
 class TodosRoute extends PageRouteInfo<void> {
-  const TodosRoute()
+  const TodosRoute({List<PageRouteInfo>? children})
       : super(
           TodosRoute.name,
-          path: '/todoScreen',
+          initialChildren: children,
         );
 
   static const String name = 'TodosRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -3,8 +3,8 @@ import 'package:clean_arch_sample/core/arch/data/remote/base/flutter_transformer
 import 'package:clean_arch_sample/core/arch/data/remote/interceptor/basic_app_auth_interceptor.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/interceptor/cache_interceptor.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -61,7 +61,7 @@ class ApiClient implements BaseApiClient {
   void attachCharlesProxy(String? charlesIp, String? port) {
     if (charlesIp == null || port == null) return;
 
-    (client.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    (client.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
         (client) {
       client.findProxy = (uri) => 'PROXY $charlesIp:$port';
       //ignore: cascade_invocations

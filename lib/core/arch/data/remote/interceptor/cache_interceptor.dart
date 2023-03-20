@@ -3,8 +3,8 @@ import 'package:clean_arch_sample/core/di/local.dart';
 import 'package:clean_arch_sample/core/extension/logger_extension.dart';
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:clean_arch_sample/domain/service/hive_cipher_key_service.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -28,8 +28,8 @@ class CacheInterceptor {
       client.interceptors.add(interceptor);
       cacheOptions = options;
 
-      (client.httpClientAdapter as DefaultHttpClientAdapter)
-          .onHttpClientCreate = (client) {
+      (client.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
+          (client) {
         client.badCertificateCallback = (cert, host, port) => true;
         return client;
       };

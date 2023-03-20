@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:clean_arch_sample/core/arch/bloc/base_block_state.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/base/map_common_server_error.dart';
 import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
@@ -16,6 +17,7 @@ import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:clean_arch_sample/util/dimensions.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class TodosScreen extends StatefulWidget {
   const TodosScreen({Key? key}) : super(key: key);
 

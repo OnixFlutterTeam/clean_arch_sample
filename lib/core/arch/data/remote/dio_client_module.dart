@@ -11,8 +11,10 @@ abstract class DioClientModule {
   ApiClient makeApiClient(String baseUrl) => ApiClient(
         options: BaseOptions(
           baseUrl: baseUrl,
-          connectTimeout: ApiClient.defaultConnectTimeout,
-          receiveTimeout: ApiClient.defaultReceiveTimeout,
+          connectTimeout:
+              const Duration(milliseconds: ApiClient.defaultConnectTimeout),
+          receiveTimeout:
+              const Duration(milliseconds: ApiClient.defaultReceiveTimeout),
           headers: {
             BaseApiClient.kAcceptHeader: BaseApiClient.kJsonPrefix,
             BaseApiClient.kContentTypeHeader: BaseApiClient.kJsonPrefix,

@@ -6,17 +6,20 @@ import 'package:flutter/material.dart';
 
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
-  replaceInRouteName: 'Screen,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: SplashScreen, initial: true, path: '/'),
+@AutoRouterConfig()
+class AppRouter extends _$AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
+
+  @override
+  final List<AutoRoute> routes = [
+    AutoRoute(page: SplashRoute.page, path: '/'),
     AdaptiveRoute(
-      page: TodosScreen,
+      page: TodosRoute.page,
       path: '/todoScreen',
     ),
-  ],
-)
-class AppRouter extends _$AppRouter {
+  ];
+
   final InitGuard init;
 
   AppRouter({
