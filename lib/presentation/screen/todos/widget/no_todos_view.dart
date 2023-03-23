@@ -7,7 +7,7 @@ class NoTodosView extends StatelessWidget {
   Widget build(BuildContext context) => Center(
         child: Text(
           'No todos found',
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       );
 }

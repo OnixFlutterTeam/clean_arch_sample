@@ -1,5 +1,4 @@
 import 'package:clean_arch_sample/core/arch/data/remote/base/base_api_client.dart';
-import 'package:clean_arch_sample/core/arch/data/remote/base/flutter_transformer.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/interceptor/basic_app_auth_interceptor.dart';
 import 'package:clean_arch_sample/core/arch/data/remote/interceptor/cache_interceptor.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
@@ -25,7 +24,7 @@ class ApiClient implements BaseApiClient {
     client = Dio(options);
     customInterceptor = BasicAppAuthInterceptor();
     cacheInterceptor = CacheInterceptor(client);
-    client.transformer = FlutterTransformer();
+    client.transformer = BackgroundTransformer();
     attachLoggerInterceptor();
   }
 

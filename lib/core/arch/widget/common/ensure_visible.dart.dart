@@ -76,16 +76,6 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     WidgetsBinding.instance.addObserver(this);
   }
 
-  @override
-  Widget build(BuildContext context) => widget.child;
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    widget.focusNode.removeListener(_ensureVisible);
-    super.dispose();
-  }
-
   ///
   /// This routine is invoked when the window metrics have changed.
   /// This happens when the keyboard is open or dismissed, among others.
@@ -98,6 +88,16 @@ class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     if (widget.focusNode.hasFocus) {
       _ensureVisible();
     }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    widget.focusNode.removeListener(_ensureVisible);
+    super.dispose();
   }
 
   ///

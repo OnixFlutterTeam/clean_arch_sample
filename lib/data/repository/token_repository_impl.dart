@@ -6,13 +6,13 @@ import 'package:clean_arch_sample/domain/entity/auth/auth_entity.dart';
 import 'package:clean_arch_sample/domain/repository/token_repository.dart';
 
 class TokenRepositoryImpl implements TokenRepository {
-  final SecureStorageSource _secureStorage;
-
   @override
   String? accessToken;
 
   @override
   String? refreshToken;
+
+  final SecureStorageSource _secureStorage;
 
   TokenRepositoryImpl(this._secureStorage);
 
