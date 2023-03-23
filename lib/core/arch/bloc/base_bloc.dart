@@ -9,15 +9,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class BaseBloc<Event, State, SR> extends Bloc<Event, State>
     with SingleResultMixin<Event, State, SR> {
-  Stream<Failure> get failureStream => _errorStreamController.stream;
-
-  Stream<bool> get progressStream => _progressStreamController.stream;
-
   @protected
   late StreamController<Failure> _errorStreamController;
 
   @protected
   late StreamController<bool> _progressStreamController;
+
+  Stream<Failure> get failureStream => _errorStreamController.stream;
+
+  Stream<bool> get progressStream => _progressStreamController.stream;
 
   BaseBloc(State initialState) : super(initialState) {
     _errorStreamController = StreamController<Failure>.broadcast();

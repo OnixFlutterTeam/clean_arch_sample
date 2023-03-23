@@ -13,12 +13,12 @@ import 'package:dio/dio.dart';
 class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
   late Dio _refreshDio;
 
+  //TODO change refresh path
+  final _refreshPath = 'auth/refresh';
+
   AuthorizationInterceptor() {
     _refreshDio = Dio();
   }
-
-  //TODO change refresh path
-  final _refreshPath = 'auth/refresh';
 
   @override
   Future<void> onRequest(

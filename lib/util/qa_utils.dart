@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:clean_arch_sample/core/arch/widget/common/toast.dart';
 import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:clean_arch_sample/core/di/remote.dart';

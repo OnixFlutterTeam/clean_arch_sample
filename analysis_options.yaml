@@ -90,7 +90,7 @@ dart_code_metrics:
         severity: performance
     # Flutter
     - avoid-border-all
-    - avoid-use-expanded-as-spacer
+    - avoid-expanded-as-spacer
     - avoid-wrapping-in-padding
     - always-remove-listener
     - avoid-returning-widgets
@@ -101,34 +101,33 @@ dart_code_metrics:
         allowed-line-count: 5
     - prefer-single-widget-per-file:
         ignore-private-widgets: true
-    - member-ordering-extended:
+    - member-ordering:
         order:
-          - public-static-const-fields
-          - private-static-const-fields
-          - public-static-final-fields
-          - private-static-final-fields
-          - public-static-fields
-          - private-static-fields
-          - public-final-fields
-          - private-final-fields
           - public-fields
-          - public-getters-setters
           - private-fields
-          - private-getters-setters
+          - public-getters
+          - private-getters
+          - public-setters
+          - private-setters
           - constructors
-          - named-constructors
+          - named-constructor
           - factory-constructors
-          - init-state-method
-          - build-method
-          - did-change-dependencies-method
-          - did-update-widget-method
-          - dispose-method
-          - overridden-methods
-          - public-static-methods
           - public-methods
-          - protected-methods
           - private-methods
-          - private-static-methods
+        widgets-order:
+          - const-fields
+          - final-fields
+          - var-fields
+          - constructor
+          - named-constructor
+          - factory-constructors
+          - static-methods
+          - init-state-method
+          - overridden-public-methods
+          - build-method
+          - dispose-method
+          - public-methods
+          - private-methods
 
 linter:
   rules:
@@ -155,7 +154,6 @@ linter:
     control_flow_in_finally: true
     empty_statements: true
     hash_and_equals: true
-    invariant_booleans: true
     iterable_contains_unrelated_type: true
     list_remove_unrelated_type: true
     literal_only_boolean_expressions: true

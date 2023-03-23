@@ -9,9 +9,6 @@ part 'app_router.gr.dart';
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
   @override
-  RouteType get defaultRouteType => const RouteType.adaptive();
-
-  @override
   final List<AutoRoute> routes = [
     AutoRoute(page: SplashRoute.page, path: '/'),
     AdaptiveRoute(
@@ -21,6 +18,9 @@ class AppRouter extends _$AppRouter {
   ];
 
   final InitGuard init;
+
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
 
   AppRouter({
     required this.init,

@@ -8,11 +8,11 @@ import 'package:clean_arch_sample/domain/service/session_service/session_status.
 class SessionService {
   final StreamController<SessionStatus> _sessionObserver =
       StreamController<SessionStatus>();
+  SessionStatus _sessionStatus = SessionStatus.closed;
 
   Stream<SessionStatus> get sessionObserver => _sessionObserver.stream;
 
   SessionStatus get sessionStatus => _sessionStatus;
-  SessionStatus _sessionStatus = SessionStatus.closed;
 
   Future<void> openSession(AuthenticationEntity authEntity) async {
     apiClientJsonPlaceholder().attachInterceptors();

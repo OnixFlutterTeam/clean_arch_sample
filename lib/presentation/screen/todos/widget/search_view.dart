@@ -39,7 +39,7 @@ class _SearchViewState extends State<SearchView> {
               hintStyle: context.themeTextStyles.caption14,
               border: UnderlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  14.sm,
+                  14.spMin,
                 ),
               ),
             ),

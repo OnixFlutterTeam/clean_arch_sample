@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:clean_arch_sample/app/app.dart';
 import 'package:clean_arch_sample/core/app/app_initialization.dart';
 import 'package:clean_arch_sample/core/arch/bloc/app_bloc_observer.dart';
-import 'package:clean_arch_sample/core/di/app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
