@@ -9,9 +9,9 @@ class BasicAppAuthInterceptor extends InterceptorsWrapper {
     logger.d('AppInterceptor onRequest');
     //TODO add accessToken
     // var accessToken = 'some token';
-    // options.headers[kAuthHeader] = '$kAuthPrefix$accessToken';
-    // options.headers[kAcceptHeader] = kJsonPrefix;
-    // options.headers[kContentTypeHeader] = kJsonPrefix;
+    // options.headers[BaseApiClient.kAuthHeader] = '${BaseApiClient.kAuthPrefix}$accessToken';
+    // options.headers[BaseApiClient.kAcceptHeader] = BaseApiClient.kJsonPrefix;
+    // options.headers[BaseApiClient.kContentTypeHeader] = BaseApiClient.kJsonPrefix;
     super.onRequest(options, handler);
   }
 
