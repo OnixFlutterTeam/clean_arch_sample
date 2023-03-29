@@ -8,18 +8,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   unawaited(runZonedGuarded(
     () async {
-      WidgetsFlutterBinding.ensureInitialized();
+      final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+      FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
       await AppInitialization.I.initApp();
-
       await SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
       ]);
       Bloc.observer = AppBlocObserver();
+
+      FlutterNativeSplash.remove();
       runApp(const App());
     },
     (error, stackTrace) {

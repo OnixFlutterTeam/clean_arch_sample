@@ -1,4 +1,3 @@
-import 'package:clean_arch_sample/data/repository/startup_repository_impl.dart';
 import 'package:clean_arch_sample/data/repository/time_repository_impl.dart';
 import 'package:clean_arch_sample/data/repository/todo_repository_impl.dart';
 import 'package:clean_arch_sample/data/repository/token_repository_impl.dart';
@@ -7,7 +6,6 @@ import 'package:clean_arch_sample/data/source/local/preferences_source/preferenc
 import 'package:clean_arch_sample/data/source/local/secure_storage/secure_storage_source.dart';
 import 'package:clean_arch_sample/data/source/remote/time/time_source.dart';
 import 'package:clean_arch_sample/data/source/remote/todo/todo_source.dart';
-import 'package:clean_arch_sample/domain/repository/startup_repository.dart';
 import 'package:clean_arch_sample/domain/repository/time_repository.dart';
 import 'package:clean_arch_sample/domain/repository/todo_repository.dart';
 import 'package:clean_arch_sample/domain/repository/token_repository.dart';
@@ -15,7 +13,6 @@ import 'package:get_it/get_it.dart';
 
 void registerRepositories(GetIt getIt) {
   getIt
-    ..registerLazySingleton<StartupRepository>(StartupRepositoryImpl.new)
     ..registerSingleton<TodoRepository>(
       TodoRepositoryImpl(
         getIt<TodoSource>(),
