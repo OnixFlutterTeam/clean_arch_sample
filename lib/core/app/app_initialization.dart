@@ -16,6 +16,7 @@ class AppInitialization {
     //TODO init firebase / Crashlytics / Messaging
     await _initializeDatabase();
     initializeDi(GetIt.I);
+
     logger.d('APP Init: done');
   }
 

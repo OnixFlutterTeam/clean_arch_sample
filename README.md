@@ -42,6 +42,10 @@ If you have conflicts use command:
 
 `flutter pub run build_runner build --delete-conflicting-outputs`
 
+Regenerate splash screen:
+
+`flutter pub run flutter_native_splash:create`
+
 # Build
 ## IOS
 * `flutter build ios --release`
