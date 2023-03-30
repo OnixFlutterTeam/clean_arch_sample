@@ -15,9 +15,9 @@ import 'package:clean_arch_sample/presentation/screen/todos/widget/loading_state
 import 'package:clean_arch_sample/presentation/screen/todos/widget/no_todos_view.dart';
 import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_screen_content.dart';
 import 'package:clean_arch_sample/presentation/screen/todos/widget/todo_view.dart';
-import 'package:clean_arch_sample/presentation/style/theme/theme_extension_no_code_gen/ext.dart';
 import 'package:clean_arch_sample/presentation/style/theme/theme_imports.dart';
 import 'package:clean_arch_sample/util/dimensions.dart';
+import 'package:clean_arch_sample/util/extension/theme_brightness_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,7 +56,9 @@ class _TodosScreenState
               builder: (context, state) {
                 return IconButton(
                   onPressed: () {
-                    _changeTheme(context, state.themeMode);
+                    context.switchThemeBrightness(
+                      currentThemeMode: state.themeMode,
+                    );
                   },
                   icon: Icon(
                     _getThemeIcon(context, state.themeMode),
@@ -111,17 +113,6 @@ class _TodosScreenState
     );
   }
 
-  void _changeTheme(
-    BuildContext context,
-    ThemeMode themeMode,
-  ) {
-    _appBlocOf(context).add(
-      AppEvent.changeTheme(
-        context.getThemeToSwitch(currentTheme: themeMode),
-      ),
-    );
-  }
-
   IconData _getThemeIcon(
     BuildContext context,
     ThemeMode themeMode,
@@ -140,6 +131,4 @@ class _TodosScreenState
         return Icons.color_lens_outlined;
     }
   }
-
-  AppBloc _appBlocOf(BuildContext context) => BlocProvider.of<AppBloc>(context);
 }

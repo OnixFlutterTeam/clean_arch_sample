@@ -4,7 +4,7 @@ import 'package:clean_arch_sample/core/di/remote.dart';
 import 'package:flutter/material.dart';
 
 class QaUtils {
-  static Widget buildCharlesProxyBtn(BuildContext context) {
+  static Widget buildCharlesProxyBtn(BuildContext _) {
     return const SizedBox();
     //TODO SHOW set proxy ONLY FOR QA BUILDS
     /*if (false *//*FlavorConfig.I.flavor == Flavors.prod*//*) {
